@@ -1,0 +1,27 @@
+<div class="nav-container">
+    <div class="nav-top">
+      <div class="nav-top-header">
+        <div class="center-img"></div>
+      </div>
+      <div class="nav-top-content"></div>
+    </div>
+
+    <nav class="nav navbar-inverse" id="arw-main-nav" role="navigation" nav-hold>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav" id="arw-inside-nav">
+            <!--<li><a ui-sref="app" ng-class="{'active':hdc.checkActivePage('home')}">Home</a></li>-->
+            <li ng-repeat="page in hdc.pages"><a ui-sref="{{page.state}}" ng-class="{'active':hdc.checkActivePage('{{page.name}}')}">{{page.title}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>

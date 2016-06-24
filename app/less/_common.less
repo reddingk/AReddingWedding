@@ -1,0 +1,60 @@
+@medium-screen: ~"only screen and (min-width: 801px) and (max-width: 1024px)";
+@tablet-screen: ~"only screen and (min-width: 641px) and (max-width: 800px)";
+@mobile-screen: ~"only screen and (max-width: 640px)";
+
+@font-size: 16px;
+
+@color1: rgba(58,93,150,1);
+@color2: rgba(251,175,45,1);
+
+@color1-back: rgba(58,93,150,0.5);
+@color2-back: rgba(251,175,45,0.5);
+
+html, body {
+  height: 100%;
+  font-size: @font-size;
+}
+.bodycontainer {
+  background-color: @color1-back;
+  width: 100%;
+  height: 100%;
+  padding: 200px 5% 5% 5%;
+
+  .header {
+    z-index:10;
+  }
+
+  .mainBody {
+    z-index:5;
+  }
+}
+
+.nav-container {
+  z-index: 10;
+  border: 2px solid #000;
+  .nav-top {
+  	background-color: @color1;
+    min-height: 400px;
+
+    .nav-top-header {
+      height: 50px;
+      background-color: rgba(255,255,255,0.9);
+      z-index: 15;
+      .center-img {
+        width: 200px;
+        height: 200px;
+        background-color: #000;
+        position: absolute;
+        left: 45%;
+        z-index: 20;
+        top: 125px;
+        /* Rotate div */
+        -ms-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+    }
+    .nav-top-content {}
+  }
+}
