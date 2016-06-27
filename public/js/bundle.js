@@ -1,10 +1,12 @@
+
 (function () {
 	"use strict";
 
 		angular.module('directives', []);
+		angular.module('mainCtrl', ['ui.bootstrap']);
 		angular.module('headerCtrl', ['ui.bootstrap']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial','ngAnimate', 'ui.router', 'config', 'directives', 'headerCtrl']);
+    angular.module('ARWApp', ['ngMaterial','ngAnimate', 'ui.router', 'config', 'directives', 'mainCtrl', 'headerCtrl']);
 
 })();
 
@@ -41,16 +43,16 @@
             templateUrl: 'views/construction.html'
           }
         }
-      });
-      /*.state('app.ourstory', {
+      })
+      .state('app.ourstory', {
         url: "ourstory",
         views: {
           'content@': {
-            templateUrl: 'views/ourstory.html',
-            controller: 'OurStoryController as oc'
+            templateUrl: 'views/ourstory.html'/*,
+            controller: 'OurStoryController as oc'*/
           }
         }
-      });*/
+      });
 
       $urlRouterProvider.otherwise('/');
       //$locationProvider.html5Mode(true);
@@ -70,15 +72,15 @@
 
     /*Variables*/
     vm.selected = null;
+
     vm.pages = [
-      {"id":0, "name":"construction", "state":"app.construction", "title":"1" },
-      {"id":1, "name":"construction", "state":"app.construction", "title":"2" },
-      {"id":2, "name":"construction", "state":"app.construction", "title":"3" },
-      {"id":3, "name":"construction", "state":"app.construction", "title":"4" },
-      {"id":4, "name":"construction", "state":"app.construction", "title":"5" },
-      {"id":5, "name":"construction", "state":"app.construction", "title":"6" },
-      {"id":6, "name":"construction", "state":"app.construction", "title":"7" }
-    ]
+      {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay" },
+      {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users" },
+      {"id":2, "name":"construction", "title":"Events", "state":"app.construction", "icon":"fa-bell-o"},
+      {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o"},
+      {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift" },
+      {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro"}
+    ];
 
     function checkActivePage(current) {
          var currentPage = $state;
@@ -88,6 +90,54 @@
 
     function selectPage(newstate) {
       $state.go(newstate.link);
+    }
+
+  }]);
+
+})();
+
+(function(){
+ "use strict";
+
+  angular.module('mainCtrl').controller('MainController', ['$state', function($state){
+    var vm = this;
+    /*Functions*/
+    vm.checkActivePage = checkActivePage;
+    vm.selectPage = selectPage;
+    vm.togglePage = togglePage;
+
+    /*Variables*/
+    vm.selected = null;
+    vm.cardClosed = true;
+    vm.statetest = $state.current.name;
+
+    function checkActivePage(current) {
+         var currentPage = $state;
+         if (currentPage != null && currentPage.current.name.indexOf(current) > -1) { return true; }
+         else { return false; }
+    }
+
+    function selectPage(newstate) {
+      if(!checkActivePage(newstate))
+        $state.go(newstate);
+    }
+
+    function togglePage(newstate) {
+      if(!checkActivePage(newstate)){
+        if(!vm.cardClosed){
+          vm.cardClosed = true;
+        }
+
+        setTimeout(function () {
+          vm.cardClosed = false;
+          console.log("CD1:" + vm.cardClosed);
+          console.log("NS :" + newstate);
+          selectPage(newstate);
+        }, 1100);
+      }
+      else {
+        vm.cardClosed = false;
+      }
     }
 
   }]);

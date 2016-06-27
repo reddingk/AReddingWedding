@@ -13,15 +13,37 @@
 html, body {
   height: 100%;
   font-size: @font-size;
+  font-family: 'Great Vibes', cursive;
 }
 .bodycontainer {
   background-color: @color1-back;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   padding: 200px 5% 5% 5%;
 
   .header {
     z-index:10;
+  }
+
+  .card-body {
+    background-color: rgba(255,255,255,0.5);
+    margin: 0 20px;
+    border-radius: 0px 0px 25px 25px;
+    padding: 5%;
+    z-index:5;
+    -webkit-transition: all 2s;
+    transition: all 2s;
+
+    &.closed { padding: 0px; height: 40px; }
+    .card-content {
+      color: #fff;
+      -webkit-transition: all 3s;
+      transition: all 3s;
+      &.closed { display: none;}
+      .mainBody {
+
+      }
+    }
   }
 
   .mainBody {
@@ -45,16 +67,74 @@ html, body {
         height: 200px;
         background-color: #000;
         position: absolute;
-        left: 45%;
+        //left: 45%;
+        left: ~"calc(50% - 100px)";
         z-index: 20;
         top: 125px;
         /* Rotate div */
         -ms-transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          -ms-transform: rotate(-45deg);
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+      }
+      .nav-top-text {
+        color: rgba(0,0,0,1);
+        padding: 10px 0px;
+        font-size: 1.5rem;
+
+        .text-left { display: inline-block; float: left; width: 30%; text-align: center;}
+        .text-right{ display: inline-block; float: right; width: 30%; text-align: center;}
       }
 
     }
-    .nav-top-content {}
+    .nav-top-content {
+      height: 100%;
+      .text-left-3, .text-center-3, .text-right-3 {
+        display: inline-block;
+        width: 33%;
+        text-align: center;
+        font-size: 4rem;
+        font-weight: bold;
+        z-index: 25;
+        margin-top: 75px;
+
+      }
+    }
   }
+  .nav {
+    .container {
+      .navbar-header { }
+      .navbar-collapse {
+        .navbar-nav {
+          width: 100%;
+          li {
+            width: 16%;
+            text-align: center;
+            a {
+              .arw-btn {
+                color: rgba(0,0,0,1);
+                background-color: rgba(255,255,255,1);
+
+                &:hover, &.active { background-color: @color1; color: rgba(255,255,255,1);}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/*Items*/
+md-tooltip {
+  font-size: 1.1rem;
 }

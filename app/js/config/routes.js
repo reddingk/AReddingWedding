@@ -24,16 +24,16 @@
             templateUrl: 'views/construction.html'
           }
         }
-      });
-      /*.state('app.ourstory', {
+      })
+      .state('app.ourstory', {
         url: "ourstory",
         views: {
           'content@': {
-            templateUrl: 'views/ourstory.html',
-            controller: 'OurStoryController as oc'
+            templateUrl: 'views/ourstory.html'/*,
+            controller: 'OurStoryController as oc'*/
           }
         }
-      });*/
+      });
 
       $urlRouterProvider.otherwise('/');
       //$locationProvider.html5Mode(true);

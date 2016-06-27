@@ -9,6 +9,10 @@
   <title>#AReddingWedding</title>
   <link rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon'/ >
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="css/libs.min.css">
   <link rel="stylesheet" href="css/styles.min.css">
 
@@ -17,12 +21,18 @@
 
 </head>
 
-<body ng-app="ARWApp">  
-  <div class="bodycontainer">
+<body ng-app="ARWApp">
+  <div class="bodycontainer" ng-controller="MainController as mc">
     <!--Header Navigation-->
     <div class="header" ui-view="header"></div>
     <!--Main Body-->
-    <div class="mainBody" id="content" ui-view="content" autoscroll="true" aria-relevant="all" aria-live="assertive"></div>
+    <div class="card-body" ng-class="{'closed': mc.cardClosed}">
+      <div class="card-content" ng-class="{'closed': mc.cardClosed}">
+        <div class="mainBody" id="content" ui-view="content" autoscroll="true" aria-relevant="all" aria-live="assertive"></div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+
   </div>
 </body>
 
