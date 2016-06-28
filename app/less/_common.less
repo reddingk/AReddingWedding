@@ -4,11 +4,17 @@
 
 @font-size: 16px;
 
-@color1: rgba(58,93,150,1);
-@color2: rgba(251,175,45,1);
+/*Main Colors*/
+@color1: rgba(8,52,87,1);/*Blue*/
+@color2: rgba(159,159,159,1);/*Silver*/
+@color3: rgba(214,48,96,1);/*Red*/
+@color4: rgba(248,159,187,1);/*Pink*/
 
-@color1-back: rgba(58,93,150,0.5);
-@color2-back: rgba(251,175,45,0.5);
+/*Back Colors*/
+@color1-back: rgba(8,52,87,0.5); /*Blue*/
+@color2-back: rgba(159,159,159,0.5); /*Silver*/
+@color3-back: rgba(214,48,96,0.5);/*Red*/
+@color4-back: rgba(248,159,187,0.5);/*Pink*/
 
 html, body {
   height: 100%;
@@ -17,6 +23,9 @@ html, body {
 }
 .bodycontainer {
   background-color: @color1-back;
+  /*background-image: url("../img/Full-Back.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;*/
   width: 100%;
   min-height: 100%;
   padding: 200px 5% 5% 5%;
@@ -41,9 +50,14 @@ html, body {
       transition: all 3s;
       &.closed { display: none;}
       .mainBody {
-
+        .card-page {
+          color: rgba(0,0,0,1);
+          h1 { text-align: center;}
+        }
       }
     }
+
+    .cardOpener { padding: 10px 50px 5px 0px; float: right; }
   }
 
   .mainBody {
@@ -56,6 +70,9 @@ html, body {
   border: 2px solid #000;
   .nav-top {
   	background-color: @color1;
+    background-image: url("../img/Background.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     min-height: 400px;
 
     .nav-top-header {
@@ -105,11 +122,12 @@ html, body {
         font-weight: bold;
         z-index: 25;
         margin-top: 75px;
-
+        color:rgba(255,255,255,1);
       }
     }
   }
   .nav {
+    background-color: @color2;
     .container {
       .navbar-header { }
       .navbar-collapse {
@@ -122,8 +140,7 @@ html, body {
               .arw-btn {
                 color: rgba(0,0,0,1);
                 background-color: rgba(255,255,255,1);
-
-                &:hover, &.active { background-color: @color1; color: rgba(255,255,255,1);}
+                &:hover, &.active { background-color: @color3; color: rgba(255,255,255,1);}
               }
             }
           }

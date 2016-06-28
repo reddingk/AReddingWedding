@@ -30,6 +30,8 @@
       <div class="card-content" ng-class="{'closed': mc.cardClosed}">
         <div class="mainBody" id="content" ui-view="content" autoscroll="true" aria-relevant="all" aria-live="assertive"></div>
       </div>
+
+      <div class="cardOpener" ng-if="mc.cardClosed" ng-click="mc.cardClosed=false">Open Card <i class="fa fa-chevron-down"></i></div>
       <div style="clear:both"></div>
     </div>
 
