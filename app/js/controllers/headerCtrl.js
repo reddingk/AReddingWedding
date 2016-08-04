@@ -10,6 +10,7 @@
     /*Variables*/
     vm.selected = null;
 
+    vm.mainImg = "img/BrideAGroom.jpg"
     vm.pages = [
       {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay" },
       {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users" },

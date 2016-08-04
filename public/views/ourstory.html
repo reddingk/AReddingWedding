@@ -1,3 +1,28 @@
 <div class="card-page">
   <h1>Our Story</h1>
+
+  <div class="story">
+    <timeline>
+      <timeline-event ng-repeat="event in oc.events" side="{{event.side}}">
+        <!--Stories-->
+        <timeline-badge class="{{event.badgeClass}}" ng-if="!event.imagebreak">
+          <i class="fa {{event.badgeIconClass}}"></i>
+        </timeline-badge>
+        <timeline-panel class="{{event.badgeClass}}" ng-if="!event.imagebreak">
+          <timeline-heading>
+            <h4>{{event.title}}</h4>
+          </timeline-heading>
+          <p class="timeline-when"><i class="fa fa-clock-o" aria-hidden="true"></i> {{event.when}}</p>
+          <p class="timeline-content">{{event.content}}</p>
+        </timeline-panel>
+
+        <!--IMAGES-->
+        <timeline-badge class="{{event.badgeClass}}" ng-if="event.imagebreak">
+          <img ng-src="{{event.content}}">
+        </timeline-badge>
+        <timeline-panel class="timeline-hidden {{event.badgeClass}}" ng-if="event.imagebreak">NO TEXT</<timeline-panel>
+      </timeline-event>
+    </timeline>
+
+  </div>
 </div>

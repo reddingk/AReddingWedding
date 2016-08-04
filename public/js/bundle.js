@@ -5,8 +5,60 @@
 		angular.module('directives', []);
 		angular.module('mainCtrl', ['ui.bootstrap']);
 		angular.module('headerCtrl', ['ui.bootstrap']);
+		angular.module('ourStoryCtrl', ['ui.bootstrap']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial','ngAnimate', 'ui.router', 'config', 'directives', 'mainCtrl', 'headerCtrl']);
+    angular.module('ARWApp', ['ngMaterial','ngAnimate', 'ui.router', 'angular-timeline', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl']);
+
+})();
+
+(function(){
+  'use strict';
+
+  angular.module('config', [ 'ngMaterial' ]);
+
+})();
+
+(function(){
+
+  angular
+    .module('config')
+    .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+      $stateProvider
+      .state('app', {
+        url: "/",
+        views: {
+          'content':{
+            templateUrl: 'views/home.html'
+            /*,controller: 'HomeController as hc'*/
+          },
+          'header':{
+            templateUrl: 'views/templates/_header.html',
+            controller: 'HeaderController as hdc'
+          }
+        }
+      })
+      .state('app.construction', {
+        url: "underconstruction",
+        views: {
+          'content@': {
+            templateUrl: 'views/construction.html'
+          }
+        }
+      })
+      .state('app.ourstory', {
+        url: "ourstory",
+        views: {
+          'content@': {
+            templateUrl: 'views/ourstory.html',
+            controller: 'OurStoryController as oc'
+          }
+        }
+      });
+
+      $urlRouterProvider.otherwise('/');
+      //$locationProvider.html5Mode(true);
+    }]);
+
 
 })();
 
@@ -22,6 +74,7 @@
     /*Variables*/
     vm.selected = null;
 
+    vm.mainImg = "img/BrideAGroom.jpg"
     vm.pages = [
       {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay" },
       {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users" },
@@ -94,52 +147,47 @@
 })();
 
 (function(){
-  'use strict';
+ "use strict";
 
-  angular.module('config', [ 'ngMaterial' ]);
+  angular.module('ourStoryCtrl').controller('OurStoryController', ['$state', function($state){
+    var vm = this;
+    /*Functions*/
+    vm.events = [{
+      badgeClass: 'kColor', side: 'left',
+      badgeIconClass: 'fa-heart',
+      title: 'Kris',
+      when:"Fall 2007",
+      content: 'First Met'
+    }, {
+      badgeClass: 'gColor', side:'right',
+      badgeIconClass: 'fa-heart',
+      title: 'Grace',
+      when:"Fall 2007",
+      content: 'First Met'
+    },
+    {
+      imagebreak: 'true',
+      badgeClass: 'centerimg', side:'',
+      badgeIconClass: 'movin-image', content: 'img/storyimgs/test1.jpg'
+    },
+    {
+      badgeClass: 'kColor', side: 'left',
+      badgeIconClass: 'fa-heart',
+      title: 'First Date',
+      when:"2007",
+      content: 'First Met'
+    }, {
+      badgeClass: 'gColor', side:'right',
+      badgeIconClass: 'fa-heart',
+      title: 'Grace',
+      when:"Birthday Gift",
+      content: 'First Met'
+    }];
 
-})();
+    /*Variables*/
 
-(function(){
 
-  angular
-    .module('config')
-    .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
-      $stateProvider
-      .state('app', {
-        url: "/",
-        views: {
-          'content':{
-            templateUrl: 'views/home.html'
-            /*,controller: 'HomeController as hc'*/
-          },
-          'header':{
-            templateUrl: 'views/templates/_header.html',
-            controller: 'HeaderController as hdc'
-          }
-        }
-      })
-      .state('app.construction', {
-        url: "underconstruction",
-        views: {
-          'content@': {
-            templateUrl: 'views/construction.html'
-          }
-        }
-      })
-      .state('app.ourstory', {
-        url: "ourstory",
-        views: {
-          'content@': {
-            templateUrl: 'views/ourstory.html'/*,
-            controller: 'OurStoryController as oc'*/
-          }
-        }
-      });
 
-      $urlRouterProvider.otherwise('/');
-      //$locationProvider.html5Mode(true);
-    }]);
-
+  }]);
 
 })();
