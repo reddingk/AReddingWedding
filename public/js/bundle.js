@@ -6,8 +6,9 @@
 		angular.module('mainCtrl', ['ui.bootstrap']);
 		angular.module('headerCtrl', ['ui.bootstrap']);
 		angular.module('ourStoryCtrl', ['ui.bootstrap']);
+		angular.module('eventsCtrl', ['ui.bootstrap']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial','ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl']);
+    angular.module('ARWApp', ['ngMaterial','ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl']);
 
 })();
 
@@ -53,12 +54,85 @@
             controller: 'OurStoryController as oc'
           }
         }
+      })
+      .state('app.events', {
+        url: "events",
+        views: {
+          'content@': {
+            templateUrl: 'views/events.html',
+            controller: 'EventsController as ec'
+          }
+        }
       });
 
       $urlRouterProvider.otherwise('/');
       //$locationProvider.html5Mode(true);
     }]);
 
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
+            var windowp = angular.element($window)[0];
+
+            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);
+
+})();
+
+(function(){
+ "use strict";
+
+  angular.module('eventsCtrl').controller('EventsController', ['$state', function($state){
+    var vm = this;
+    /*Functions*/
+
+    /*Variables*/
+    vm.myInterval = 7000;
+    vm.active = 0;
+    vm.eventsList = [
+      {title: 'Engagement Party', date:new Date("2017-03-04 14:00:00"),
+       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut nisi vel nibh dictum aliquam vitae et diam. Donec scelerisque nisl at ex faucibus dignissim. Sed ex sem, eleifend quis massa sit amet, bibendum volutpat lorem.",
+       location: {name: "Engagement Venue", address:"78910 Wallaby Lane, Washington DC, 20008" },
+       photos: [{id:0, image:"img/eventimgs/test1.jpg"}, {id:1, image:"img/eventimgs/test2.jpg"}, {id:2, image:"img/eventimgs/test3.jpg"}]},
+      {title: 'The Wedding', date:new Date("2018-05-18 14:00:00"),
+       text: "The church where the wedding ceremony will take place on April 6th is St. Patrick's Church, where you'll find us most Sunday mornings.",
+       location: {name: "Church Venue", address:"11018 Guy R Brewer Blvd, Jamaica, NY 11433" },
+       photos: [{id:0, image:"img/eventimgs/test4.jpg"}]},
+      {title: 'The Reception', date:new Date("2018-05-18 17:00:00"),
+       text: "Maecenas porta orci nec pretium ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam et felis non odio luctus suscipit. Donec eget pellentesque dui. Sed interdum facilisis magna in vehicula.",
+       location: {name: "Venue", address:"1234 Place Road, New York, NY 11433" },
+       photos: [{id:0, image:"img/eventimgs/test5.jpg"}, {id:1, image:"img/eventimgs/test6.jpg"}, {id:2, image:"img/eventimgs/test7.jpg"}]}
+    ];
+
+  }]);
 
 })();
 
@@ -76,12 +150,12 @@
 
     vm.mainImg = "img/BrideAGroom.jpg"
     vm.pages = [
-      {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay" },
-      {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users" },
-      {"id":2, "name":"construction", "title":"Events", "state":"app.construction", "icon":"fa-bell-o"},
-      {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o"},
-      {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift" },
-      {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro"}
+      {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay", "svg":"shapes-1.svg" },
+      {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users", "svg":"party-dancing.svg"},
+      {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
+      {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o", "svg":"letter.svg"},
+      {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift", "svg":"gifts.svg" },
+      {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
 
     function checkActivePage(current) {
@@ -175,7 +249,7 @@
     }, {
       badgeClass: 'gColor', side:'right',
       badgeIconClass: 'fa-gift',
-      title: 'Birthday Gift For Him',
+      title: 'Birthday Gift',
       when:"December 2007",
       content: 'First Met'
     }, {
@@ -183,8 +257,6 @@
       badgeClass: 'centerimg', side:'',
       badgeIconClass: 'movin-image', content: 'img/storyimgs/1.jpg'
     }];
-
-
 
 
 

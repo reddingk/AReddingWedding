@@ -12,12 +12,12 @@
 
     vm.mainImg = "img/BrideAGroom.jpg"
     vm.pages = [
-      {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay" },
-      {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users" },
-      {"id":2, "name":"construction", "title":"Events", "state":"app.events", "icon":"fa-bell-o"},
-      {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o"},
-      {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift" },
-      {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro"}
+      {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay", "svg":"shapes-1.svg" },
+      {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users", "svg":"party-dancing.svg"},
+      {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
+      {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o", "svg":"letter.svg"},
+      {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift", "svg":"gifts.svg" },
+      {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
 
     function checkActivePage(current) {

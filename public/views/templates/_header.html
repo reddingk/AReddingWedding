@@ -13,11 +13,8 @@
       <div class="nav-top-content">
         <div class="text-left-3"><div>Kris<br>Redding</div></div>
         <div class="text-center-3">
-          <i class="fa fa-heartbeat"></i>
-          <!--<span class="fa-stack fa-lg">
-            <i class="fa fa-bell fa-stack-2x bottom"></i>
-            <i class="fa fa-heart-o fa-stack-1x top"></i>
-          </span>-->
+          <!--<i class="fa fa-heartbeat"></i>-->
+          <img src="img/weddingicons/svg/wine-toast.svg" >
         </div>
         <div class="text-right-3"><div>Grace<br>Manning</div></div>
       </div>
@@ -35,12 +32,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav" id="arw-inside-nav">
-            <!--<li><a ui-sref="app" ng-class="{'active':hdc.checkActivePage('home')}">Home</a></li>-->
-            <!--<li ng-repeat="page in hdc.pages"><a ng-class="{'active':hdc.checkActivePage('{{page.name}}')}" ng-click="mc.togglePage(page.state)">{{page.title}}</a></li>-->
             <li ng-repeat="page in hdc.pages"><a ng-click="mc.togglePage(page.state)">
               <md-button class="md-fab arw-btn" ng-class="{'active':hdc.checkActivePage('{{page.name}}')}" aria-label="page.title">
                 <md-tooltip md-direction="bottom">{{page.title}}</md-tooltip>
-                <i class="fa fa-lg" ng-class="page.icon"></i>
+                <!--<i class="fa fa-lg" ng-class="page.icon"></i>-->
+                <img ng-src="img/weddingicons/svg/{{page.svg}}" >
               </md-button>
             </a></li>
           </ul>

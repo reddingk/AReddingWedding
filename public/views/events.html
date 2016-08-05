@@ -1,4 +1,31 @@
 <div class="card-page">
   <h1>Events</h1>
 
+  <div class="events-list">
+    <div class="event-wrapper" ng-repeat="event in ec.eventsList">
+      <div class="event-title"><span>{{event.title}}</span></div>
+      <div class="event-section">
+        <div class="event-content">
+          <div class="event-imgs">
+            <uib-carousel active="ec.active" interval="ec.myInterval" no-wrap="false" no-pause="true">
+              <uib-slide ng-repeat="slide in event.photos track by slide.id" index="slide.id">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+              </uib-slide>
+            </uib-carousel>
+          </div>
+
+          <div class="event-details">
+            <div class="event-info">
+              <span class="event-date"><b>Date:</b> {{ event.date | date: 'EEE MMM dd, yyyy' }}</span>
+              <span class="event-time"><b>Time:</b> {{ event.date | date: 'hh:mm a' }}</span>
+              <span class="event-location"><b>Location:</b> {{ event.location.name }}</span>
+              <span class="event-address"><b>Address:</b> {{ event.location.address }}</span>
+            </div>
+            <div class="event-text">{{ event.text }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
