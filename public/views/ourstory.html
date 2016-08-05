@@ -10,15 +10,15 @@
         </timeline-badge>
         <timeline-panel class="{{event.badgeClass}}" ng-if="!event.imagebreak">
           <timeline-heading>
-            <h4>{{event.title}}</h4>
+            <h3 class="basic-cursive">{{event.title}}</h3>
           </timeline-heading>
-          <p class="timeline-when"><i class="fa fa-clock-o" aria-hidden="true"></i> {{event.when}}</p>
-          <p class="timeline-content">{{event.content}}</p>
+          <p class="timeline-when basic-font"><i class="fa fa-clock-o" aria-hidden="true"></i> {{event.when}}</p>
+          <p class="timeline-content basic-font">{{event.content}}</p>
         </timeline-panel>
 
         <!--IMAGES-->
         <timeline-badge class="{{event.badgeClass}}" ng-if="event.imagebreak">
-          <img ng-src="{{event.content}}">
+          <img ng-src="{{event.content}}" alt="" du-parallax y="oc.background">
         </timeline-badge>
         <timeline-panel class="timeline-hidden {{event.badgeClass}}" ng-if="event.imagebreak">NO TEXT</<timeline-panel>
       </timeline-event>

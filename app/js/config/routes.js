@@ -33,6 +33,15 @@
             controller: 'OurStoryController as oc'
           }
         }
+      })
+      .state('app.events', {
+        url: "events",
+        views: {
+          'content@': {
+            templateUrl: 'views/events.html',
+            controller: 'EventsController as ec'
+          }
+        }
       });
 
       $urlRouterProvider.otherwise('/');

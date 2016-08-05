@@ -5,8 +5,8 @@
           background-color: #000;
         }
         timeline-badge{
-          &.kColor { background-color: #5bc0de !important; }
-          &.gColor { background-color: #FA5B38 !important; }
+          &.kColor { background-color: rgba(0, 43, 128,1); }
+          &.gColor { background-color: rgba(255, 128, 170,1); }
 
           &.centerimg {
             border-radius: 0px;
@@ -23,9 +23,15 @@
           }
         }
         timeline-panel {
-          .timeline-when {
-            color: #ccc;
+          &.kColor { background-color: rgba(0, 43, 128, 0.7); }
+          &.gColor { background-color: rgba(255, 128, 170, 0.7); }
+          .timeline-panel {
+            width: 100%;
+            .timeline-when {
+              color: rgba(204, 204, 204,1);
+            }
           }
+
           &.centerimg {
             height: 350px;
           }

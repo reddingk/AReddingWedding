@@ -14,7 +14,7 @@
     vm.pages = [
       {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay" },
       {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users" },
-      {"id":2, "name":"construction", "title":"Events", "state":"app.construction", "icon":"fa-bell-o"},
+      {"id":2, "name":"construction", "title":"Events", "state":"app.events", "icon":"fa-bell-o"},
       {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o"},
       {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift" },
       {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro"}
