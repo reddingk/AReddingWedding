@@ -27,11 +27,11 @@
     <!--Header Navigation-->
     <div class="header" ui-view="header"></div>
     <!--Main Body-->
-    <div class="card-body" ng-class="{'closed': mc.cardClosed}">
+    <div class="card-body" ng-class="{'closed': mc.cardClosed}" nav-hold>
       <div class="card-content" ng-class="{'closed': mc.cardClosed}">
         <div class="mainBody" id="content" ui-view="content" autoscroll="true" aria-relevant="all" aria-live="assertive"></div>
       </div>
-      
+
       <div style="clear:both"></div>
     </div>
 

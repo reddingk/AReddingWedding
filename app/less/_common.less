@@ -16,6 +16,9 @@
 @color3-back: rgba(214,48,96,0.5);/*Red*/
 @color4-back: rgba(248,159,187,0.5);/*Pink*/
 
+/*Box-Shadow*/
+@main-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 html, body {
   height: 100%;
   font-size: @font-size;
@@ -46,8 +49,11 @@ html, body {
     z-index:5;
     -webkit-transition: all 2s;
     transition: all 2s;
+    box-shadow: @main-shadow;
 
     &.closed { padding: 0px; height: 40px; }
+    &.screenPass { padding-top: 220px;}
+
     .card-content {
       color: #fff;
       -webkit-transition: all 3s;
@@ -73,6 +79,7 @@ html, body {
 .nav-container {
   z-index: 10;
   border: 2px solid #000;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   .nav-top {
   	background-color: @color1;
     background-image: url("../img/Background.png");
@@ -166,16 +173,18 @@ html, body {
         }
       }
     }
+    &.screenPass {
+      position: fixed;
+      top: 0px;
+      width: 90%;
+      border: 2px solid #000;
+      z-index: 100;
+      box-shadow: @main-shadow;
+    }
   }
 
 }
-.screenPass {
-  position: fixed;
-  top: 0px;
-  width: 90%;
-  border: 2px solid #000;
-  z-index: 100;
-}
+
 /*Items*/
 md-tooltip {
   font-family: 'Lobster', cursive;

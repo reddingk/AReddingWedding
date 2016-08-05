@@ -13,7 +13,7 @@
     vm.mainImg = "img/BrideAGroom.jpg"
     vm.pages = [
       {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay", "svg":"shapes-1.svg" },
-      {"id":1, "name":"construction", "title":"Wedding Party", "state":"app.construction", "icon":"fa-users", "svg":"party-dancing.svg"},
+      {"id":1, "name":"weddingparty", "title":"Wedding Party", "state":"app.weddingparty", "icon":"fa-users", "svg":"party-dancing.svg"},
       {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
       {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o", "svg":"letter.svg"},
       {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift", "svg":"gifts.svg" },

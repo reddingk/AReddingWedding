@@ -1,0 +1,44 @@
+<div class="card-page">
+  <h1>Wedding Party<h1>
+
+  <div class="wedding-party">
+    <div class="party-image">
+      <img src="img/party/test1.jpg" >
+    </div>
+    <div class="party-list">
+      <div class="wrapper-title"><div class="title"><span>Best Man & Maid Of Honor</span></div></div>
+      <div class="special party-group">
+        <div class="top-bow"><img src="img/weddingicons/svg/ribbon.svg"></div>
+        <div class="member left">
+          <div class="member-img"><img ng-src="img/weddingicons/svg/{{ wpc.specialParty.left.image }}" ></div>
+          <div class="member-name">{{ wpc.specialParty.left.name }}</div>
+          <div class="member-bio">{{ wpc.specialParty.left.bio }}</div>
+        </div>
+        <div class="member right">
+          <div class="member-img"><img ng-src="img/weddingicons/svg/{{ wpc.specialParty.right.image }}" ></div>
+          <div class="member-name">{{ wpc.specialParty.right.name }}</div>
+          <div class="member-bio">{{ wpc.specialParty.right.bio }}</div>
+        </div>
+      </div>
+
+      <div class="wrapper-title"><div class="title"><span>Groomsman & Brides Maids</span></div></div>
+
+      <div class="party-group" ng-repeat= "party in wpc.partylist" >
+        <!--<div class="top-bow"><img src="img/weddingicons/svg/ribbon.svg"></div>-->
+        <div class="member left">
+          <div class="member-img"><img ng-src="img/weddingicons/svg/{{ party.left.image }}" ></div>
+          <div class="member-name">{{ party.left.name }}</div>
+          <div class="member-bio">{{ party.left.bio }}</div>
+        </div>
+        <div class="member right">
+          <div class="member-img"><img ng-src="img/weddingicons/svg/{{ party.right.image }}" ></div>
+          <div class="member-name">{{ party.right.name }}</div>
+          <div class="member-bio">{{ party.right.bio }}</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

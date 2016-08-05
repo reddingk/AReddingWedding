@@ -17,14 +17,6 @@
           }
         }
       })
-      .state('app.construction', {
-        url: "underconstruction",
-        views: {
-          'content@': {
-            templateUrl: 'views/construction.html'
-          }
-        }
-      })
       .state('app.ourstory', {
         url: "ourstory",
         views: {
@@ -40,6 +32,23 @@
           'content@': {
             templateUrl: 'views/events.html',
             controller: 'EventsController as ec'
+          }
+        }
+      })
+      .state('app.weddingparty', {
+        url: "weddingparty",
+        views: {
+          'content@': {
+            templateUrl: 'views/weddingparty.html',
+            controller: 'WeddingPartyController as wpc'
+          }
+        }
+      })
+      .state('app.construction', {
+        url: "underconstruction",
+        views: {
+          'content@': {
+            templateUrl: 'views/construction.html'
           }
         }
       });
