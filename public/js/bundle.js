@@ -10,8 +10,9 @@
 		angular.module('weddingPartyCtrl',['ui.bootstrap']);
 		angular.module('rsvpCtrl',['ui.bootstrap']);
 		angular.module('registryCtrl',['ui.bootstrap']);
+		angular.module('galleryCtrl',['ui.bootstrap']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl']);
+    angular.module('ARWApp', ['ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl', 'galleryCtrl']);
 
 })();
 
@@ -94,6 +95,15 @@
           }
         }
       })
+      .state('app.gallery', {
+        url: "gallery",
+        views: {
+          'content@': {
+            templateUrl: 'views/gallery.html',
+            controller: 'GalleryController as gc'
+          }
+        }
+      })
       .state('app.construction', {
         url: "underconstruction",
         views: {
@@ -107,6 +117,41 @@
       //$locationProvider.html5Mode(true);
     }]);
 
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
+            var windowp = angular.element($window)[0];
+
+            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);
 
 })();
 
@@ -142,6 +187,64 @@
 (function(){
  "use strict";
 
+  angular.module('galleryCtrl').controller('GalleryController', ['$state', function($state){
+    var vm = this;
+    /*Functions*/
+    vm.switchItem = switchItem;
+    vm.nextItem = nextItem;
+    vm.prevItem = prevItem;
+
+    /*Variables*/
+    vm.items = [
+      {"id":0, "img":"amazon-logo.png" },
+      {"id":1, "img":"amazon-logo.png" },
+      {"id":2, "img":"amazon-logo.png" },
+      {"id":3, "img":"amazon-logo.png" },
+      {"id":4, "img":"amazon-logo.png" },
+      {"id":5, "img":"amazon-logo.png" },
+      {"id":6, "img":"amazon-logo.png" },
+      {"id":7, "img":"amazon-logo.png" },
+      {"id":8, "img":"amazon-logo.png" },
+      {"id":9, "img":"amazon-logo.png" },
+      {"id":10, "img":"amazon-logo.png" },
+      {"id":11, "img":"amazon-logo.png" }
+    ];
+
+    vm.selecteditem = vm.items[0];
+    vm.transitionitem = null;
+    vm.displayitems = vm.items.slice(1, vm.items.length);
+
+    /**/
+    function switchItem (newid) {
+      var tmpitems = [];
+      for(var i =0; i < vm.items.length; i++){
+        if(vm.items[i].id == newid) {
+          vm.selecteditem = vm.items[i];
+        }
+        else {
+          tmpitems.push(vm.items[i]);
+        }
+      }
+      vm.displayitems = tmpitems;
+    }
+
+    function nextItem(){
+      var tmpid = ((vm.selecteditem.id + 1) >= vm.items.length ? 0 : vm.selecteditem.id + 1);
+      switchItem(tmpid);
+    }
+
+    function prevItem(){
+      var tmpid = (vm.selecteditem.id == 0 ? (vm.items.length - 1) : vm.selecteditem.id - 1);
+      switchItem(tmpid);
+    }
+
+  }]);
+
+})();
+
+(function(){
+ "use strict";
+
   angular.module('headerCtrl').controller('HeaderController', ['$state', function($state){
     var vm = this;
     /*Functions*/
@@ -158,7 +261,7 @@
       {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
       {"id":3, "name":"rsvp", "title":"RSVP", "state":"app.rsvp", "icon":"fa-envelope-o", "svg":"letter.svg"},
       {"id":4, "name":"registry", "title":"Registry", "state":"app.registry", "icon":"fa-gift", "svg":"gifts.svg" },
-      {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro", "svg":"shapes.svg"}
+      {"id":5, "name":"gallery", "title":"Gallery", "state":"app.gallery", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
 
     function checkActivePage(current) {
@@ -348,40 +451,5 @@
     ];
 
   }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('navHold', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          angular.element($window).bind("scroll", function() {
-
-            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
-            var windowp = angular.element($window)[0];
-
-            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
-            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
-
-            if(windowp.pageYOffset >= topThreshhold){
-              if(!element.hasClass("screenPass")){
-                element.addClass("screenPass");
-              }
-            }
-            else {
-              if(element.hasClass("screenPass")){
-                element.removeClass("screenPass");
-              }
-            }
-
-          });
-        }
-      }
-
-    }]);
 
 })();

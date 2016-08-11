@@ -70,6 +70,15 @@
           }
         }
       })
+      .state('app.gallery', {
+        url: "gallery",
+        views: {
+          'content@': {
+            templateUrl: 'views/gallery.html',
+            controller: 'GalleryController as gc'
+          }
+        }
+      })
       .state('app.construction', {
         url: "underconstruction",
         views: {

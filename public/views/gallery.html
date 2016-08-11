@@ -1,0 +1,10 @@
+<div class="card-page">
+  <h1>Gallery</h1>
+
+  <div class="test">
+    <div ng-click="gc.prevItem()"> << </div>
+    <div ng-click="gc.nextItem()"> >> </div>
+    <h1>{{gc.selecteditem.id}}</h1>
+    <p ng-repeat="item in gc.displayitems track by $index">{{item.id}}</p>
+  </div>
+</div>
