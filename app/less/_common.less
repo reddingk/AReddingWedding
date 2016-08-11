@@ -23,6 +23,7 @@ html, body {
   height: 100%;
   font-size: @font-size;
   font-family: 'Great Vibes', cursive;
+  @media @tablet-screen, @mobile-screen { font-size: 12px; }
 }
 
 .basic-cursive { font-family: 'Lobster', cursive; }
@@ -70,6 +71,7 @@ html, body {
             padding: 0px 20%;
             .groom { color: @color1; font-weight: bold;}
             .bride { color: @color4; font-weight: bold;}
+            @media @tablet-screen, @mobile-screen { padding: 0; }
           }
         }
       }
@@ -121,9 +123,16 @@ html, body {
           transform: rotate(-45deg);
           position:absolute;
           top: -40px;
+          @media @tablet-screen, @mobile-screen { width: 170%; top:-30px; }
         }
         &:hover{
           outline: 5px solid @color2;
+        }
+        @media @tablet-screen, @mobile-screen {
+          width: 100px;
+          height: 100px;
+          left: ~"calc(50% - 50px)";
+          top: 175px;
         }
       }
       .nav-top-text {
@@ -133,6 +142,10 @@ html, body {
 
         .text-left { display: inline-block; float: left; width: 30%; text-align: center;}
         .text-right{ display: inline-block; float: right; width: 30%; text-align: center;}
+        @media @tablet-screen, @mobile-screen {
+          padding:5px 0px;
+          font-size: 1.3rem;
+        }
       }
 
     }
@@ -147,6 +160,11 @@ html, body {
         z-index: 25;
         margin-top: 75px;
         color:rgba(255,255,255,1);
+        @media @tablet-screen, @mobile-screen {
+          font-size: 2rem;
+          width: 32%;
+          margin-top: 40%;
+        }
       }
 
       .text-center-3 {
@@ -158,6 +176,7 @@ html, body {
           width: 180px;
           -webkit-filter: invert(1);
           filter: invert(1);
+          @media @tablet-screen, @mobile-screen { width: 75px;  }
         }
       }
     }
@@ -180,6 +199,7 @@ html, body {
                 img { width: 85%; }
               }
             }
+            @media @tablet-screen, @mobile-screen { width: 100%; text-align: center; }
           }
         }
       }

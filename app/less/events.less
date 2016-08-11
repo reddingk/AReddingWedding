@@ -32,7 +32,11 @@
           .carousel {
             .carousel-inner {
               .item {
-                img { height: @event-img-size; width: 60%; }
+                img {
+                  height: @event-img-size;
+                  width: 60%;
+                  @media @tablet-screen, @mobile-screen { width: 100%; }
+                }
               }
             }
           }
@@ -50,6 +54,7 @@
             span {
               display: block;
             }
+            @media @tablet-screen, @mobile-screen { width: 100%; }
           }
           .event-text {
             display: inline-block;
@@ -57,12 +62,21 @@
             border-left: 1px solid #000;
             width: 49%;
             padding: 2px 2px 2px 10px;
+
+            @media @tablet-screen, @mobile-screen {
+              width: 100%;
+              border-left: none;
+              border-top: 1px solid #000;
+              padding: 2px;
+            }
           }
         }
+        @media @tablet-screen, @mobile-screen { padding: 90px 10px 20px; }
       }
     }
     &+.event-wrapper {
       margin-top: 30px;
     }
   }
+  @media @tablet-screen, @mobile-screen { padding: 0px; }
 }

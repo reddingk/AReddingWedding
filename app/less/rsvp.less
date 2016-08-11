@@ -3,7 +3,10 @@
   .rsvpKeyForm {
     display: inline-block;
     width: 100%;
-    md-input-container { width: 80%; }
+    md-input-container {
+      width: 80%;
+      @media @tablet-screen, @mobile-screen { width: 100%; }
+    }
     .key-unlock { background-color: rgba(0,147,44,1);}
   }
 }

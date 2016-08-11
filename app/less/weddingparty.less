@@ -16,6 +16,7 @@
           position: relative;
           font-size: 1.5rem;
           padding: 0 5px;
+          @media @tablet-screen, @mobile-screen { text-decoration: underline; }
 
           &:after, &:before {
             content: "";
@@ -25,6 +26,7 @@
             border-top: 1px solid #000;
             top: 0;
             width: 100%;
+            @media @tablet-screen, @mobile-screen { display: none;}
           }
           &:before { right: 100%; margin-right: 15px;}
           &:after { left: 100%; margin-right: 15px;}
@@ -41,6 +43,7 @@
         left: 45%;
         top: -22%;
         img { width: 100px;}
+        @media @tablet-screen, @mobile-screen { left: 40%; top: -6%; img { width: 50px;}}
       }
       .member {
         display: inline-block;
@@ -57,6 +60,11 @@
         }
         .member-name { font-family: 'Lobster', cursive; font-size: 1.2rem; padding: 7px 0;}
         .member-bio { font-family: 'Libre Baskerville', serif; }
+
+        @media @tablet-screen, @mobile-screen {
+          width: 100%;
+          &.right {border-left: none; border-top: 1px solid #000; }
+        }
       }
       &+.party-group { margin-top: 30px;}
     }
