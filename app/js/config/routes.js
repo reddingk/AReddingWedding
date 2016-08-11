@@ -17,6 +17,14 @@
           }
         }
       })
+      .state('app.home', {
+        url: "home",
+        views: {
+          'content@': {
+            templateUrl: 'views/home.html'            
+          }
+        }
+      })
       .state('app.ourstory', {
         url: "ourstory",
         views: {
@@ -41,6 +49,15 @@
           'content@': {
             templateUrl: 'views/weddingparty.html',
             controller: 'WeddingPartyController as wpc'
+          }
+        }
+      })
+      .state('app.rsvp', {
+        url: "rsvp",
+        views: {
+          'content@': {
+            templateUrl: 'views/rsvp.html',
+            controller: 'RSVPController as rc'
           }
         }
       })

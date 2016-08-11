@@ -63,6 +63,14 @@ html, body {
         .card-page {
           color: rgba(0,0,0,1);
           h1 { text-align: center;}
+          .home-text {
+            text-align: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            padding: 0px 20%;
+            .groom { color: @color1; font-weight: bold;}
+            .bride { color: @color4; font-weight: bold;}
+          }
         }
       }
     }
@@ -113,6 +121,9 @@ html, body {
           transform: rotate(-45deg);
           position:absolute;
           top: -40px;
+        }
+        &:hover{
+          outline: 5px solid @color2;
         }
       }
       .nav-top-text {

@@ -8,8 +8,9 @@
 		angular.module('ourStoryCtrl', ['ui.bootstrap']);
 		angular.module('eventsCtrl', ['ui.bootstrap']);
 		angular.module('weddingPartyCtrl',['ui.bootstrap']);
+		angular.module('rsvpCtrl',['ui.bootstrap', 'ngMessages']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial','ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl']);
+    angular.module('ARWApp', ['ngMaterial', 'ngMessages', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl']);
 
 })();
 
@@ -39,6 +40,14 @@
           }
         }
       })
+      .state('app.home', {
+        url: "home",
+        views: {
+          'content@': {
+            templateUrl: 'views/home.html'            
+          }
+        }
+      })
       .state('app.ourstory', {
         url: "ourstory",
         views: {
@@ -63,6 +72,15 @@
           'content@': {
             templateUrl: 'views/weddingparty.html',
             controller: 'WeddingPartyController as wpc'
+          }
+        }
+      })
+      .state('app.rsvp', {
+        url: "rsvp",
+        views: {
+          'content@': {
+            templateUrl: 'views/rsvp.html',
+            controller: 'RSVPController as rc'
           }
         }
       })
@@ -128,7 +146,7 @@
       {"id":0, "name":"ourstory", "title":"Our Story", "state":"app.ourstory", "icon":"fa-gratipay", "svg":"shapes-1.svg" },
       {"id":1, "name":"weddingparty", "title":"Wedding Party", "state":"app.weddingparty", "icon":"fa-users", "svg":"party-dancing.svg"},
       {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
-      {"id":3, "name":"construction", "title":"RSVP", "state":"app.construction", "icon":"fa-envelope-o", "svg":"letter.svg"},
+      {"id":3, "name":"rsvp", "title":"RSVP", "state":"app.rsvp", "icon":"fa-envelope-o", "svg":"letter.svg"},
       {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift", "svg":"gifts.svg" },
       {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
@@ -180,9 +198,7 @@
         }
 
         setTimeout(function () {
-          vm.cardClosed = false;
-          console.log("CD1:" + vm.cardClosed);
-          console.log("NS :" + newstate);
+          vm.cardClosed = false;          
           selectPage(newstate);
         }, 1100);
       }
@@ -242,6 +258,30 @@
 (function(){
  "use strict";
 
+  angular.module('rsvpCtrl').controller('RSVPController', ['$state', function($state){
+    var vm = this;
+    /*Functions*/
+    vm.CheckKey = CheckKey;
+    /*Variables*/
+    vm.userkey = "";
+    vm.rsvpKey = "ReddingWedding2018";
+    vm.status = "";
+
+    /**/
+    function CheckKey() {
+      if(vm.userkey.toLowerCase() == vm.rsvpKey.toLowerCase())
+      { vm.status = "UNLOCKED";}
+      else
+      { vm.status = "LOCKED"; }
+    }
+
+  }]);
+
+})();
+
+(function(){
+ "use strict";
+
   angular.module('weddingPartyCtrl').controller('WeddingPartyController', ['$state', function($state){
     var vm = this;
     /*Functions*/
@@ -271,6 +311,9 @@
       },
       { left: { name: "Marquis Waters", image: "tux.svg",  bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."},
         right: { name: "Asia Davis", image:"bride-dress.svg" ,bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."}
+      },
+      { left: { name: "Vince Wilson", image: "tux.svg",  bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."},
+        right: { name: "Daphne Blakey", image:"bride-dress.svg" ,bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."}
       }
     ];
 

@@ -31,9 +31,7 @@
         }
 
         setTimeout(function () {
-          vm.cardClosed = false;
-          console.log("CD1:" + vm.cardClosed);
-          console.log("NS :" + newstate);
+          vm.cardClosed = false;          
           selectPage(newstate);
         }, 1100);
       }
