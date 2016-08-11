@@ -16,7 +16,7 @@
       {"id":1, "name":"weddingparty", "title":"Wedding Party", "state":"app.weddingparty", "icon":"fa-users", "svg":"party-dancing.svg"},
       {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
       {"id":3, "name":"rsvp", "title":"RSVP", "state":"app.rsvp", "icon":"fa-envelope-o", "svg":"letter.svg"},
-      {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift", "svg":"gifts.svg" },
+      {"id":4, "name":"registry", "title":"Registry", "state":"app.registry", "icon":"fa-gift", "svg":"gifts.svg" },
       {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
 

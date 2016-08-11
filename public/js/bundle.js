@@ -8,9 +8,10 @@
 		angular.module('ourStoryCtrl', ['ui.bootstrap']);
 		angular.module('eventsCtrl', ['ui.bootstrap']);
 		angular.module('weddingPartyCtrl',['ui.bootstrap']);
-		angular.module('rsvpCtrl',['ui.bootstrap', 'ngMessages']);
+		angular.module('rsvpCtrl',['ui.bootstrap']);
+		angular.module('registryCtrl',['ui.bootstrap']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial', 'ngMessages', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl']);
+    angular.module('ARWApp', ['ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl']);
 
 })();
 
@@ -44,7 +45,7 @@
         url: "home",
         views: {
           'content@': {
-            templateUrl: 'views/home.html'            
+            templateUrl: 'views/home.html'
           }
         }
       })
@@ -81,6 +82,15 @@
           'content@': {
             templateUrl: 'views/rsvp.html',
             controller: 'RSVPController as rc'
+          }
+        }
+      })
+      .state('app.registry', {
+        url: "registry",
+        views: {
+          'content@': {
+            templateUrl: 'views/registry.html',
+            controller: 'RegistryController as rgc'
           }
         }
       })
@@ -147,7 +157,7 @@
       {"id":1, "name":"weddingparty", "title":"Wedding Party", "state":"app.weddingparty", "icon":"fa-users", "svg":"party-dancing.svg"},
       {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
       {"id":3, "name":"rsvp", "title":"RSVP", "state":"app.rsvp", "icon":"fa-envelope-o", "svg":"letter.svg"},
-      {"id":4, "name":"construction", "title":"Registry", "state":"app.construction", "icon":"fa-gift", "svg":"gifts.svg" },
+      {"id":4, "name":"registry", "title":"Registry", "state":"app.registry", "icon":"fa-gift", "svg":"gifts.svg" },
       {"id":5, "name":"construction", "title":"Gallery", "state":"app.construction", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
 
@@ -250,6 +260,26 @@
     }];
 
 
+
+  }]);
+
+})();
+
+(function(){
+ "use strict";
+
+  angular.module('registryCtrl').controller('RegistryController', ['$state', function($state){
+    var vm = this;
+    /*Functions*/
+
+    /*Variables*/
+    vm.selected = null;
+
+    vm.items = [
+      {"id":0, "name":"AMAZON", "url":"https://www.amazon.com/", "img":"amazon-logo.png" },
+      {"id":1, "name":"NEWLYWISH", "url":"https://www.newlywish.com/", "img":"newlywish.png"},
+      {"id":2, "name":"BED, BATH & BEYOND", "url":"http://www.bedbathandbeyond.com/", "img":"BedBathBeyond-Logo.png"}
+    ];
 
   }]);
 

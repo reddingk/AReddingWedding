@@ -1,0 +1,32 @@
+.registry-text {
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.registry-links {
+  padding-top: 30px; 
+  a {
+    .registry-item {
+      display: inline-block;
+      width: 32%;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 2px solid #000;
+      overflow: hidden;
+      position: relative;
+      height: 200px;
+      box-shadow: @main-shadow;
+      background-color: rgba(255,255,255,0.5);
+
+      img {
+        width: 70%;
+        margin: 0 auto;
+        display: block;
+        padding-top: 60px;
+      }
+      &:hover { background-color: @color2-back; }
+    }
+    &:hover { text-decoration: none;}
+  }
+}

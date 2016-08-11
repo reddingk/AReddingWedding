@@ -21,7 +21,7 @@
         url: "home",
         views: {
           'content@': {
-            templateUrl: 'views/home.html'            
+            templateUrl: 'views/home.html'
           }
         }
       })
@@ -58,6 +58,15 @@
           'content@': {
             templateUrl: 'views/rsvp.html',
             controller: 'RSVPController as rc'
+          }
+        }
+      })
+      .state('app.registry', {
+        url: "registry",
+        views: {
+          'content@': {
+            templateUrl: 'views/registry.html',
+            controller: 'RegistryController as rgc'
           }
         }
       })
