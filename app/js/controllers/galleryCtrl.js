@@ -8,24 +8,23 @@
     vm.nextItem = nextItem;
     vm.prevItem = prevItem;
 
-    /*Variables*/
+    /*Variables*/  
     vm.items = [
-      {"id":0, "img":"amazon-logo.png" },
-      {"id":1, "img":"amazon-logo.png" },
-      {"id":2, "img":"amazon-logo.png" },
-      {"id":3, "img":"amazon-logo.png" },
-      {"id":4, "img":"amazon-logo.png" },
-      {"id":5, "img":"amazon-logo.png" },
-      {"id":6, "img":"amazon-logo.png" },
-      {"id":7, "img":"amazon-logo.png" },
-      {"id":8, "img":"amazon-logo.png" },
-      {"id":9, "img":"amazon-logo.png" },
-      {"id":10, "img":"amazon-logo.png" },
-      {"id":11, "img":"amazon-logo.png" }
+      {"id":0, "img":"t0.jpg" },
+      {"id":1, "img":"t1.jpg" },
+      {"id":2, "img":"t2.jpg" },
+      {"id":3, "img":"t3.jpg" },
+      {"id":4, "img":"t4.jpg" },
+      {"id":5, "img":"t5.jpg" },
+      {"id":6, "img":"t6.jpg" },
+      {"id":7, "img":"t7.jpg" },
+      {"id":8, "img":"t8.jpg" },
+      {"id":9, "img":"t9.jpg" },
+      {"id":10, "img":"t10.jpg" },
+      {"id":11, "img":"t11.jpg" }
     ];
 
     vm.selecteditem = vm.items[0];
-    vm.transitionitem = null;
     vm.displayitems = vm.items.slice(1, vm.items.length);
 
     /**/
