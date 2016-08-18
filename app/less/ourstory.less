@@ -1,13 +1,14 @@
 .card-page {
     .story {
       .timeline {
+        color: rgba(0,0,0,1);
         &:before {
-          background-color: #000;
+          background-color: @color3;
         }
         timeline-badge {
           z-index: 30;
-          &.kColor { background-color: rgba(0, 43, 128,1); }
-          &.gColor { background-color: rgba(255, 128, 170,1); }
+        &.kColor { background-color: @color2;/*rgba(0, 43, 128,1);*/ }
+        &.gColor { background-color: @color4;/*rgba(255, 128, 170,1);*/ }
 
           &.centerimg {
             border-radius: 0px;
@@ -25,12 +26,12 @@
           }
         }
         timeline-panel {
-          &.kColor { background-color: rgba(0, 43, 128, 0.7); }
-          &.gColor { background-color: rgba(255, 128, 170, 0.7); }
+        &.kColor { background-color: @color2; /*rgba(0, 43, 128, 0.7);*/ }
+          &.gColor { background-color: @color4; /*rgba(255, 128, 170, 0.7);*/ }
           .timeline-panel {
             width: 100%;
             .timeline-when {
-              color: rgba(204, 204, 204,1);
+              color: rgba(255, 255, 255,1);
             }
           }
 
