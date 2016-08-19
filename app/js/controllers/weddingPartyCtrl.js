@@ -4,8 +4,11 @@
   angular.module('weddingPartyCtrl').controller('WeddingPartyController', ['$state', function($state){
     var vm = this;
     /*Functions*/
+    vm.clickParty = clickParty;
+    vm.isSelected = isSelected;
 
     /*Variables*/
+    vm.selectedParty = null;
     vm.specialParty = { groomsman: { name: "Jason Pena", image: "suit-on-hanger.svg",  bio:"This guy Jason, we met in college I think our first convo was about how he was not trying to steal Grace from me.  But after that he has been one of the best friends I have. From roommates, to ‘Balling for Jesus’, to losing an ID in a snow blower we have had some good times."},
                         bridesmaids: { name: "Naomi Manning", image:"dress-on-statue.svg" ,bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."}
                       };
@@ -35,7 +38,25 @@
         bridesmaids: { name: "Daphne Blakey", image:"bride-dress.svg" ,bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."}
       }
     ];
-    vm.party2 = vm.partylist[2];
+
+    /*Functions*/
+    function clickParty(party){
+      if(vm.selectedParty == party) {
+        vm.selectedParty = null;
+      }
+      else {
+        vm.selectedParty = party;
+      }
+    }
+    function isSelected(party) {
+      if(vm.selectedParty == party) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
     /*Book Variables*/
     var Page = (function() {
 

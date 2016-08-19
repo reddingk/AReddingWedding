@@ -32,7 +32,8 @@
 @color4-back: rgba(248,159,187,0.5);//Pink
 */
 /*Box-Shadow*/
-@main-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+@main-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+@dark-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 html, body {
   height: 100%;
@@ -46,8 +47,8 @@ html, body {
 
 .bodycontainer {
   //background-color: rgba(204,186,152,1);
-  background-image: url("../img/woodback.jpg");
-  background-repeat: repeat-y;;
+  background-image: url("../img/background/back8.jpg");
+  background-repeat:repeat;
   //background-size: 100% 100%;
   width: 100%;
   min-height: 100%;
@@ -84,7 +85,7 @@ html, body {
             font-family: 'Libre Baskerville', serif;
             font-size: 1.3rem;
             padding: 0px 20%;
-            .groom { color: @color1; font-weight: bold;}
+            .groom { color: @color2; font-weight: bold;}
             .bride { color: @color4; font-weight: bold;}
             @media @tablet-screen, @mobile-screen { padding: 0; }
           }
@@ -97,7 +98,7 @@ html, body {
     z-index:5;
   }
 
-  .cardOpener { padding: 10px 50px 5px 0px; float: right; }
+  .cardOpener { padding: 10px 50px 5px 0px; float: right; color: rgba(255,255,255,1); }
 
 }
 
