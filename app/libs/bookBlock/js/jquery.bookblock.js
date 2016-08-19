@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
@@ -41,7 +41,7 @@
 	* Copyright 2012 @louis_remi
 	* Licensed under the MIT license.
 	*
-	* This saved you an hour of work? 
+	* This saved you an hour of work?
 	* Send me music http://www.amazon.co.uk/wishlist/HNTU0468LQON
 	*/
 	var $event = $.event,
@@ -168,7 +168,7 @@
 				$( this.options.prevEl ).on( 'click.bookblock touchstart.bookblock', function() { self._action( 'prev' ); return false; } );
 			}
 
-			$window.on( 'debouncedresize', function() {		
+			$window.on( 'debouncedresize', function() {
 				// update width value
 				self.elWidth = self.$el.width();
 			} );
@@ -214,7 +214,7 @@
 			}
 
 			this.$nextItem = !this.options.circular && this.end ? this.$current : this.$items.eq( this.current );
-			
+
 			if ( !this.support ) {
 				this._layoutNoSupport( dir );
 			} else {
@@ -250,7 +250,7 @@
 
 			this.$items.hide();
 			this.$el.prepend( $s_left, $s_middle, $s_right );
-			
+
 			$s_middle.css({
 				transitionDuration: speed + 'ms',
 				transitionTimingFunction : this.options.easing
@@ -331,7 +331,7 @@
 				}
 			}, 25 );
 		},
-		// adds the necessary sides (bb-page) to the layout 
+		// adds the necessary sides (bb-page) to the layout
 		_addSide : function( side, dir ) {
 			var $side;
 
@@ -378,7 +378,9 @@
 							</div>
 						</div>
 						*/
-					$side = $('<div class="bb-page"><div class="bb-front"><div class="bb-outer"><div class="bb-content"><div class="bb-inner">' + (dir === 'next' ? this.$current.html() : this.$nextItem.html()) + '</div></div><div class="bb-flipoverlay"></div></div></div><div class="bb-back"><div class="bb-outer"><div class="bb-content" style="width:' + this.elWidth + 'px"><div class="bb-inner">' + ( dir === 'next' ? this.$nextItem.html() : this.$current.html() ) + '</div></div><div class="bb-flipoverlay"></div></div></div></div>').css( 'z-index', 103 );
+					$side = $('<div class="bb-page"><div class="bb-front"><div class="bb-outer"><div class="bb-content"><div class="bb-inner">' + (dir === 'next' ? this.$current.html() : this.$nextItem.html()) + '</div></div><div class="bb-flipoverlay"></div></div></div><div class="bb-back"><div class="bb-outer"><div class="bb-content" style="width: 200%"><div class="bb-inner">' + ( dir === 'next' ? this.$nextItem.html() : this.$current.html() ) + '</div></div><div class="bb-flipoverlay"></div></div></div></div>').css( 'z-index', 103 );
+
+					//$side = $('<div class="bb-page"><div class="bb-front"><div class="bb-outer"><div class="bb-content"><div class="bb-inner">' + (dir === 'next' ? this.$current.html() : this.$nextItem.html()) + '</div></div><div class="bb-flipoverlay"></div></div></div><div class="bb-back"><div class="bb-outer"><div class="bb-content" style="width:' + this.elWidth + 'px"><div class="bb-inner">' + ( dir === 'next' ? this.$nextItem.html() : this.$current.html() ) + '</div></div><div class="bb-flipoverlay"></div></div></div></div>').css( 'z-index', 103 );
 					break;
 				case 'right':
 						/*
@@ -504,9 +506,9 @@
 				}
 				instance[ options ].apply( instance, args );
 			});
-		} 
+		}
 		else {
-			this.each(function() {	
+			this.each(function() {
 				var instance = $.data( this, 'bookblock' );
 				if ( instance ) {
 					instance._init();

@@ -111,6 +111,7 @@ html, body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     min-height: 400px;
+    @media @tablet-screen, @mobile-screen { min-height: 270px; }
 
     .nav-top-header {
       height: 50px;
@@ -175,14 +176,10 @@ html, body {
         z-index: 25;
         margin-top: 75px;
         color: @color3;
-        @media @tablet-screen, @mobile-screen {
-          font-size: 2rem;
-          width: 32%;
-          margin-top: 40%;
-        }
+        @media @tablet-screen, @mobile-screen {  font-size: 2rem;}
       }
       .text-left-3 { width: 40%; text-align: right;}
-      .text-center-3 { width: 19%; font-size: 6rem;}
+      .text-center-3 { width: 18%; font-size: 5rem;}
       .text-right-3 { width: 40%; text-align: left; }
 
 

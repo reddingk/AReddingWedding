@@ -20,14 +20,14 @@ var port = process.env.PORT || 305;
 // mongoose.connect(db.url);
 
 // Beautify routes
-app.get('/home', function(req, res) { res.redirect('/#/ourstory'); });
+app.get('/home', function(req, res) { res.redirect('/#/home'); });
 app.get('/ourstory', function(req, res) { res.redirect('/#/ourstory'); });
-app.get('/events', function(req, res) { res.redirect('/#/ourstory'); });
-app.get('/weddingparty', function(req, res) { res.redirect('/#/ourstory'); });
-app.get('/rsvp', function(req, res) { res.redirect('/#/ourstory'); });
-app.get('/registry', function(req, res) { res.redirect('/#/ourstory'); });
-app.get('/gallery', function(req, res) { res.redirect('/#/ourstory'); });
-app.get('/underconstruction', function(req, res) { res.redirect('/#/ourstory'); });
+app.get('/events', function(req, res) { res.redirect('/#/events'); });
+app.get('/weddingparty', function(req, res) { res.redirect('/#/weddingparty'); });
+app.get('/rsvp', function(req, res) { res.redirect('/#/rsvp'); });
+app.get('/registry', function(req, res) { res.redirect('/#/registry'); });
+app.get('/gallery', function(req, res) { res.redirect('/#/gallery'); });
+app.get('/underconstruction', function(req, res) { res.redirect('/#/underconstruction'); });
 
 // get all data of the body (POST) params
 // parse application/json

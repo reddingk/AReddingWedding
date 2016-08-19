@@ -1,99 +1,48 @@
 .wedding-party {
-  .party-image{
+  .party-image {
     overflow: hidden;
     background-color: rgba(255,255,255,0.3);
     border: 1px solid rgba(0,0,0,0.3);
     img { width: 100%; }
-  }
-  .party-list {
-    .wrapper-title{
-      padding: 50px 0;
-      .title {
-        margin-bottom: 30px;
-        text-align: center;
-        line-height: .5rem;
-        span {
-          display: inline-block;
-          position: relative;
-          font-size: 1.5rem;
-          padding: 0 5px;
-          @media @tablet-screen, @mobile-screen { text-decoration: underline; }
-
-          &:after, &:before {
-            content: "";
-            position: absolute;
-            height: 5px;
-            border-bottom: 1px solid @color3;
-            border-top: 1px solid @color3;
-            top: 0;
-            width: 100%;
-            @media @tablet-screen, @mobile-screen { display: none;}
-          }
-          &:before { right: 100%; margin-right: 15px;}
-          &:after { left: 100%; margin-right: 15px;}
-        }
-      }
-    }
-    .party-group {
-      position: relative;
-      border: 1px solid #000;
-      background-color: #fff;
-      padding: 10px 5px;
-      color:rgba(0,0,0,1);
-      .top-bow {
-        position: absolute;
-        left: 45%;
-        top: -22%;
-        img { width: 100px;}
-        @media @tablet-screen, @mobile-screen { left: 40%; top: -6%; img { width: 50px;}}
-      }
-      .member {
-        display: inline-block;
-        width: 49%;
-        padding: 10px;
-        text-align: center;
-        font-size: 1rem;
-        &.left {}
-        &.right { border-left: 1px solid #000;}
-        .member-img {
-          height: 50px;
-          overflow: hidden;
-          img { height: 100%;}
-        }
-        .member-name { font-family: 'Lobster', cursive; font-size: 1.2rem; padding: 7px 0;}
-        .member-bio { font-family: 'Libre Baskerville', serif; }
-
-        @media @tablet-screen, @mobile-screen {
-          width: 100%;
-          &.right {border-left: none; border-top: 1px solid #000; }
-        }
-      }
-      &+.party-group { margin-top: 30px;}
-    }
   }
 }
 
 .party-book {
   position: relative;
   z-index: 10;
+  margin-top: 50px;
+
+  .book-ribbon {
+    position: absolute;
+    top: -40px;
+    left: 46%;
+    width: 100px;
+    z-index: 11;
+    img { width: 100%; }
+  }
   .container {
     width: 100%;
     .bb-custom-wrapper {
       width: 100%;
 	    height: 100%;
 	    position: relative;
+      -webkit-perspective: 2000px;
+	    perspective: 2000px;
       .bb-bookblock {
         width: 100%;
+        -webkit-perspective: 2000px;
+	      perspective: 2000px;
+        z-index: 40;
         .bb-item, .bb-page {
-          .bb-custom-firstpage { }
           .bb-custom-side {
             width: 50%;
           	float: left;
           	height: 100%;
           	overflow: hidden;
           	background: #fff;
+            border: 2px solid @color3;
             //display: inline-block;
-            /* Centering with flexbox */
+            // Centering with flexbox
           	display: -webkit-box;
           	display: -moz-box;
           	display: -webkit-flex;
@@ -113,8 +62,7 @@
 
             .member {
               display: inline-block;
-              width: 49%;
-              padding: 10px;
+              padding: 8%;
               text-align: center;
               font-size: 1rem;
               .member-img {
@@ -123,13 +71,35 @@
                 img { height: 100%;}
               }
               .member-name { font-family: 'Lobster', cursive; font-size: 1.2rem; padding: 7px 0;}
+              .member-title { font-family: 'Libre Baskerville', serif; font-weight: bold;}
               .member-bio { font-family: 'Libre Baskerville', serif; }
+
+              &.left {  .member-title { color: @color4;  } }
+              &.right { .member-title { color: @color2;  } }
+
+              @media @tablet-screen, @mobile-screen {  padding: 3px; margin-top: 250%; }
             }
+
+            @media @tablet-screen, @mobile-screen {  overflow-y: auto; }
+          }
+          &.bb-cover {
+            .blank-side { background-color: @color1; border: none;}
+            .cover {
+              border: 5px solid @color3;
+              @media @tablet-screen, @mobile-screen {  h1 { font-size: 2rem;} }
+            }
+
           }
         }
       }
       nav {
-        a { }
+        text-align: center;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 51;
+        a { font-size: 2rem; color: @color3;}
       }
     }
   }

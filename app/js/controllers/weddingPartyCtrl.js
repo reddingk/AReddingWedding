@@ -35,7 +35,7 @@
         bridesmaids: { name: "Daphne Blakey", image:"bride-dress.svg" ,bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."}
       }
     ];
-
+    vm.party2 = vm.partylist[2];
     /*Book Variables*/
     var Page = (function() {
 

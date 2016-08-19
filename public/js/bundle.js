@@ -3,7 +3,6 @@
 	"use strict";
 
 		angular.module('directives', []);
-		angular.module('directives2', []);
 		angular.module('mainCtrl', ['ui.bootstrap']);
 		angular.module('headerCtrl', ['ui.bootstrap']);
 		angular.module('ourStoryCtrl', ['ui.bootstrap']);
@@ -13,7 +12,7 @@
 		angular.module('registryCtrl',['ui.bootstrap']);
 		angular.module('galleryCtrl',['ui.bootstrap']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives','directives2', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl', 'galleryCtrl']);
+    angular.module('ARWApp', ['ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'directives', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl', 'galleryCtrl']);
 
 })();
 
@@ -414,7 +413,7 @@
         bridesmaids: { name: "Daphne Blakey", image:"bride-dress.svg" ,bio:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec mi dictum, fringilla metus at, aliquam tortor. Aenean sollicitudin bibendum mauris at consequat. In gravida iaculis magna eu ornare. Cras viverra aliquam augue vel rutrum."}
       }
     ];
-
+    vm.party2 = vm.partylist[2];
     /*Book Variables*/
     var Page = (function() {
 
@@ -504,7 +503,7 @@
 (function(){
    "use strict";
 
-  angular.module('directives2').directive('bookBlock', [function() {
+  angular.module('directives').directive('bookBlock', [function() {
      return {
      restrict:'AE',
      link: function(scope, element, attrs) {
