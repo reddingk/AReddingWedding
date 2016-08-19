@@ -1,6 +1,7 @@
 <div class="card-page">
   <h1>Wedding Party<h1>
 
+<!--
   <div class="wedding-party">
     <div class="party-image">
       <img src="img/party/Party.jpg" >
@@ -36,7 +37,53 @@
           <div class="member-bio">{{ party.groomsman.bio }}</div>
         </div>
       </div>
-
+    </div>
+  </div>
+-->
+  <div class="party-book">
+    <div class="container">
+			<div class="bb-custom-wrapper">
+        <div id="bb-bookblock" class="bb-bookblock" book-block>
+          <div class="bb-item bb-cover" book-block>
+						<div class="bb-custom-side">
+              <div class="member left">
+                <div class="member-img"><img ng-src="img/weddingicons/svg/{{ wpc.specialParty.bridesmaids.image }}" ></div>
+                <div class="member-name">{{ wpc.specialParty.bridesmaids.name }}</div>
+                <div class="member-bio">{{ wpc.specialParty.bridesmaids.bio }}</div>
+              </div>
+            </div>
+            <div class="bb-custom-side">
+              <div class="member right">
+                <div class="member-img"><img ng-src="img/weddingicons/svg/{{ wpc.specialParty.groomsman.image }}" ></div>
+                <div class="member-name">{{ wpc.specialParty.groomsman.name }}</div>
+                <div class="member-bio">{{ wpc.specialParty.groomsman.bio }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="bb-item" ng-repeat="party in wpc.partylist" book-block>
+						<div class="bb-custom-side">
+              <div class="member left">
+                <div class="member-img"><img ng-src="img/weddingicons/svg/{{ party.bridesmaids.image }}" ></div>
+                <div class="member-name">{{ party.bridesmaids.name }}</div>
+                <div class="member-bio">{{ party.bridesmaids.bio }}</div>
+              </div>
+            </div>
+            <div class="bb-custom-side">
+              <div class="member right">
+                <div class="member-img"><img ng-src="img/weddingicons/svg/{{ party.groomsman.image }}" ></div>
+                <div class="member-name">{{ party.groomsman.name }}</div>
+                <div class="member-bio">{{ party.groomsman.bio }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav>
+					<a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first" book-block><i class="fa fa-angle-double-left"></i></a>
+					<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left" book-block><i class="fa fa-chevron-left"></i></a>
+					<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right" book-block><i class="fa fa-chevron-right"></i></a>
+					<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last" book-block><i class="fa fa-angle-double-right"></i></a>
+				</nav>
+      </div>
     </div>
 
   </div>

@@ -34,7 +34,10 @@ var config = {
       'app/libs/fullcalendar/dist/gcal.js',
       'app/libs/angular-timeline/dist/angular-timeline.js',
       'app/libs/angular-scroll/angular-scroll.min.js',
-      'app/libs/ng-parallax/angular-parallax.min.js'
+      'app/libs/ng-parallax/angular-parallax.min.js',
+      'app/libs/bookBlock/js/modernizr.custom.js',
+      'app/libs/bookBlock/js/jquery.bookBlock.js',
+      'app/libs/bookBlock/js/jquerypp.custom.js'
     ],
     libsCSS: [
       'app/libs/angular-material/angular-material.min.css',
@@ -45,7 +48,8 @@ var config = {
       'app/libs/fullcalendar/dist/fullcalendar.min.css',
       'app/libs/angular-timeline/dist/angular-timeline-bootstrap.css',
       'app/libs/angular-timeline/dist/angular-timeline-animations.css',
-      'app/libs/angular-timeline/dist/angular-timeline.css'
+      'app/libs/angular-timeline/dist/angular-timeline.css',
+      'app/libs/bookBlock/css/bookBlock.css'
     ]
   },
   dest:{
