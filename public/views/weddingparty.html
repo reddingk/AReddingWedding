@@ -10,7 +10,7 @@
     <!-- Party Book -->
     <div class="party-book">
       <div class="book-ribbon">
-        <img src="img/party/ribbon_blush.png" >
+        <img src="img/party/ribbon_gold.png" >
       </div>
 
       <div class="container">
@@ -219,7 +219,7 @@
       <div class="party-list">
         <div class="special party-group" ng-class="{'selected': wpc.isSelected(wpc.specialParty)}">
           <div class="party-row" ng-click="wpc.clickParty(wpc.specialParty)">
-            <div class="card-ribbon"><img src="img/party/ribbon_blush.png" ></div>
+            <div class="card-ribbon"><img src="img/party/ribbon_gold.png" ></div>
             <div class="party-content">
               <div class="member left">
                 <div class="member-img"><img ng-src="img/weddingicons/svg/{{ wpc.specialParty.bridesmaids.image }}" ></div>
@@ -239,7 +239,7 @@
 
         <div class="party-group" ng-repeat="party in wpc.partylist" ng-class="{'selected': wpc.isSelected(party)}">
           <div class="party-row" ng-click="wpc.clickParty(party)">
-            <div class="card-ribbon"><img src="img/party/ribbon_peacock.png" ></div>
+            <div class="card-ribbon"><img src="img/party/ribbon_peacock.png" ng-if="$odd" ><img src="img/party/ribbon_blush.png" ng-if="$even"></div>
             <div class="party-content">
               <div class="member left">
                 <div class="member-img"><img ng-src="img/weddingicons/svg/{{ party.bridesmaids.image }}" ></div>
