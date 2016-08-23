@@ -17,214 +17,6 @@
 })();
 
 (function(){
-  'use strict';
-
-  angular.module('config', [ 'ngMaterial' ]);
-
-})();
-
-(function(){
-
-  angular
-    .module('config')
-    .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
-      $stateProvider
-      .state('app', {
-        url: "/",
-        views: {
-          'content':{
-            templateUrl: 'views/home.html'
-            /*,controller: 'HomeController as hc'*/
-          },
-          'header':{
-            templateUrl: 'views/templates/_header.html',
-            controller: 'HeaderController as hdc'
-          }
-        }
-      })
-      .state('app.home', {
-        url: "home",
-        views: {
-          'content@': {
-            templateUrl: 'views/home.html'
-          }
-        }
-      })
-      .state('app.ourstory', {
-        url: "ourstory",
-        views: {
-          'content@': {
-            templateUrl: 'views/ourstory.html',
-            controller: 'OurStoryController as oc'
-          }
-        }
-      })
-      .state('app.events', {
-        url: "events",
-        views: {
-          'content@': {
-            templateUrl: 'views/events.html',
-            controller: 'EventsController as ec'
-          }
-        }
-      })
-      .state('app.weddingparty', {
-        url: "weddingparty",
-        views: {
-          'content@': {
-            templateUrl: 'views/weddingparty.html',
-            controller: 'WeddingPartyController as wpc'
-          }
-        }
-      })
-      .state('app.rsvp', {
-        url: "rsvp",
-        views: {
-          'content@': {
-            templateUrl: 'views/rsvp.html',
-            controller: 'RSVPController as rc'
-          }
-        }
-      })
-      .state('app.registry', {
-        url: "registry",
-        views: {
-          'content@': {
-            templateUrl: 'views/registry.html',
-            controller: 'RegistryController as rgc'
-          }
-        }
-      })
-      .state('app.gallery', {
-        url: "gallery",
-        views: {
-          'content@': {
-            templateUrl: 'views/gallery.html',
-            controller: 'GalleryController as gc'
-          }
-        }
-      })
-      .state('app.construction', {
-        url: "underconstruction",
-        views: {
-          'content@': {
-            templateUrl: 'views/construction.html'
-          }
-        }
-      });
-
-      $urlRouterProvider.otherwise('/');
-      $locationProvider.html5Mode(true);
-    }]);
-
-
-})();
-
-(function(){
-   "use strict";
-
-  angular.module('directives').directive('bookBlock', [function() {
-     return {
-     restrict:'AE',
-     link: function(scope, element, attrs) {
-
-         bookBlock =  element, // $(element).find("#bb-bookblock"),
-         navNext = $(document).find('#bb-nav-next'),
-         navPrev = $(document).find( '#bb-nav-prev'),
-
-         bb = element.bookblock( {
-             speed : 800,
-             perspective : 2000,
-             shadowSides : 0.8,
-             shadowFlip  : 0.4,
-             });
-
-                 var slides = bookBlock.children();
-
-                 // add navigation events
-                 navNext.on( 'click touchstart', function() {
-                     element.bookblock( 'next' );
-                     return false;
-                 } );
-
-                 navPrev.on( 'click touchstart', function() {
-                     element.bookblock( 'prev' );
-                     return false;
-                 } );
-
-                 // add swipe events
-                 slides.on( {
-                     'swipeleft' : function( event ) {
-                         bookBlock.bookblock( 'next' );
-                         return false;
-                     },
-                     'swiperight' : function( event ) {
-                         bookBlock.bookblock( 'prev' );
-                         return false;
-                     }
-                 } );
-
-                 // add keyboard events
-                 $( document ).keydown( function(e) {
-                     var keyCode = e.keyCode || e.which,
-                         arrow = {
-                             left : 37,
-                             up : 38,
-                             right : 39,
-                             down : 40
-                         };
-
-                     switch (keyCode) {
-                         case arrow.left:
-                             bookBlock.bookblock( 'prev' );
-                             break;
-                         case arrow.right:
-                             bookBlock.bookblock( 'next' );
-                             break;
-                     }
-                 } );
-     }
-   }
- }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('navHold', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          angular.element($window).bind("scroll", function() {
-
-            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
-            var windowp = angular.element($window)[0];
-
-            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
-            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
-
-            if(windowp.pageYOffset >= topThreshhold){
-              if(!element.hasClass("screenPass")){
-                element.addClass("screenPass");
-              }
-            }
-            else {
-              if(element.hasClass("screenPass")){
-                element.removeClass("screenPass");
-              }
-            }
-
-          });
-        }
-      }
-
-    }]);
-
-})();
-
-(function(){
  "use strict";
 
   angular.module('eventsCtrl').controller('EventsController', ['$state', function($state){
@@ -539,88 +331,214 @@
       }
     }
 
-    /*Book Variables*/
-    var Page = (function() {
-
-      var config = {
-          $bookBlock : $( '#bb-bookblock' ),
-          $navNext : $( '#bb-nav-next' ),
-          $navPrev : $( '#bb-nav-prev' ),
-          $navFirst : $( '#bb-nav-first' ),
-          $navLast : $( '#bb-nav-last' )
-        },
-        init = function() {
-          config.$bookBlock.bookblock( {
-            speed : 1000,
-            shadowSides : 0.8,
-            shadowFlip : 0.4
-          } );
-          initEvents();
-        },
-        initEvents = function() {
-
-          var $slides = config.$bookBlock.children();
-
-          // add navigation events
-          config.$navNext.on( 'click touchstart', function() {
-            config.$bookBlock.bookblock( 'next' );
-            return false;
-          } );
-
-          config.$navPrev.on( 'click touchstart', function() {
-            config.$bookBlock.bookblock( 'prev' );
-            return false;
-          } );
-
-          config.$navFirst.on( 'click touchstart', function() {
-            config.$bookBlock.bookblock( 'first' );
-            return false;
-          } );
-
-          config.$navLast.on( 'click touchstart', function() {
-            config.$bookBlock.bookblock( 'last' );
-            return false;
-          } );
-
-          // add swipe events
-          $slides.on( {
-            'swipeleft' : function( event ) {
-              config.$bookBlock.bookblock( 'next' );
-              return false;
-            },
-            'swiperight' : function( event ) {
-              config.$bookBlock.bookblock( 'prev' );
-              return false;
-            }
-          } );
-
-          // add keyboard events
-          $( document ).keydown( function(e) {
-            var keyCode = e.keyCode || e.which,
-              arrow = {
-                left : 37,
-                up : 38,
-                right : 39,
-                down : 40
-              };
-
-            switch (keyCode) {
-              case arrow.left:
-                config.$bookBlock.bookblock( 'prev' );
-                break;
-              case arrow.right:
-                config.$bookBlock.bookblock( 'next' );
-                break;
-            }
-          } );
-        };
-
-        return { init : init };
-
-    })();
-
-    Page.init();
-
   }]);
+
+})();
+
+(function(){
+  'use strict';
+
+  angular.module('config', [ 'ngMaterial' ]);
+
+})();
+
+(function(){
+
+  angular
+    .module('config')
+    .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+      $stateProvider
+      .state('app', {
+        url: "/",
+        views: {
+          'content':{
+            templateUrl: 'views/home.html'
+            /*,controller: 'HomeController as hc'*/
+          },
+          'header':{
+            templateUrl: 'views/templates/_header.html',
+            controller: 'HeaderController as hdc'
+          }
+        }
+      })
+      .state('app.home', {
+        url: "home",
+        views: {
+          'content@': {
+            templateUrl: 'views/home.html'
+          }
+        }
+      })
+      .state('app.ourstory', {
+        url: "ourstory",
+        views: {
+          'content@': {
+            templateUrl: 'views/ourstory.html',
+            controller: 'OurStoryController as oc'
+          }
+        }
+      })
+      .state('app.events', {
+        url: "events",
+        views: {
+          'content@': {
+            templateUrl: 'views/events.html',
+            controller: 'EventsController as ec'
+          }
+        }
+      })
+      .state('app.weddingparty', {
+        url: "weddingparty",
+        views: {
+          'content@': {
+            templateUrl: 'views/weddingparty.html',
+            controller: 'WeddingPartyController as wpc'
+          }
+        }
+      })
+      .state('app.rsvp', {
+        url: "rsvp",
+        views: {
+          'content@': {
+            templateUrl: 'views/rsvp.html',
+            controller: 'RSVPController as rc'
+          }
+        }
+      })
+      .state('app.registry', {
+        url: "registry",
+        views: {
+          'content@': {
+            templateUrl: 'views/registry.html',
+            controller: 'RegistryController as rgc'
+          }
+        }
+      })
+      .state('app.gallery', {
+        url: "gallery",
+        views: {
+          'content@': {
+            templateUrl: 'views/gallery.html',
+            controller: 'GalleryController as gc'
+          }
+        }
+      })
+      .state('app.construction', {
+        url: "underconstruction",
+        views: {
+          'content@': {
+            templateUrl: 'views/construction.html'
+          }
+        }
+      });
+
+      $urlRouterProvider.otherwise('/');
+      $locationProvider.html5Mode(true);
+    }]);
+
+
+})();
+
+(function(){
+   "use strict";
+
+  angular.module('directives').directive('bookBlock', [function() {
+     return {
+     restrict:'AE',
+     link: function(scope, element, attrs) {
+
+         bookBlock =  element, // $(element).find("#bb-bookblock"),
+         navNext = $(document).find('#bb-nav-next'),
+         navPrev = $(document).find( '#bb-nav-prev'),
+
+         bb = element.bookblock( {
+             speed : 800,
+             perspective : 2000,
+             shadowSides : 0.8,
+             shadowFlip  : 0.4,
+             });
+
+                 var slides = bookBlock.children();
+
+                 // add navigation events
+                 navNext.on( 'click touchstart', function() {
+                     element.bookblock( 'next' );
+                     return false;
+                 } );
+
+                 navPrev.on( 'click touchstart', function() {
+                     element.bookblock( 'prev' );
+                     return false;
+                 } );
+
+                 // add swipe events
+                 slides.on( {
+                     'swipeleft' : function( event ) {
+                         bookBlock.bookblock( 'next' );
+                         return false;
+                     },
+                     'swiperight' : function( event ) {
+                         bookBlock.bookblock( 'prev' );
+                         return false;
+                     }
+                 } );
+
+                 // add keyboard events
+                 $( document ).keydown( function(e) {
+                     var keyCode = e.keyCode || e.which,
+                         arrow = {
+                             left : 37,
+                             up : 38,
+                             right : 39,
+                             down : 40
+                         };
+
+                     switch (keyCode) {
+                         case arrow.left:
+                             bookBlock.bookblock( 'prev' );
+                             break;
+                         case arrow.right:
+                             bookBlock.bookblock( 'next' );
+                             break;
+                     }
+                 } );
+     }
+   }
+ }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
+            var windowp = angular.element($window)[0];
+
+            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);
 
 })();
