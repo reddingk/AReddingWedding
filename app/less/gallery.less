@@ -54,7 +54,7 @@
       -webkit-transition: all 1s;
 
       img { width: 100%; height: 100%; }
-      &:hover { background-color: @color3-back; img { opacity: 0.5; } }      
+      &:hover { background-color: @color3-back; img { opacity: 0.5; } }
 
       @media @tablet-screen, @mobile-screen { width:100px;}
     }
@@ -77,4 +77,41 @@
   ::-webkit-scrollbar-corner { background-color: black; }
   // if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled
 
+}
+
+/**/
+
+.newGalleryDisplay {
+  *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+  .gallery-container {
+    .photostack {
+      div {
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        background: #ccc;
+        position: relative;
+        figure {
+          position: absolute;
+          width: 320px;
+          height: 360px;
+          background:#fff;
+          padding: 40px;
+          .photostack-img {
+            display: block;
+            width: 240px;
+            height: 240px;
+            background: #f9f9f9;
+            overflow: hidden;
+            img {width: 100%; height: 100%;}
+          }
+          figcaption {
+            display: block;
+            .photostack-title { color: @color3;}
+            /*.photostack-back { }*/
+          }
+        }
+      }
+    }
+  }
 }

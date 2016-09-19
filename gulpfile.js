@@ -37,7 +37,10 @@ var config = {
       'app/libs/ng-parallax/angular-parallax.min.js',
       'app/libs/bookBlock/js/modernizr.custom.js',
       'app/libs/bookBlock/js/jquery.bookBlock.js',
-      'app/libs/bookBlock/js/jquerypp.custom.js'
+      'app/libs/bookBlock/js/jquerypp.custom.js'/*,
+      'app/libs/scattered-polaroids/js/modernizr.min.js',
+      'app/libs/scattered-polaroids/js/classie.js',
+      'app/libs/scattered-polaroids/js/photostack.js'*/
     ],
     libsCSS: [
       'app/libs/angular-material/angular-material.min.css',
@@ -49,7 +52,9 @@ var config = {
       'app/libs/angular-timeline/dist/angular-timeline-bootstrap.css',
       'app/libs/angular-timeline/dist/angular-timeline-animations.css',
       'app/libs/angular-timeline/dist/angular-timeline.css',
-      'app/libs/bookBlock/css/bookBlock.css'
+      'app/libs/bookBlock/css/bookBlock.css'/*,
+      'app/libs/scattered-polaroids/css/component.css',
+      'app/libs/scattered-polaroids/css/normalize.css'*/
     ]
   },
   dest:{

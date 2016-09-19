@@ -1,10 +1,10 @@
 <div class="card-page">
   <h1>Gallery</h1>
-
+<!-- Gallery 1-->
   <div class="galleryDisplay">
     <div class="mainContainer">
       <div class="polaroid">
-        <div class="img-container">          
+        <div class="img-container">
           <img ng-src="img/gallery/test/{{gc.selecteditem.img}}" >
         </div>
       </div>
@@ -20,4 +20,28 @@
       </div>
     </div>
   </div>
+<!-- Gallery 2-->
+  <div class="newGalleryDisplay">
+    <div class="gallery-container">
+      <section id="photostack-1" class="photostack">
+        <div>
+          <!-- Repeat -->
+          <!--<figure ng-repeat="item in gc.items" style="transform: translate(528px, 110px) rotate(0deg);">-->
+          <figure ng-repeat="item in gc.photoslides" ng-style="{{item.location}}">
+            <div class="photostack-img"><img ng-src="img/gallery/test/{{item.img}}" alt="{{item.img}}"></div>
+            <figcaption>
+              <h2 class="photostack-title">Photo {{item.id}} Title</h2>
+              <!--<div class="photostack-back">
+								<p>{{item.description}}</p>
+							</div>-->
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
+  </div>
 </div>
+
+<script>
+			//new Photostack( document.getElementById( 'photostack-1' ), {callback : function( item ) {} } );
+</script>
