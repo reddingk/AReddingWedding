@@ -79,6 +79,15 @@
           }
         }
       })
+      .state('app.dev', {
+        url: "dev",
+        views: {
+          'content@': {
+            templateUrl: 'views/dev.html',
+            controller: 'WeddingPartyController as wpc'
+          }
+        }
+      })
       .state('app.construction', {
         url: "underconstruction",
         views: {
