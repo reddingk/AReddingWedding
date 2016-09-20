@@ -85,30 +85,69 @@
   *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
   .gallery-container {
     .photostack {
-      div {
+      .stack-container {
         width: 100%;
-        height: 500px;
+        height: 800px;
         overflow: hidden;
-        background: #ccc;
+        background: rgba(250,250,250,1);
         position: relative;
+        border: 10px solid rgba(208,181,126,1);
         figure {
           position: absolute;
-          width: 320px;
-          height: 360px;
+          width: 200px;
+          height: 240px;
           background:#fff;
-          padding: 40px;
+          padding: 20px;
+          z-index: 8;
+          border: 1px solid rgba(0,0,0,0.3);
+          transition: all 0.5s ease;
+          overflow: hidden;
+
+          &.selected {
+            z-index: 10;
+            border: 2px solid @color3;
+            width: 400px;
+            height: 440px;
+            padding: 40px;
+            background:rgba(208,181,126,0.9);
+            .photostack-img { width: 320px; height: 320px;}
+            figcaption { .photostack-title { color: #000; font-size: 2rem;}}
+          }
+          &:hover {
+            box-shadow: @dark-shadow;
+            z-index:11;
+          }
           .photostack-img {
             display: block;
-            width: 240px;
-            height: 240px;
+            width: 160px;
+            height: 160px;
             background: #f9f9f9;
             overflow: hidden;
             img {width: 100%; height: 100%;}
           }
           figcaption {
             display: block;
-            .photostack-title { color: @color3;}
+            .photostack-title { color: @color3; font-size: 1.5rem; text-align: center;}
             /*.photostack-back { }*/
+          }
+        }
+        .photo-nav {
+          position: absolute;
+          z-index: 11;
+          bottom: 20px;
+          left: 30%;
+          background-color: @color5-back;
+          padding: 3px;
+          border-radius: 25px;
+          .nav-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: @color3;
+            margin: 10px;
+            border-radius: 25px;
+            &.selected { background-color: @color1; }
+            &:hover { border:2px solid @color1;}
           }
         }
       }

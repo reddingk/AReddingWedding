@@ -131,110 +131,6 @@
 })();
 
 (function(){
-   "use strict";
-
-  angular.module('directives').directive('bookBlock', [function() {
-     return {
-     restrict:'AE',
-     link: function(scope, element, attrs) {
-
-         bookBlock =  element, // $(element).find("#bb-bookblock"),
-         navNext = $(document).find('#bb-nav-next'),
-         navPrev = $(document).find( '#bb-nav-prev'),
-
-         bb = element.bookblock( {
-             speed : 800,
-             perspective : 2000,
-             shadowSides : 0.8,
-             shadowFlip  : 0.4,
-             });
-
-                 var slides = bookBlock.children();
-
-                 // add navigation events
-                 navNext.on( 'click touchstart', function() {
-                     element.bookblock( 'next' );
-                     return false;
-                 } );
-
-                 navPrev.on( 'click touchstart', function() {
-                     element.bookblock( 'prev' );
-                     return false;
-                 } );
-
-                 // add swipe events
-                 slides.on( {
-                     'swipeleft' : function( event ) {
-                         bookBlock.bookblock( 'next' );
-                         return false;
-                     },
-                     'swiperight' : function( event ) {
-                         bookBlock.bookblock( 'prev' );
-                         return false;
-                     }
-                 } );
-
-                 // add keyboard events
-                 $( document ).keydown( function(e) {
-                     var keyCode = e.keyCode || e.which,
-                         arrow = {
-                             left : 37,
-                             up : 38,
-                             right : 39,
-                             down : 40
-                         };
-
-                     switch (keyCode) {
-                         case arrow.left:
-                             bookBlock.bookblock( 'prev' );
-                             break;
-                         case arrow.right:
-                             bookBlock.bookblock( 'next' );
-                             break;
-                     }
-                 } );
-     }
-   }
- }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('navHold', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          angular.element($window).bind("scroll", function() {
-
-            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
-            var windowp = angular.element($window)[0];
-
-            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
-            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
-
-            if(windowp.pageYOffset >= topThreshhold){
-              if(!element.hasClass("screenPass")){
-                element.addClass("screenPass");
-              }
-            }
-            else {
-              if(element.hasClass("screenPass")){
-                element.removeClass("screenPass");
-              }
-            }
-
-          });
-        }
-      }
-
-    }]);
-
-})();
-
-(function(){
  "use strict";
 
   angular.module('eventsCtrl').controller('EventsController', ['$state', function($state){
@@ -269,75 +165,37 @@
   angular.module('galleryCtrl').controller('GalleryController', ['$state', function($state){
     var vm = this;
     /*Functions*/
-    vm.switchItem = switchItem;
-    vm.nextItem = nextItem;
-    vm.prevItem = prevItem;
-    vm.getSlides = getSlideLocation;
+    vm.isSelected = isSelected;
+    vm.changeSelected = changeSelected;
 
     /*Variables*/
     vm.items = [
-      {"id":0, "img":"t0.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p"},
-      {"id":1, "img":"t1.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":2, "img":"t2.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":3, "img":"t3.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":4, "img":"t4.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":5, "img":"t5.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":6, "img":"t6.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":7, "img":"t7.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":8, "img":"t8.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":9, "img":"t9.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":10, "img":"t10.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" },
-      {"id":11, "img":"t11.jpg", "description":"This is a test description, to make sure it is working the real one will have relevant content. :p" }
+      {"id":0, "img":"t0.jpg", "title":"" },
+      {"id":1, "img":"t1.jpg", "title":"" },
+      {"id":2, "img":"t2.jpg", "title":"" },
+      {"id":3, "img":"t3.jpg", "title":"" },
+      {"id":4, "img":"t4.jpg", "title":"" },
+      {"id":5, "img":"t5.jpg", "title":"" },
+      {"id":6, "img":"t6.jpg", "title":"" },
+      {"id":7, "img":"t7.jpg", "title":"" },
+      {"id":8, "img":"t8.jpg", "title":"" },
+      {"id":9, "img":"t9.jpg", "title":"" },
+      {"id":10, "img":"t10.jpg", "title":"" },
+      {"id":11, "img":"t11.jpg", "title":"" }
     ];
 
-    vm.selecteditem = vm.items[0];
-    vm.displayitems = vm.items.slice(1, vm.items.length);
-    vm.photoslides = [];
+    vm.selectedid = vm.items[0].id;
 
-    /**/
-    function switchItem (newid) {
-      var tmpitems = [];
-      for(var i =0; i < vm.items.length; i++){
-        if(vm.items[i].id == newid) {
-          vm.selecteditem = vm.items[i];
-        }
-        else {
-          tmpitems.push(vm.items[i]);
-        }
-      }
-      vm.displayitems = tmpitems;
+
+    function isSelected(id)
+    {
+      return (id == vm.selectedid ? "selected" : "");
     }
 
-    function nextItem(){
-      var tmpid = ((vm.selecteditem.id + 1) >= vm.items.length ? 0 : vm.selecteditem.id + 1);
-      switchItem(tmpid);
+    function changeSelected(item)
+    {
+      vm.selectedid = item.id;
     }
-
-    function prevItem(){
-      var tmpid = (vm.selecteditem.id == 0 ? (vm.items.length - 1) : vm.selecteditem.id - 1);
-      switchItem(tmpid);
-    }
-    /**/
-    function getSlideLocation(){
-      var x, y, angle, trans;
-      //var selected = vm.selecteditem.id;
-      for(var i =0; i < vm.items.length; i++) {
-        x = Math.floor(Math.random() * 1501) - 500;
-        y = Math.floor(Math.random() * 601) - 200;
-        angle = Math.floor(Math.random() * 80) - 40 ;
-
-        //trans = "{'transform': translate("+x+"px,"+ y+"px) rotate("+ angle + "deg)}";
-        trans = {"transform": "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)"};
-
-        var photoitem = vm.items[i];
-        photoitem.translate = 'translate(' +x+'px,'+y+'px)';
-        photoitem.rotate = 'rotate('+angle+'deg)'
-        photoitem.location = trans;
-        vm.photoslides.push(photoitem);
-
-      }
-    }
-    getSlideLocation();
   }]);
 
 })();
@@ -671,5 +529,173 @@
     }
 
   }]);
+
+})();
+
+(function(){
+   "use strict";
+
+  angular.module('directives').directive('bookBlock', [function() {
+     return {
+     restrict:'AE',
+     link: function(scope, element, attrs) {
+
+         bookBlock =  element, // $(element).find("#bb-bookblock"),
+         navNext = $(document).find('#bb-nav-next'),
+         navPrev = $(document).find( '#bb-nav-prev'),
+
+         bb = element.bookblock( {
+             speed : 800,
+             perspective : 2000,
+             shadowSides : 0.8,
+             shadowFlip  : 0.4,
+             });
+
+                 var slides = bookBlock.children();
+
+                 // add navigation events
+                 navNext.on( 'click touchstart', function() {
+                     element.bookblock( 'next' );
+                     return false;
+                 } );
+
+                 navPrev.on( 'click touchstart', function() {
+                     element.bookblock( 'prev' );
+                     return false;
+                 } );
+
+                 // add swipe events
+                 slides.on( {
+                     'swipeleft' : function( event ) {
+                         bookBlock.bookblock( 'next' );
+                         return false;
+                     },
+                     'swiperight' : function( event ) {
+                         bookBlock.bookblock( 'prev' );
+                         return false;
+                     }
+                 } );
+
+                 // add keyboard events
+                 $( document ).keydown( function(e) {
+                     var keyCode = e.keyCode || e.which,
+                         arrow = {
+                             left : 37,
+                             up : 38,
+                             right : 39,
+                             down : 40
+                         };
+
+                     switch (keyCode) {
+                         case arrow.left:
+                             bookBlock.bookblock( 'prev' );
+                             break;
+                         case arrow.right:
+                             bookBlock.bookblock( 'next' );
+                             break;
+                     }
+                 } );
+     }
+   }
+ }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
+            var windowp = angular.element($window)[0];
+
+            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('photoMotion', [function() {
+      return {
+        restrict: 'EA',        
+        link: function ($scope, element, attrs) {
+
+          var itemid = $scope.$eval(attrs.itemid);
+          var itemcount = $scope.$eval(attrs.itemcount);
+          var isNav = $scope.$eval(attrs.isnav);
+
+          //-item position function
+          function getItemLocation(locid, elemId){
+            //-selected id
+            var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
+            // Get element by id
+            //var elemMove = element.parent().children()[locid];
+            var elemMove = angular.element(document).find('.stack-container').children()[locid];
+
+            var x = (selectedid == locid ? 400 : Math.floor(Math.random() * 1201) - 200);
+            var y = (selectedid == locid ? 150 : Math.floor(Math.random() * 701) - 200);
+            var angle = (selectedid == locid ? 0 : Math.floor(Math.random() * 80) - 40) ;
+            // Check Out of Bounds
+            x = (x < -50 ? -40 : x);
+            y = (y < 30 ? 30 : y);
+
+            //var trans = {"transform": "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)"};
+            //element.css(trans);
+            elemMove.style.transform = "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)";
+          }
+
+          // On click Set selected id
+          element.bind('click', function() {
+            if(itemid != $scope.$eval(attrs.selectedid)){
+              for(var i=0; i < itemcount; i++)
+              {
+                getItemLocation(i, itemid);
+              }
+            }
+          });
+          // Hover image appears
+          /*element.bind('mouseover', function() {
+            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
+              var elemMove = angular.element(document).find('.stack-container').children()[itemid];
+              elemMove.style.boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
+              elemMove.style.zIndex = "11";
+            }
+          });
+          element.bind('mouseout', function() {
+            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
+              var elemMove = angular.element(document).find('.stack-container').children()[id];
+              elemMove.style.boxShadow = "none";
+              elemMove.style.zIndex = "8";
+            }
+          });*/
+          // Intitial Object Set
+          getItemLocation(itemid, null);
+        }
+      }
+    }]);
 
 })();

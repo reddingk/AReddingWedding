@@ -1,7 +1,7 @@
 <div class="card-page">
   <h1>Gallery</h1>
 <!-- Gallery 1-->
-  <div class="galleryDisplay">
+  <!--<div class="galleryDisplay">
     <div class="mainContainer">
       <div class="polaroid">
         <div class="img-container">
@@ -19,23 +19,26 @@
         <img ng-src="img/gallery/test/{{item.img}}" >
       </div>
     </div>
-  </div>
+  </div>-->
 <!-- Gallery 2-->
   <div class="newGalleryDisplay">
     <div class="gallery-container">
       <section id="photostack-1" class="photostack">
-        <div>
+        <div class="stack-container">
           <!-- Repeat -->
-          <!--<figure ng-repeat="item in gc.items" style="transform: translate(528px, 110px) rotate(0deg);">-->
-          <figure ng-repeat="item in gc.photoslides" ng-style="{{item.location}}">
+          <!-- ng-style="{{item.location}}" -->
+          <figure ng-repeat="item in gc.items" ng-click="gc.changeSelected(item)" ng-class="gc.isSelected(item.id)" ng-attr-id="{{'photo-'+ item.id}}" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.items.length}}">
             <div class="photostack-img"><img ng-src="img/gallery/test/{{item.img}}" alt="{{item.img}}"></div>
             <figcaption>
-              <h2 class="photostack-title">Photo {{item.id}} Title</h2>
+              <h2 class="photostack-title">Photo {{item.id}}</h2>
               <!--<div class="photostack-back">
 								<p>{{item.description}}</p>
 							</div>-->
             </figcaption>
           </figure>
+          <div class="photo-nav">
+            <div ng-repeat="item in gc.items" class="nav-icon" ng-class="gc.isSelected(item.id)" ng-click="gc.changeSelected(item)" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.items.length}}" isnav="true"></div>
+          </div>
         </div>
       </section>
     </div>
