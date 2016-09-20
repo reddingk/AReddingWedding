@@ -105,6 +105,15 @@
           }
         }
       })
+      .state('app.dev', {
+        url: "dev",
+        views: {
+          'content@': {
+            templateUrl: 'views/dev.html',
+            controller: 'WeddingPartyController as wpc'
+          }
+        }
+      })
       .state('app.construction', {
         url: "underconstruction",
         views: {
@@ -313,8 +322,8 @@
       var x, y, angle, trans;
       //var selected = vm.selecteditem.id;
       for(var i =0; i < vm.items.length; i++) {
-        x = Math.floor(Math.random() * 2000) - 1000;
-        y = Math.floor(Math.random() * 900) - 500;
+        x = Math.floor(Math.random() * 1501) - 500;
+        y = Math.floor(Math.random() * 601) - 200;
         angle = Math.floor(Math.random() * 80) - 40 ;
 
         //trans = "{'transform': translate("+x+"px,"+ y+"px) rotate("+ angle + "deg)}";
