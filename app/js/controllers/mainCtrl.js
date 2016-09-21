@@ -14,8 +14,8 @@
     vm.statetest = $state.current.name;
 
     /*Card Themes*/
-    vm.cardThemes = [1,2,4,5];
-    vm.selectedTheme = vm.cardThemes[Math.floor(Math.random() * 3)];
+    vm.cardThemes = [1,2,5,4];
+    vm.selectedTheme = vm.cardThemes[Math.floor(Math.random() * 2)];
 
     function checkActivePage(current) {
          var currentPage = $state;
