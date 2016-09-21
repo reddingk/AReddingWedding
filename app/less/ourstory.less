@@ -61,6 +61,7 @@
   }
   .container {
     width: 100%;
+    @media @tablet-screen, @mobile-screen { padding: 0px !important;}
     .bb-custom-wrapper {
       width: 100%;
 	    height: 100%;
@@ -82,6 +83,7 @@
           	overflow: hidden;
           	background: #fff;
             border: 2px solid @color3;
+            position: relative;
             //display: inline-block;
             // Centering with flexbox
           	display: -webkit-box;
@@ -106,6 +108,14 @@
               padding: 8%;
               text-align: center;
               font-size: 1rem;
+
+              .story-page-img {
+                @media @tablet-screen, @mobile-screen { width: 100%; }
+                img {
+                  @media @tablet-screen, @mobile-screen { width: 100%; }
+                }
+              }
+
               .story-img {
                 height: 50px;
                 overflow: hidden;
@@ -127,10 +137,16 @@
               &.left {  .member-title { color: @color4;  } }
               &.right { .member-title { color: @color2;  } }
 
-              @media @tablet-screen, @mobile-screen {  padding: 3px; margin-top: 250%; }
+              @media @tablet-screen, @mobile-screen {
+                padding: 3px;
+                height: 85%;
+                position: absolute;
+                bottom: 0;
+                overflow-y: auto;
+              }
             }
 
-            @media @tablet-screen, @mobile-screen {  overflow-y: auto; }
+            @media @tablet-screen, @mobile-screen {  overflow-y: hidden; }
           }
           &.bb-cover {  background-color:rgba(0,0,0,0);}
         }
@@ -154,13 +170,26 @@
   .cover-text {
     display: block;
     color: @color3;
+      @media @tablet-screen, @mobile-screen { width: 100%;}
     h1 {
       font-size: 4rem;
       font-weight: bold;
-      &.front-cover { position: absolute;  top:50%; }
+      &.front-cover {
+        position: absolute;
+        top:50%;
+        @media @tablet-screen, @mobile-screen { top: 65%; }
+      }
       @media @tablet-screen, @mobile-screen { font-size: 2rem;}
     }
-    .story-cover-img { height: 300px; img{ height: 100%;}}
+    .story-cover-img {
+      height: 300px;
+      @media @mobile-screen { padding-top: 50%;}
+      img {
+        height: 100%;
+        @media @tablet-screen {height: initial; width: 80%;}
+        @media @mobile-screen {height: initial; width: 100%;}
+      }
+    }
   }
 }
 .bb-content { background-color: rgba(0,0,0,0) !important;}

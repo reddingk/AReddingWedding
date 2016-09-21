@@ -615,7 +615,7 @@
             var windowp = angular.element($window)[0];
 
             var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
-            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;            
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;
 
             if(windowp.pageYOffset >= topThreshhold){
               if(!element.hasClass("screenPass")){
@@ -639,9 +639,9 @@
 (function(){
    "use strict";
 
-    angular.module('directives').directive('photoMotion', [function() {
+    angular.module('directives').directive('photoMotion', ['$window', function() {
       return {
-        restrict: 'EA',        
+        restrict: 'EA',
         link: function ($scope, element, attrs) {
 
           var itemid = $scope.$eval(attrs.itemid);
@@ -656,7 +656,12 @@
             //var elemMove = element.parent().children()[locid];
             var elemMove = angular.element(document).find('.stack-container').children()[locid];
 
-            var x = (selectedid == locid ? 400 : Math.floor(Math.random() * 1201) - 200);
+            var pageWidth = window.innerWidth;
+            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286));
+            var maxX = Math.floor(pageWidth * .86);
+
+            var x = (selectedid == locid ? defaultX : Math.floor(Math.random() * maxX) - 200);
+            //var x = (selectedid == locid ? 400 : Math.floor(Math.random() * 1201) - 200);
             var y = (selectedid == locid ? 150 : Math.floor(Math.random() * 701) - 200);
             var angle = (selectedid == locid ? 0 : Math.floor(Math.random() * 80) - 40) ;
             // Check Out of Bounds
