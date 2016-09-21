@@ -13,6 +13,10 @@
     vm.cardClosed = true;
     vm.statetest = $state.current.name;
 
+    /*Card Themes*/
+    vm.cardThemes = [1,2,4,5];
+    vm.selectedTheme = vm.cardThemes[Math.floor(Math.random() * 3)];
+
     function checkActivePage(current) {
          var currentPage = $state;
          if (currentPage != null && currentPage.current.name.indexOf(current) > -1) { return true; }
@@ -31,7 +35,7 @@
         }
 
         setTimeout(function () {
-          vm.cardClosed = false;          
+          vm.cardClosed = false;
           selectPage(newstate);
         }, 1100);
       }

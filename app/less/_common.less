@@ -87,8 +87,9 @@ html, body {
             font-family: 'Libre Baskerville', serif;
             font-size: 1.3rem;
             padding: 0px 20%;
-            .groom { color: @color2; font-weight: bold;}
-            .bride { color: @color4; font-weight: bold;}
+            .groom, .bride{ font-weight: bold; color: rgba(255,255,255,1);}
+            /*.groom { color: @color2; font-weight: bold;}
+            .bride { color: @color4; font-weight: bold;}*/
             @media @tablet-screen, @mobile-screen { padding: 0; }
           }
         }
@@ -100,6 +101,20 @@ html, body {
     z-index:5;
   }
 
+  .card-theme {
+    float: left;
+    margin: 20px 0 5px 50px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    
+    .theme-icon {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+      border-radius: 25px;
+    }
+  }
   .cardOpener { padding: 10px 50px 5px 0px; float: right; color: rgba(255,255,255,1); }
 
 }
@@ -235,6 +250,12 @@ html, body {
   }
 
 }
+/*Themes*/
+.theme-1 { background-color: @color1;}
+.theme-2 { background-color: @color2;}
+.theme-3 { background-color: @color3;}
+.theme-4 { background-color: @color4;}
+.theme-5 { background-color: @color5;}
 
 /*Items*/
 md-tooltip {
