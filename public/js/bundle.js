@@ -131,179 +131,6 @@
 })();
 
 (function(){
-   "use strict";
-
-  angular.module('directives').directive('bookBlock', [function() {
-     return {
-     restrict:'AE',
-     link: function(scope, element, attrs) {
-
-         bookBlock =  element, // $(element).find("#bb-bookblock"),
-         navNext = $(document).find('#bb-nav-next'),
-         navPrev = $(document).find( '#bb-nav-prev'),
-
-         bb = element.bookblock( {
-             speed : 800,
-             perspective : 2000,
-             shadowSides : 0.8,
-             shadowFlip  : 0.4,
-             });
-
-                 var slides = bookBlock.children();
-
-                 // add navigation events
-                 navNext.on( 'click touchstart', function() {
-                     element.bookblock( 'next' );
-                     return false;
-                 } );
-
-                 navPrev.on( 'click touchstart', function() {
-                     element.bookblock( 'prev' );
-                     return false;
-                 } );
-
-                 // add swipe events
-                 slides.on( {
-                     'swipeleft' : function( event ) {
-                         bookBlock.bookblock( 'next' );
-                         return false;
-                     },
-                     'swiperight' : function( event ) {
-                         bookBlock.bookblock( 'prev' );
-                         return false;
-                     }
-                 } );
-
-                 // add keyboard events
-                 $( document ).keydown( function(e) {
-                     var keyCode = e.keyCode || e.which,
-                         arrow = {
-                             left : 37,
-                             up : 38,
-                             right : 39,
-                             down : 40
-                         };
-
-                     switch (keyCode) {
-                         case arrow.left:
-                             bookBlock.bookblock( 'prev' );
-                             break;
-                         case arrow.right:
-                             bookBlock.bookblock( 'next' );
-                             break;
-                     }
-                 } );
-     }
-   }
- }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('navHold', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          angular.element($window).bind("scroll", function() {
-
-            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
-            var windowp = angular.element($window)[0];
-
-            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
-            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;
-
-            if(windowp.pageYOffset >= topThreshhold){
-              if(!element.hasClass("screenPass")){
-                element.addClass("screenPass");
-              }
-            }
-            else {
-              if(element.hasClass("screenPass")){
-                element.removeClass("screenPass");
-              }
-            }
-
-          });
-        }
-      }
-
-    }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('photoMotion', ['$window', function() {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          var itemid = $scope.$eval(attrs.itemid);
-          var itemcount = $scope.$eval(attrs.itemcount);
-          var isNav = $scope.$eval(attrs.isnav);
-
-          //-item position function
-          function getItemLocation(locid, elemId){
-            //-selected id
-            var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
-            // Get element by id
-            //var elemMove = element.parent().children()[locid];
-            var elemMove = angular.element(document).find('.stack-container').children()[locid];
-
-            var pageWidth = window.innerWidth;
-            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286));
-            var maxX = Math.floor(pageWidth * .86);
-
-            var x = (selectedid == locid ? defaultX : Math.floor(Math.random() * maxX) - 200);
-            //var x = (selectedid == locid ? 400 : Math.floor(Math.random() * 1201) - 200);
-            var y = (selectedid == locid ? 150 : Math.floor(Math.random() * 701) - 200);
-            var angle = (selectedid == locid ? 0 : Math.floor(Math.random() * 80) - 40) ;
-            // Check Out of Bounds
-            x = (x < -50 ? -40 : x);
-            y = (y < 30 ? 30 : y);
-
-            //var trans = {"transform": "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)"};
-            //element.css(trans);
-            elemMove.style.transform = "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)";
-          }
-
-          // On click Set selected id
-          element.bind('click', function() {
-            if(itemid != $scope.$eval(attrs.selectedid)){
-              for(var i=0; i < itemcount; i++)
-              {
-                getItemLocation(i, itemid);
-              }
-            }
-          });
-          // Hover image appears
-          /*element.bind('mouseover', function() {
-            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
-              var elemMove = angular.element(document).find('.stack-container').children()[itemid];
-              elemMove.style.boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
-              elemMove.style.zIndex = "11";
-            }
-          });
-          element.bind('mouseout', function() {
-            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
-              var elemMove = angular.element(document).find('.stack-container').children()[id];
-              elemMove.style.boxShadow = "none";
-              elemMove.style.zIndex = "8";
-            }
-          });*/
-          // Intitial Object Set
-          getItemLocation(itemid, null);
-        }
-      }
-    }]);
-
-})();
-
-(function(){
  "use strict";
 
   angular.module('eventsCtrl').controller('EventsController', ['$state', function($state){
@@ -321,11 +148,16 @@
       {title: 'The Wedding', date:new Date("2018-05-18 14:00:00"),
        text: "The church where the wedding ceremony will take place on April 6th is St. Patrick's Church, where you'll find us most Sunday mornings.",
        location: {name: "Church Venue", address:"11018 Guy R Brewer Blvd, Jamaica, NY 11433" },
-       photos: [{id:0, image:"img/eventimgs/test4.jpg"}]},
+       photos: [{id:0, image:"img/eventimgs/test4.jpg"}],
+       additionalinfo: {}
+
+     },
       {title: 'The Reception', date:new Date("2018-05-18 17:00:00"),
        text: "Maecenas porta orci nec pretium ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam et felis non odio luctus suscipit. Donec eget pellentesque dui. Sed interdum facilisis magna in vehicula.",
        location: {name: "Venue", address:"1234 Place Road, New York, NY 11433" },
-       photos: [{id:0, image:"img/eventimgs/test5.jpg"}, {id:1, image:"img/eventimgs/test6.jpg"}, {id:2, image:"img/eventimgs/test7.jpg"}]}
+       photos: [{id:0, image:"img/eventimgs/test5.jpg"}, {id:1, image:"img/eventimgs/test6.jpg"}, {id:2, image:"img/eventimgs/test7.jpg"}],
+       additionalinfo:{}
+     }
     ];
 
   }]);
@@ -706,5 +538,178 @@
     }
 
   }]);
+
+})();
+
+(function(){
+   "use strict";
+
+  angular.module('directives').directive('bookBlock', [function() {
+     return {
+     restrict:'AE',
+     link: function(scope, element, attrs) {
+
+         bookBlock =  element, // $(element).find("#bb-bookblock"),
+         navNext = $(document).find('#bb-nav-next'),
+         navPrev = $(document).find( '#bb-nav-prev'),
+
+         bb = element.bookblock( {
+             speed : 800,
+             perspective : 2000,
+             shadowSides : 0.8,
+             shadowFlip  : 0.4,
+             });
+
+                 var slides = bookBlock.children();
+
+                 // add navigation events
+                 navNext.on( 'click touchstart', function() {
+                     element.bookblock( 'next' );
+                     return false;
+                 } );
+
+                 navPrev.on( 'click touchstart', function() {
+                     element.bookblock( 'prev' );
+                     return false;
+                 } );
+
+                 // add swipe events
+                 slides.on( {
+                     'swipeleft' : function( event ) {
+                         bookBlock.bookblock( 'next' );
+                         return false;
+                     },
+                     'swiperight' : function( event ) {
+                         bookBlock.bookblock( 'prev' );
+                         return false;
+                     }
+                 } );
+
+                 // add keyboard events
+                 $( document ).keydown( function(e) {
+                     var keyCode = e.keyCode || e.which,
+                         arrow = {
+                             left : 37,
+                             up : 38,
+                             right : 39,
+                             down : 40
+                         };
+
+                     switch (keyCode) {
+                         case arrow.left:
+                             bookBlock.bookblock( 'prev' );
+                             break;
+                         case arrow.right:
+                             bookBlock.bookblock( 'next' );
+                             break;
+                     }
+                 } );
+     }
+   }
+ }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
+            var windowp = angular.element($window)[0];
+
+            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('photoMotion', ['$window', function() {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          var itemid = $scope.$eval(attrs.itemid);
+          var itemcount = $scope.$eval(attrs.itemcount);
+          var isNav = $scope.$eval(attrs.isnav);
+
+          //-item position function
+          function getItemLocation(locid, elemId){
+            //-selected id
+            var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
+            // Get element by id
+            //var elemMove = element.parent().children()[locid];
+            var elemMove = angular.element(document).find('.stack-container').children()[locid];
+
+            var pageWidth = window.innerWidth;
+            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286));
+            var maxX = Math.floor(pageWidth * .86);
+
+            var x = (selectedid == locid ? defaultX : Math.floor(Math.random() * maxX) - 200);
+            //var x = (selectedid == locid ? 400 : Math.floor(Math.random() * 1201) - 200);
+            var y = (selectedid == locid ? 150 : Math.floor(Math.random() * 701) - 200);
+            var angle = (selectedid == locid ? 0 : Math.floor(Math.random() * 80) - 40) ;
+            // Check Out of Bounds
+            x = (x < -50 ? -40 : x);
+            y = (y < 30 ? 30 : y);
+
+            //var trans = {"transform": "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)"};
+            //element.css(trans);
+            elemMove.style.transform = "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)";
+          }
+
+          // On click Set selected id
+          element.bind('click', function() {
+            if(itemid != $scope.$eval(attrs.selectedid)){
+              for(var i=0; i < itemcount; i++)
+              {
+                getItemLocation(i, itemid);
+              }
+            }
+          });
+          // Hover image appears
+          /*element.bind('mouseover', function() {
+            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
+              var elemMove = angular.element(document).find('.stack-container').children()[itemid];
+              elemMove.style.boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
+              elemMove.style.zIndex = "11";
+            }
+          });
+          element.bind('mouseout', function() {
+            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
+              var elemMove = angular.element(document).find('.stack-container').children()[id];
+              elemMove.style.boxShadow = "none";
+              elemMove.style.zIndex = "8";
+            }
+          });*/
+          // Intitial Object Set
+          getItemLocation(itemid, null);
+        }
+      }
+    }]);
 
 })();

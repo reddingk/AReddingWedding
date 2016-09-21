@@ -16,11 +16,16 @@
       {title: 'The Wedding', date:new Date("2018-05-18 14:00:00"),
        text: "The church where the wedding ceremony will take place on April 6th is St. Patrick's Church, where you'll find us most Sunday mornings.",
        location: {name: "Church Venue", address:"11018 Guy R Brewer Blvd, Jamaica, NY 11433" },
-       photos: [{id:0, image:"img/eventimgs/test4.jpg"}]},
+       photos: [{id:0, image:"img/eventimgs/test4.jpg"}],
+       additionalinfo: {}
+
+     },
       {title: 'The Reception', date:new Date("2018-05-18 17:00:00"),
        text: "Maecenas porta orci nec pretium ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam et felis non odio luctus suscipit. Donec eget pellentesque dui. Sed interdum facilisis magna in vehicula.",
        location: {name: "Venue", address:"1234 Place Road, New York, NY 11433" },
-       photos: [{id:0, image:"img/eventimgs/test5.jpg"}, {id:1, image:"img/eventimgs/test6.jpg"}, {id:2, image:"img/eventimgs/test7.jpg"}]}
+       photos: [{id:0, image:"img/eventimgs/test5.jpg"}, {id:1, image:"img/eventimgs/test6.jpg"}, {id:2, image:"img/eventimgs/test7.jpg"}],
+       additionalinfo:{}
+     }
     ];
 
   }]);

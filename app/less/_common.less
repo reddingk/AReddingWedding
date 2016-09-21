@@ -106,7 +106,7 @@ html, body {
     margin: 20px 0 5px 50px;
     background-color: rgba(255,255,255,0.2);
     border-radius: 10px;
-    
+
     .theme-icon {
       display: inline-block;
       width: 10px;
@@ -263,3 +263,24 @@ md-tooltip {
   font-size: 1.1rem;
 }
 *:focus { outline: none;}
+
+.pulsate {
+  -webkit-animation: pulsate 3s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  opacity: 0.5;
+  text-shadow: 2px 2px 8px #000000;
+}
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 0.5;
+        text-shadow: 2px 2px 8px #000000;
+    }
+    50% {
+        opacity: 1.0;
+        text-shadow: 2px 2px 8px #FFFFFF;
+    }
+    100% {
+        opacity: 0.5;
+        text-shadow: 2px 2px 8px #000000;
+    }
+}
