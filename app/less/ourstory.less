@@ -74,6 +74,7 @@
 	      perspective: 2000px;
         z-index: 40;
         .bb-item, .bb-page {
+          background-color:rgba(0,0,0,0);
           .bb-custom-side {
             width: 50%;
           	float: left;
@@ -131,7 +132,7 @@
 
             @media @tablet-screen, @mobile-screen {  overflow-y: auto; }
           }
-          &.bb-cover {  }
+          &.bb-cover {  background-color:rgba(0,0,0,0);}
         }
       }
       nav {
@@ -147,7 +148,7 @@
   }
 }
 
-.blank-side { background-color: @color1 !important; border: none !important;}
+.blank-side { background-color: rgba(0,0,0,0) !important;/*@color1 !important;*/ border: none !important;}
 .cover {
   border: 10px solid @color3 !important;
   .cover-text {
@@ -162,3 +163,4 @@
     .story-cover-img { height: 300px; img{ height: 100%;}}
   }
 }
+.bb-content { background-color: rgba(0,0,0,0) !important;}
