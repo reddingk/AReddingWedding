@@ -52,15 +52,17 @@ html, body {
   //background-size: 100% 100%;
   width: 100%;
   min-height: 100%;
-  padding: 200px 5% 5% 5%;
+  padding: 150px 5% 5% 5%;
   @media @tablet-screen, @mobile-screen { padding: 100px 1px 5% 1px; }
+  -webkit-transition: background-color 2s;
+  transition: background-color 2s;
 
   .header {
     z-index:10;
   }
 
   .card-body {
-    background-color: rgba(0,0,0,0.8);//@color1;
+    background-color: rgba(0,0,0,0.7);//@color1;
     margin: 0 20px;
     border-radius: 0px 0px 25px 25px;
     padding: 5%;
@@ -70,13 +72,13 @@ html, body {
     box-shadow: @main-shadow;
     @media @tablet-screen, @mobile-screen { padding-bottom: 30%; }
 
-    &.closed { padding: 0px; height: 40px; }
+    &.closed { padding: 0px 5%; height: 40px; }
     &.screenPass { padding-top: 220px;}
 
     .card-content {
       color: #fff;
-      -webkit-transition: all 3s;
-      transition: all 3s;
+      -webkit-transition: all 1s;
+      transition: all 1s;
       &.closed { display: none;}
       .mainBody {
         .card-page {
@@ -129,7 +131,7 @@ html, body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     min-height: 400px;
-    @media @tablet-screen, @mobile-screen { min-height: 270px; }
+    @media @tablet-screen, @mobile-screen { min-height: 220px; }
 
     .nav-top-header {
       height: 50px;
@@ -142,7 +144,7 @@ html, body {
         position: absolute;
         left: ~"calc(50% - 100px)";
         z-index: 20;
-        top: 125px;
+        top: 75px;
         /* Rotate div */
         -ms-transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
