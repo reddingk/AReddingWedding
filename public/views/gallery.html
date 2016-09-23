@@ -23,21 +23,23 @@
 <!-- Gallery 2-->
   <div class="newGalleryDisplay">
     <div class="gallery-container">
+      <div class="gallery-nav">
+        <div class="gallery-item" ng-repeat="gitem in gc.items" ng-click="gc.changeGallery(gitem)" ng-class="gc.navSelected(gitem)">
+          <div class="item-img"><img ng-src="img/gallery/{{gitem.images[0].img}}" alt="{{gitem.images[0].img}}"></div>
+          <div class="item-title">{{gitem.title}}</div>
+        </div>
+      </div>
       <section id="photostack-1" class="photostack">
-        <div class="stack-container">
+        <div class="stack-container">          
           <!-- Repeat -->
-          <!-- ng-style="{{item.location}}" -->
-          <figure ng-repeat="item in gc.items" ng-click="gc.changeSelected(item)" ng-class="gc.isSelected(item.id)" ng-attr-id="{{'photo-'+ item.id}}" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.items.length}}">
-            <div class="photostack-img"><img ng-src="img/gallery/test/{{item.img}}" alt="{{item.img}}"></div>
+          <figure ng-repeat="item in gc.displayItems" ng-click="gc.changeSelected(item)" ng-class="gc.isSelected(item.id)" ng-attr-id="{{'photo-'+ item.id}}" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.displayItems.length}}">
+            <div class="photostack-img"><img ng-src="img/gallery/{{item.img}}" alt="{{item.img}}"></div>
             <figcaption>
               <h2 class="photostack-title">Photo {{item.id}}</h2>
-              <!--<div class="photostack-back">
-								<p>{{item.description}}</p>
-							</div>-->
             </figcaption>
           </figure>
           <div class="photo-nav">
-            <div ng-repeat="item in gc.items" class="nav-icon" ng-class="gc.isSelected(item.id)" ng-click="gc.changeSelected(item)" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.items.length}}" isnav="true"></div>
+            <div ng-repeat="item in gc.displayItems" class="nav-icon" ng-class="gc.isSelected(item.id)" ng-click="gc.changeSelected(item)" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.displayItems.length}}" isnav="true"></div>
           </div>
         </div>
       </section>
