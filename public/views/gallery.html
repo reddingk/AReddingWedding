@@ -1,26 +1,5 @@
 <div class="card-page">
   <h1>Gallery</h1>
-<!-- Gallery 1-->
-  <!--<div class="galleryDisplay">
-    <div class="mainContainer">
-      <div class="polaroid">
-        <div class="img-container">
-          <img ng-src="img/gallery/test/{{gc.selecteditem.img}}" >
-        </div>
-      </div>
-      <div class="imageControls">
-        <div class="ctrls prev" ng-click="gc.prevItem()"><i class="fa fa-chevron-circle-left"></i></div>
-        <div class="ctrls next" ng-click="gc.nextItem()"><i class="fa fa-chevron-circle-right"></i></div>
-      </div>
-    </div>
-
-    <div class="allContainer">
-      <div class="miniImgs" ng-repeat="item in gc.displayitems track by $index" ng-click="gc.switchItem(item.id)">
-        <img ng-src="img/gallery/test/{{item.img}}" >
-      </div>
-    </div>
-  </div>-->
-<!-- Gallery 2-->
   <div class="newGalleryDisplay">
     <div class="gallery-container">
       <div class="gallery-nav">
@@ -30,7 +9,7 @@
         </div>
       </div>
       <section id="photostack-1" class="photostack">
-        <div class="stack-container">          
+        <div class="stack-container">
           <!-- Repeat -->
           <figure ng-repeat="item in gc.displayItems" ng-click="gc.changeSelected(item)" ng-class="gc.isSelected(item.id)" ng-attr-id="{{'photo-'+ item.id}}" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.displayItems.length}}">
             <div class="photostack-img"><img ng-src="img/gallery/{{item.img}}" alt="{{item.img}}"></div>
