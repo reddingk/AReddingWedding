@@ -54,16 +54,27 @@
           &.selected {
             z-index: 10;
             border: 2px solid @color3;
-            width: 400px;
+            //width: 400px;
+            width: initial;
             height: 440px;
             padding: 40px;
             background:rgba(208,181,126,0.9);
-            .photostack-img { width: 320px; height: 320px;}
+            .photostack-img {
+              //width: 320px;
+              height: 320px;
+              width: initial;
+              background-color: rgba(0,0,0,0);
+              img { height: 320px; }
+            }
             figcaption { .photostack-title { color: #000; font-size: 2rem;}}
 
             @media @tablet-screen, @mobile-screen {
               width: 200px; height: 240px; padding: 20px;
-              .photostack-img { width: 160px; height: 160px;}
+              .photostack-img {
+                width: initial;
+                //width: 160px;
+                height: 160px;
+              }
             }
           }
           &:hover {
@@ -76,7 +87,8 @@
             height: 160px;
             background: #f9f9f9;
             overflow: hidden;
-            img {width: 100%; height: 100%;}
+            text-align: center;
+            img { max-width: 100%; height: 100%;}
           }
           figcaption {
             display: block;

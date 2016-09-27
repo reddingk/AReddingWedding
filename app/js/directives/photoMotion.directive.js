@@ -19,7 +19,7 @@
             var elemMove = angular.element(document).find('.stack-container').children()[locid];
 
             var pageWidth = window.innerWidth;
-            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286));
+            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286)) - elemMove.offsetWidth;
             var maxX = Math.floor(pageWidth * .86);
 
             var x = (selectedid == locid ? defaultX : Math.floor(Math.random() * maxX) - 200);
@@ -32,7 +32,9 @@
 
             //var trans = {"transform": "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)"};
             //element.css(trans);
+
             elemMove.style.transform = "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)";
+
           }
 
           // On click Set selected id

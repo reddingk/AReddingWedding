@@ -4,6 +4,7 @@
   angular.module('ourStoryCtrl').controller('OurStoryController', ['$state', 'parallaxHelper', function($state, parallaxHelper){
     var vm = this;
     /*Functions*/
+    vm.getEmbededURL = getEmbededURL;
     /*Variables*/
     vm.background = parallaxHelper.createAnimator(-0.3, 150, -150);
 
@@ -96,7 +97,7 @@
     },
     {/*8*/
       left: { type: 'title', title: 'She Said Yes!!!' },
-      right: { type:'video', video: "" }
+      right: { type:'video', video: "https://www.youtube.com/watch?v=awMIbA34MT8" }
     }];
 
     var Page = (function() {
@@ -177,36 +178,15 @@
         return { init : init };
     })();
 
+
+    // Functions
+    function getEmbededURL(url) {
+        var urlid = url.split("v=")[1];
+
+        return "https://www.youtube.com/embed/" + urlid;
+    }
+
     Page.init();
-    /*vm.events = [{
-      badgeClass: 'gColor', side:'right',
-      badgeIconClass: 'fa-eye',
-      title: 'When I First Saw Him',
-      when:"Summer 2007",
-      content: 'First Met'
-    }, {
-      badgeClass: 'kColor', side: 'left',
-      badgeIconClass: 'fa-eye',
-      title: 'The First We Talked',
-      when:"Summer 2007",
-      content: 'I remember the first time we talked it was in Thomas Mckean at UD during SEP. We really sat and talked about music for hours.'
-    }, {
-      badgeClass: 'kColor', side: 'left',
-      badgeIconClass: 'fa-coffee',
-      title: 'First Date',
-      when:"Fall 2007",
-      content: 'First Met'
-    }, {
-      badgeClass: 'gColor', side:'right',
-      badgeIconClass: 'fa-gift',
-      title: 'Birthday Gift',
-      when:"December 2007",
-      content: 'First Met'
-    }, {
-      imagebreak: 'true',
-      badgeClass: 'centerimg', side:'',
-      badgeIconClass: 'movin-image', content: 'img/storyimgs/1.jpg'
-    }];*/
   }]);
 
 })();

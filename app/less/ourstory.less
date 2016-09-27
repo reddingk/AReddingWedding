@@ -115,12 +115,24 @@
                   @media @tablet-screen, @mobile-screen { width: 100%; }
                 }
               }
+              &.video-story {
+                width: 100%; height: 100%;
+                .story-page-video {
+                  width: 100%; height: 100%;
+                  iframe {
+                    width: 100%; height: 100%;
+                    @media @tablet-screen, @mobile-screen { height:initial;  padding-top: 50%; }
+                  }
+
+                }
+              }
 
               .story-img {
                 height: 50px;
                 overflow: hidden;
                 img { height: 100%;}
               }
+
 
               .story-title { font-family: 'Lobster', cursive; font-size: 1.2rem; padding: 7px 0; font-weight: bold;}
               .story-when { font-family: 'Lobster', cursive; font-size: .8rem; font-weight: bold;}

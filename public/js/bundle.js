@@ -178,23 +178,31 @@
     vm.isSelected = isSelected;
     vm.changeSelected = changeSelected;
     vm.changeGallery = changeGallery;
-    vm.navSelected = navSelected;    
+    vm.navSelected = navSelected;
 
     /*Variables*/
     vm.items = [{
         title: "College Years",
-        images: [{"id":0, "img":"test/t0.jpg", "title":"" },
-        {"id":1, "img":"test/t1.jpg", "title":"" },
-        {"id":2, "img":"test/t2.jpg", "title":"" },
-        {"id":3, "img":"test/t3.jpg", "title":"" },
-        {"id":4, "img":"test/t4.jpg", "title":"" },
-        {"id":5, "img":"test/t5.jpg", "title":"" },
-        {"id":6, "img":"test/t6.jpg", "title":"" },
-        {"id":7, "img":"test/t7.jpg", "title":"" },
-        {"id":8, "img":"test/t8.jpg", "title":"" },
-        {"id":9, "img":"test/t9.jpg", "title":"" },
-        {"id":10, "img":"test/t10.jpg", "title":"" },
-        {"id":11, "img":"test/t11.jpg", "title":"" }]
+        images: [{"id":0, "img":"college/t0.jpg", "title":"" },
+        {"id":1, "img":"college/t1.jpg", "title":"" },
+        {"id":2, "img":"college/t2.jpg", "title":"" },
+        {"id":3, "img":"college/t3.jpg", "title":"" },
+        {"id":4, "img":"college/t4.jpg", "title":"" },
+        {"id":5, "img":"college/t5.jpg", "title":"" },
+        {"id":6, "img":"college/t6.jpg", "title":"" },
+        {"id":7, "img":"college/t7.jpg", "title":"" },
+        {"id":8, "img":"college/t8.jpg", "title":"" },
+        {"id":9, "img":"college/t9.jpg", "title":"" },
+        {"id":10, "img":"college/t10.jpg", "title":"" },
+        {"id":11, "img":"college/t11.jpg", "title":"" },
+        {"id":12, "img":"college/t12.jpg", "title":"" },
+        {"id":13, "img":"college/t13.jpg", "title":"" },
+        {"id":14, "img":"college/t14.jpg", "title":"" },
+        {"id":15, "img":"college/t15.jpg", "title":"" },
+        {"id":16, "img":"college/t16.jpg", "title":"" },
+        {"id":17, "img":"college/t17.jpg", "title":"" },
+        {"id":18, "img":"college/t18.jpg", "title":"" },
+        {"id":19, "img":"college/t19.jpg", "title":"" }]
       },
       {
         title: "Engagement Photos",
@@ -333,6 +341,7 @@
   angular.module('ourStoryCtrl').controller('OurStoryController', ['$state', 'parallaxHelper', function($state, parallaxHelper){
     var vm = this;
     /*Functions*/
+    vm.getEmbededURL = getEmbededURL;
     /*Variables*/
     vm.background = parallaxHelper.createAnimator(-0.3, 150, -150);
 
@@ -425,7 +434,7 @@
     },
     {/*8*/
       left: { type: 'title', title: 'She Said Yes!!!' },
-      right: { type:'video', video: "" }
+      right: { type:'video', video: "https://www.youtube.com/watch?v=awMIbA34MT8" }
     }];
 
     var Page = (function() {
@@ -506,36 +515,15 @@
         return { init : init };
     })();
 
+
+    // Functions
+    function getEmbededURL(url) {
+        var urlid = url.split("v=")[1];
+
+        return "https://www.youtube.com/embed/" + urlid;
+    }
+
     Page.init();
-    /*vm.events = [{
-      badgeClass: 'gColor', side:'right',
-      badgeIconClass: 'fa-eye',
-      title: 'When I First Saw Him',
-      when:"Summer 2007",
-      content: 'First Met'
-    }, {
-      badgeClass: 'kColor', side: 'left',
-      badgeIconClass: 'fa-eye',
-      title: 'The First We Talked',
-      when:"Summer 2007",
-      content: 'I remember the first time we talked it was in Thomas Mckean at UD during SEP. We really sat and talked about music for hours.'
-    }, {
-      badgeClass: 'kColor', side: 'left',
-      badgeIconClass: 'fa-coffee',
-      title: 'First Date',
-      when:"Fall 2007",
-      content: 'First Met'
-    }, {
-      badgeClass: 'gColor', side:'right',
-      badgeIconClass: 'fa-gift',
-      title: 'Birthday Gift',
-      when:"December 2007",
-      content: 'First Met'
-    }, {
-      imagebreak: 'true',
-      badgeClass: 'centerimg', side:'',
-      badgeIconClass: 'movin-image', content: 'img/storyimgs/1.jpg'
-    }];*/
   }]);
 
 })();
@@ -772,7 +760,7 @@
             var elemMove = angular.element(document).find('.stack-container').children()[locid];
 
             var pageWidth = window.innerWidth;
-            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286));
+            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286)) - elemMove.offsetWidth;
             var maxX = Math.floor(pageWidth * .86);
 
             var x = (selectedid == locid ? defaultX : Math.floor(Math.random() * maxX) - 200);
@@ -785,7 +773,9 @@
 
             //var trans = {"transform": "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)"};
             //element.css(trans);
+
             elemMove.style.transform = "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)";
+
           }
 
           // On click Set selected id
