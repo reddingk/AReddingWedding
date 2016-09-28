@@ -69,11 +69,12 @@
             figcaption { .photostack-title { color: #000; font-size: 2rem;}}
 
             @media @tablet-screen, @mobile-screen {
-              width: 200px; height: 240px; padding: 20px;
+              height: 240px; padding: 20px;
               .photostack-img {
                 width: initial;
                 //width: 160px;
                 height: 160px;
+                img { height: 160px; }
               }
             }
           }
@@ -92,8 +93,7 @@
           }
           figcaption {
             display: block;
-            .photostack-title { color: @color3; font-size: 1.5rem; text-align: center;}
-            /*.photostack-back { }*/
+            .photostack-title { color: @color3; font-size: 1.5rem; text-align: center;}            
           }
         }
         .photo-nav {

@@ -14,24 +14,26 @@
           function getItemLocation(locid, elemId){
             //-selected id
             var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
+
             // Get element by id
-            //var elemMove = element.parent().children()[locid];
-            var elemMove = angular.element(document).find('.stack-container').children()[locid];
+            var stackCont = angular.element(document).find('.stack-container');
+            var elemMove = stackCont.children()[locid];
+            var imgElem = elemMove.children[0].children[0];
 
             var pageWidth = window.innerWidth;
-            var defaultX = Math.floor(pageWidth * (pageWidth < 801 ? .084 : .286)) - elemMove.offsetWidth;
+            var offsetX = ((imgElem.naturalWidth * ( pageWidth < 801 ? 170 : 320)) / imgElem.naturalHeight);
+            var defaultX = Math.floor((stackCont[0].offsetWidth - offsetX)/2);
             var maxX = Math.floor(pageWidth * .86);
 
-            var x = (selectedid == locid ? defaultX : Math.floor(Math.random() * maxX) - 200);
-            //var x = (selectedid == locid ? 400 : Math.floor(Math.random() * 1201) - 200);
+            var x = (selectedid == locid ? (defaultX < 0 ? 0 : defaultX) : Math.floor(Math.random() * maxX) - 200);
             var y = (selectedid == locid ? 150 : Math.floor(Math.random() * 701) - 200);
             var angle = (selectedid == locid ? 0 : Math.floor(Math.random() * 80) - 40) ;
+
             // Check Out of Bounds
             x = (x < -50 ? -40 : x);
             y = (y < 30 ? 30 : y);
 
-            //var trans = {"transform": "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)"};
-            //element.css(trans);
+
 
             elemMove.style.transform = "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)";
 
