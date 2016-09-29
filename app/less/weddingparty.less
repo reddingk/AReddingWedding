@@ -7,7 +7,7 @@
       width: 100%;
       background-color: rgba(255,255,255,0.4);
       border-radius: 10px;
-      padding-top: 10px;
+      padding: 10px 10px 0px;
     }
   }
 }
@@ -28,6 +28,7 @@
       -webkit-transition: all ease;
       -webkit-transition-delay: .5s;
       transition: all ease .5s;
+      @media @tablet-screen, @mobile-screen { margin-bottom: 20px; }
 
       &.selected {
         height: 100%;
@@ -65,9 +66,8 @@
         }
         .card-ribbon {
           position: absolute;
-          //left: 45%;
-          top: -22%;
-          &.rcenter { left: 45%; }
+          left: 45%;
+          top: -22%;          
           &.rleft { left: 15%; }
           &.rright { left: 85%; }
           img { width: 100px;}
