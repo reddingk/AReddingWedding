@@ -3,11 +3,6 @@
 
   angular.module('mainCtrl').controller('MainController', ['$state', function($state){
     var vm = this;
-    /*Functions*/
-    vm.checkActivePage = checkActivePage;
-    vm.selectPage = selectPage;
-    vm.togglePage = togglePage;
-
     /*Variables*/
     vm.selected = null;
     vm.cardClosed = true;
@@ -17,6 +12,25 @@
     vm.cardThemes = [1,2,5,4];
     vm.selectedTheme = vm.cardThemes[Math.floor(Math.random() * 2)];
 
+    /*Functions*/
+    vm.checkActivePage = checkActivePage;
+    vm.selectPage = selectPage;
+    vm.togglePage = togglePage;
+    vm.toggleCard = toggleCard;
+
+    function toggleCard(control){
+      if(control == "open")
+      { vm.cardClosed = false; }
+      else if(control == "close")
+      { vm.cardClosed = true; }
+      else if(control == "toggle")
+      { vm.cardClosed = !vm.cardClosed; }
+
+      if(vm.cardClosed) {
+        var navMain = $("#arw-inside-nav");
+        navMain.collapse('hide');
+      }
+    }
     function checkActivePage(current) {
          var currentPage = $state;
          if (currentPage != null && currentPage.current.name.indexOf(current) > -1) { return true; }
