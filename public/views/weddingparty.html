@@ -32,10 +32,8 @@
 
         <div class="party-group" ng-repeat="party in wpc.partylist" ng-class="{'selected': wpc.isSelected(party)}">
           <div class="party-row" ng-click="wpc.clickParty(party)">
-            <!--<div class="card-ribbon"><img src="img/party/ribbon_peacock.png" ng-if="$odd" ><img src="img/party/ribbon_blush.png" ng-if="$even"></div>-->
-            <div class="card-ribbon"><img src="img/party/ribbon_peacock.png" ng-if="$index >= 4" ><img src="img/party/ribbon_blush.png" ng-if="$index < 4"></div>
-            <!--<div class="card-ribbon rleft"><img src="img/party/ribbon_blush.png"></div>
-            <div class="card-ribbon rright"><img src="img/party/ribbon_peacock.png"></div>-->
+            <div class="card-ribbon"><img src="img/party/ribbon_peacock.png" ng-if="$index < 4" ><img src="img/party/ribbon_blush.png" ng-if="$index >= 4"></div>
+
             <div class="party-content">
               <div class="member left">
                 <div class="member-img"><img ng-src="img/weddingicons/svg/{{ party.bridesmaids.image }}" ></div>
