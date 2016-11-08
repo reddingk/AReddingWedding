@@ -6,7 +6,7 @@
     /*Functions*/
 
     /*Variables*/
-    vm.myInterval = 7000;
+    vm.myInterval = 0;
     vm.active = 0;
     vm.eventsList = [
       {title: 'Engagement Party', date:new Date("2017-03-04 14:00:00"),
