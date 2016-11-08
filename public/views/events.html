@@ -10,6 +10,7 @@
             <uib-carousel active="ec.active" interval="ec.myInterval" no-wrap="false" no-pause="true">
               <uib-slide ng-repeat="slide in event.photos track by slide.id" index="slide.id">
                 <img ng-src="{{slide.image}}" style="margin:auto;">
+                <img class="special-slider-img" ng-src="{{slide.image}}">
               </uib-slide>
             </uib-carousel>
           </div>

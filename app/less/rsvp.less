@@ -1,5 +1,5 @@
 .rsvp-key {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Delius', cursive;
   .rsvpKeyForm {
     display: inline-block;
     width: 100%;
@@ -7,19 +7,18 @@
       width: 80%;
       @media @tablet-screen, @mobile-screen { width: 100%; }
 
-      label { color: rgba(255,255,255,1); }
-      .md-input { border-color: rgba(255,255,255,1); color: rgba(255,255,255,0.87);}
+      label { color: @theme-color-red; white-space: initial;}
+      .md-input { border-color: rgba(0,0,0,1); color: rgba(0,0,0,0.87);}
     }
     .key-unlock {
-      background-color: @color2;
-      &:hover{ background-color: @color4;}
-      i {color: @color3;}
+      background-color: @theme-color-red;
+      &:hover{ background-color: @theme-color-gold;}
+      i {color: rgba(0,0,0,1);}
     }
   }
 }
 
 .rsvp-locked {
-  font-family: 'Lobster', cursive;
   text-align: center;
   color: @color3;
   i { font-size: 5rem;}

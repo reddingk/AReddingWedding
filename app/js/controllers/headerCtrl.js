@@ -30,6 +30,11 @@
       $state.go(newstate.link);
     }
 
+    var navMain = $("#arwNavbar");
+     navMain.on("click", ".link", null, function () {
+         navMain.collapse('hide');
+     });
+
   }]);
 
 })();

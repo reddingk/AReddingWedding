@@ -1,4 +1,5 @@
 @event-img-size: 400px;
+@event-mobile-size: 200px;
 
 .events-list {
   padding: 10px 30px;
@@ -11,7 +12,7 @@
       top:20px;
       width: 100%;
       text-align: center;
-      background-color: @color2;
+      background-color: @theme-color-red;
       font-size: 2rem;
       padding: 5px 0px;
 
@@ -30,20 +31,29 @@
         .event-imgs {
           overflow: hidden;
           height: @event-img-size;
+          @media @tablet-screen, @mobile-screen { height: @event-mobile-size; }
           .carousel {
             .carousel-inner {
               .item {
                 img {
                   height: @event-img-size;
-                  //width: 60%;
-                  @media @tablet-screen, @mobile-screen { width: 100%; }
+                  @media @tablet-screen, @mobile-screen { height: @event-mobile-size; }
+                }
+                .special-slider-img {
+                  z-index: -1;
+                  height: 400%;
+                  width: 400%;
+                  position: absolute;
+                  top: -200%;
+                  -webkit-filter: blur(20px);
+                  filter: blur(20px);
                 }
               }
             }
           }
         }
         .event-details {
-          font-family: 'Libre Baskerville', serif;
+          font-family: 'Delius', cursive;
           font-size: 1rem;
           padding: 20px 5px 0px;
           .event-info {
@@ -59,10 +69,9 @@
 
             .event-location {
               text-align: center;
-              color: @color2;
+              color: @theme-color-red;
               font-weight: bold;
-              font-family: 'Lobster',cursive;
-              border: 2px solid @color2;
+              border: 2px solid @theme-color-red;
               padding: 3px;
               margin-top: 0px !important;
             }
@@ -83,10 +92,9 @@
             .add-info {
               text-align: center;
               h3 {
-                color: @color2;
+                color: @theme-color-red;
                 font-weight: bold;
-                font-family: 'Lobster', cursive;
-                border: 2px solid @color2;
+                border: 2px solid @theme-color-red;
                 padding: 3px;
                 margin-top: 0px !important;
               }

@@ -11,7 +11,7 @@
 
     /*Variables*/
     vm.items = [{
-        title: "College Years",
+        title: "Thru The Years",
         images: [{"id":0, "img":"college/t0.jpg", "title":"" },
         {"id":1, "img":"college/t1.jpg", "title":"" },
         {"id":2, "img":"college/t2.jpg", "title":"" },

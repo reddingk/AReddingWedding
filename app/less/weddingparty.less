@@ -41,6 +41,7 @@
           -ms-transform: rotateX(0) translateY(0);
           transform: rotateX(0) translateY(0);
           height: 100%;
+          box-shadow: @dark-shadow;
           &:hover {
             -webkit-transform:translateY(-2px);
             -ms-transform: translateY(-2px);
@@ -72,7 +73,7 @@
           &.rleft { left: 15%; }
           &.rright { left: 85%; }
           img { width: 100px;}
-          @media @tablet-screen, @mobile-screen { left: 40%; top: -6%; img { width: 50px;}}
+          @media @tablet-screen, @mobile-screen { top: -6%; img { width: 50px;}}
         }
         .party-content {
           border: 2px solid rgba(0,0,0,1);
@@ -88,10 +89,10 @@
               overflow: hidden;
               img { height: 100%;}
             }
-            .member-name { font-family: 'Lobster', cursive; font-size: 1.2rem; padding: 7px 0;}
-            .member-title { font-family: 'Libre Baskerville', serif; font-weight: bold;}
+            .member-name {  font-size: 1.5rem; padding: 7px 0;}
+            .member-title { font-family: 'Delius', cursive; font-weight: bold;}
             .member-bio {
-              font-family: 'Libre Baskerville', serif;
+              font-family: 'Delius', cursive;
               color: #000;
               @media @tablet-screen, @mobile-screen {  display: none; }
             }

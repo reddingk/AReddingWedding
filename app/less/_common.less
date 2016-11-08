@@ -2,8 +2,9 @@
 @tablet-screen: ~"only screen and (min-width: 641px) and (max-width: 800px)";
 @mobile-screen: ~"only screen and (max-width: 640px)";
 
+/*Font*/
 @font-size: 16px;
-
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Delius|Patrick+Hand+SC');
 /*Main Colors*/
 @color1: rgba(3,17,46,1); //Midnight Blue
 @color2: rgba(25,62,71,1); //Peacock Green
@@ -25,6 +26,8 @@
 @theme-color-gold: rgba(171,152,114,1);
 @theme-color-orange: rgba(158,73,35,1);
 @theme-color-light: rgba(247,246,241,1);
+@theme-color-red: rgba(240,31,73,1);
+@theme-color-yellow: rgba(240,31,73,1);
 
 /*Box-Shadow*/
 @main-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -33,7 +36,9 @@
 html, body {
   height: 100%;
   font-size: @font-size;
-  font-family: 'Great Vibes', cursive;
+  /* font-family: 'Delius', cursive;
+  font-family: 'Patrick Hand SC', cursive;*/
+  font-family: 'Dancing Script', cursive;
   @media @tablet-screen, @mobile-screen { font-size: 12px; }
 }
 
@@ -45,7 +50,7 @@ html, body {
   width: 100%;
   min-height: 100%;
   padding: 0px 5% 5% 5%;
-  @media @tablet-screen, @mobile-screen { padding: 100px 1px 5% 1px; }
+  @media @tablet-screen, @mobile-screen { padding: 0 1px 5% 1px; }
   -webkit-transition: background-color 2s;
   transition: background-color 2s;
   .card-container {
@@ -85,11 +90,11 @@ html, body {
           .mainBody {
             .card-page {
               color: rgba(0,0,0,1);
-              h1 { text-align: center; margin-bottom: 30px;}
+              h1 { text-align: center; margin-bottom: 30px; font-size: 3rem; }
               .home-text {
                 text-align: center;
-                font-family: 'Libre Baskerville', serif;
-                font-size: 1.3rem;
+                font-family: 'Delius', cursive;
+                font-size: 1.5rem;
                 padding: 0px 20%;
                 .groom, .bride{ font-weight: bold; color: rgba(255,255,255,1);}
 
@@ -128,12 +133,34 @@ html, body {
       }
     }
     .cardOpener {
-      padding: 10px 50px 5px 0px;
+      padding: 10px 0px 5px 0px;
       text-align: center;
       font-size: 5rem;
       color: rgba(255,255,255,1);
       display: block;
       &.ng-hide { display: none;}
+      .thin-arrow {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        transition: all 0.5s ease-in-out;
+        border-right: 3px solid @theme-color-orange;
+        border-bottom: 3px solid @theme-color-orange;
+        &:hover { margin: 0px 20px 20px 20px; border-right: 3px solid rgba(0,0,0,1);  border-bottom: 3px solid rgba(0,0,0,1);}
+
+        &.down {
+          -ms-transform: rotate(45deg); /* IE 9 */
+          -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+          transform: rotate(45deg);
+        }
+
+        &.up {
+          -ms-transform: rotate(-135deg); /* IE 9 */
+          -webkit-transform: rotate(-135deg); /* Chrome, Safari, Opera */
+          transform: rotate(-135deg);
+        }
+
+      }
     }
   }
 }
@@ -160,43 +187,64 @@ html, body {
         position: relative;
 
         .text-left { display: inline-block; float: left; width: 30%; text-align: center;}
-        .text-center { display: inline-block; width: 30%; text-align: center; position: absolute; left: 50%; transform: translateX(-50%);}
+        .text-center { width: 30%; text-align: center; position: absolute; left: 50%; transform: translateX(-50%);}
         .text-right{ display: inline-block; float: right; width: 30%; text-align: center;}
-        @media @tablet-screen, @mobile-screen {
-          padding:15px 0px;
-          font-size: 1.3rem;
-        }
+        @media @tablet-screen, @mobile-screen {font-size: 1.1rem;}
       }
-
     }
     .nav-top-content {
       height: 100%;
-      .card-title-text {
-        display: inline-block;
-        //width: 33%;
-        text-align: center;
-        font-size: 4rem;
-        font-weight: bold;
-        z-index: 25;
-        margin-top: 75px;
-        color: @color3;
-        @media @tablet-screen, @mobile-screen {  font-size: 2rem;}
-      }
-      .text-left-3 { width: 40%; text-align: right;}
-      .text-center-3 { width: 18%; font-size: 5rem;}
-      .text-right-3 { width: 40%; text-align: left; }
+      position: relative;
+      overflow: hidden;
+      .content-text {
+        position: relative;
+        height: 100%;
+        z-index: 10;
+        width: 45%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 30px 0px;
+        font-family: 'Dancing Script', cursive;
 
+        @media @mobile-screen { width: 100%; }
+        .card-title-text {
+          display: block;
+          text-align: center;
+          font-size: 4rem;
+          font-weight: bold;
+          z-index: 25;
+          position: absolute;
 
-      .text-center-3 {
-        .fa-stack {
-          .top { color: #fff; }
-          .bottom { color: #000}
+          &.text-left-3 { top: 25%; left:10%; transform: translateY(-25%); color: @theme-color-light; }
+          &.text-center-3 { top: 50%; left:50%; transform: translateY(-50%); color: @theme-color-teal;}
+          &.text-right-3 { top: 75%; right:10%; transform: translateY(-75%); color: @theme-color-red; }
+
+          @media @medium-screen, @tablet-screen, @mobile-screen { font-size: 3rem; }
+          @media @mobile-screen {
+            &.text-left-3 { top: 10%; }
+            &.text-center-3 { top: 25%; }
+            &.text-right-3 { top: 35%; }
+          }
         }
-        img {
-          width: 180px;
-          -webkit-filter: invert(1);
-          filter: invert(1);
-          @media @tablet-screen, @mobile-screen { width: 75px;  }
+      }
+      .content-back-img {
+        width: 100%;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+        .back-img {
+          position: absolute;
+          &.img-left { z-index: 2; height: 100%; bottom: -100px; left: -30px;}
+          &.img-center { z-index: 1; height: 115%; bottom: -80px; left: 125px;}
+          &.img-right { z-index: 2; height: 115%; bottom: -90px; right:-85px;}
+
+          @media @tablet-screen, @mobile-screen {
+            &.img-left { height: 70%; bottom: -100px; left: -30px;}
+            &.img-center { height: 80%; bottom: -80px; left: 95px;}
+            &.img-right {  height: 70%; bottom: -90px; right:-85px;}
+          }
         }
       }
     }
@@ -205,7 +253,12 @@ html, body {
     background-color: @theme-color-orange;
     color: rgba(0,0,0,1);
     .container {
-      .navbar-header { }
+      .navbar-header {
+        .navbar-toggle {
+          border: rgba(0,0,0,0) !important;
+          &:focus, &:hover {  background-color: rgba(0,0,0,0) !important; .icon-bar { background-color: rgba(0,0,0,0.8) !important; } }
+        }
+      }
       .navbar-collapse {
         .navbar-nav {
           width: 100%;

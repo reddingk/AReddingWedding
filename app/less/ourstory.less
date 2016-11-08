@@ -1,47 +1,4 @@
-.card-page {
-    .story {
-      .timeline {
-        color: rgba(0,0,0,1);
-        &:before {
-          background-color: @color3;
-        }
-        timeline-badge {
-          z-index: 30;
-        &.kColor { background-color: @color2;/*rgba(0, 43, 128,1);*/ }
-        &.gColor { background-color: @color4;/*rgba(255, 128, 170,1);*/ }
-
-          &.centerimg {
-            border-radius: 0px;
-            overflow: hidden;
-            width: 60%;
-            height: 300px;
-            left: 25%;
-
-            .timeline-badge {
-              img {
-                width: 100%;
-              }
-            }
-            @media @tablet-screen, @mobile-screen { height: auto; }
-          }
-        }
-        timeline-panel {
-        &.kColor { background-color: @color2; /*rgba(0, 43, 128, 0.7);*/ }
-          &.gColor { background-color: @color4; /*rgba(255, 128, 170, 0.7);*/ }
-          .timeline-panel {
-            width: 100%;
-            .timeline-when {
-              color: rgba(255, 255, 255,1);
-            }
-          }
-
-          &.centerimg {
-            height: 350px;
-          }
-        }
-      }
-    }
-}
+.card-page { }
 
 /*Party Book*/
 .party-book {
@@ -76,13 +33,14 @@
         z-index: 40;
         .bb-item, .bb-page {
           background-color:rgba(0,0,0,0);
+          @media @tablet-screen, @mobile-screen { max-height: 300px; }
           .bb-custom-side {
             width: 50%;
           	float: left;
           	height: 100%;
           	overflow: hidden;
           	background: #fff;
-            border: 2px solid @color3;
+            border: 2px solid rgba(0,0,0,1);
             position: relative;
             //display: inline-block;
             // Centering with flexbox
@@ -110,10 +68,7 @@
               font-size: 1rem;
 
               .story-page-img {
-                @media @tablet-screen, @mobile-screen { width: 100%; }
-                img {
-                  @media @tablet-screen, @mobile-screen { width: 100%; }
-                }
+                @media @tablet-screen, @mobile-screen { width: 100%;  img {width: 100%;}}
               }
               &.video-story {
                 width: 100%; height: 100%;
@@ -133,14 +88,13 @@
                 img { height: 100%;}
               }
 
-
-              .story-title { font-family: 'Lobster', cursive; font-size: 1.2rem; padding: 7px 0; font-weight: bold;}
-              .story-when { font-family: 'Lobster', cursive; font-size: .8rem; font-weight: bold;}
-              .story-content {  font-family: 'Libre Baskerville', serif;    }
+              .story-title { font-size: 1.5rem; padding: 7px 0; font-weight: bold;}
+              .story-when { font-size: 1rem; font-weight: bold;}
+              .story-content {  font-family: 'Delius', cursive;    }
               .story-teller {
                 float: right;
                 span {
-                  font-family: 'Lobster', cursive; font-size: 2rem; color: rgba(255,255,255,1); text-transform: capitalize;
+                  font-size: 2rem; color: rgba(255,255,255,1); text-transform: capitalize;
                   &.ckris {  text-shadow: -5px -5px 0 rgba(4,18,45,1), 1px -1px 0 rgba(4,18,45,1),  -1px 1px 0 rgba(4,18,45,1),  1px 1px 0 rgba(4,18,45,1);}
                   &.cgrace {  text-shadow: -5px -5px 0 rgba(245,215,205,1), 1px -1px 0 rgba(245,215,205,1),  -1px 1px 0 rgba(245,215,205,1),  1px 1px 0 rgba(245,215,205,1); }
                 }
@@ -170,7 +124,7 @@
         top: 10px;
         right: 10px;
         z-index: 51;
-        a { font-size: 2rem; color: @color3;}
+        a { font-size: 2rem; color: @theme-color-gold;}
       }
     }
   }
@@ -178,7 +132,7 @@
 
 .blank-side { background-color: rgba(0,0,0,0) !important;/*@color1 !important;*/ border: none !important;}
 .cover {
-  border: 10px solid @color3 !important;
+  border: 10px solid rgba(0,0,0,1) !important;
   .cover-text {
     display: block;
     color: @color3;
@@ -189,13 +143,13 @@
       &.front-cover {
         position: absolute;
         top:50%;
-        @media @tablet-screen, @mobile-screen { top: 65%; }
+        @media @tablet-screen, @mobile-screen { top: 65%; width: 100%;}
       }
       @media @tablet-screen, @mobile-screen { font-size: 2rem;}
     }
     .story-cover-img {
       height: 300px;
-      @media @mobile-screen { padding-top: 50%;}
+      @media @mobile-screen { height: 200px;}
       img {
         height: 100%;
         @media @tablet-screen {height: initial; width: 80%;}
@@ -205,7 +159,7 @@
   }
 }
 .bb-title {
-  background-color: @color2 !important;
+  background-color: @theme-color-blue !important;
   .cover-text {
     display: block;
     color: @color3;
