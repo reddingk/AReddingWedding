@@ -270,7 +270,14 @@ html, body {
             cursor: pointer;
             a {
               color: @theme-color-light;
-              &.active { color: rgba(0,0,0,1);}
+              &.active {
+                color: rgba(0,0,0,1);
+                background-image: url("../img/background/image_bird.svg");
+                background-repeat: no-repeat;
+                padding-left: 40px;
+                padding-right: 0px;
+                text-align: left;
+              }
             }
 
             &:hover, &:focus { a { color: rgba(0,0,0,1);}}
