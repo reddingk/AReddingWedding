@@ -137,7 +137,7 @@
     /*Functions*/
 
     /*Variables*/
-    vm.myInterval = 7000;
+    vm.myInterval = 0;
     vm.active = 0;
     vm.eventsList = [
       {title: 'Engagement Party', date:new Date("2017-03-04 14:00:00"),
@@ -298,6 +298,7 @@
     vm.selected = null;
     vm.cardClosed = true;
     vm.statetest = $state.current.name;
+    vm.alertTemplate = "views/templates/_pageDirections.html";
 
     /*Card Themes*/
     vm.cardThemes = [1,2,5,4];
@@ -308,6 +309,14 @@
     vm.selectPage = selectPage;
     vm.togglePage = togglePage;
     vm.toggleCard = toggleCard;
+    vm.showDirections = showDirections;
+
+    function showDirections() {
+      if(!vm.cardClosed) {
+
+      }
+      return false;
+    }
 
     function toggleCard(control){
       if(control == "open")
@@ -365,7 +374,7 @@
 
     vm.story = [
     {/*0*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',
@@ -375,7 +384,7 @@
       }
     },
     {/*1*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'kris',
@@ -385,7 +394,7 @@
       }
     },
     {/*2*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',
@@ -395,7 +404,7 @@
       }
     },
     {/*3*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'kris',
@@ -405,7 +414,7 @@
       }
     },
     {/*4*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',
@@ -441,7 +450,7 @@
       }
     },
     {/*7*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',

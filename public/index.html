@@ -28,9 +28,11 @@
       <div class="card-spacer"></div>
       <!--Header Navigation-->
       <div class="header" ui-view="header"></div>
+      <!--Page Directions-->
+      <div class="page-alert" ng-include="mc.alertTemplate"></div>
       <!--Main Body-->
       <div class="card-drawer" ng-hide="mc.cardClosed" nav-hold>
-        <div class="card-body">
+        <div class="card-body" id="card-top">
           <div class="card-content">
             <div class="mainBody" id="content" ui-view="content" autoscroll="true" aria-relevant="all" aria-live="assertive"></div>
           </div>

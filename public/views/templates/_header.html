@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="nav-top-content">
-        <div class="content-text" ng-click="mc.togglePage('app.home')">
+        <div class="content-text">
           <div class="card-title-text text-left-3"><div>Kris Redding</div></div>
           <div class="card-title-text text-center-3"><div>&</div></div>
           <div class="card-title-text text-right-3"><div>Grace Manning</div></div>
@@ -36,7 +36,7 @@
         </div>
         <div class="navbar-collapse collapse" id="arwNavbar">
           <ul class="nav navbar-nav" id="arw-inside-nav">
-            <li ng-repeat="page in hdc.pages"><a class="link" ng-click="mc.togglePage(page.state)" ng-class="{'active':hdc.checkActivePage('{{page.name}}')}" scroll-to="">
+            <li ng-repeat="page in hdc.pages"><a class="link" ng-click="mc.togglePage(page.state)" ng-class="{'active':hdc.checkActivePage('{{page.name}}')}">
               <div class="nav-text">{{page.title}}</div>
             </a></li>
           </ul>

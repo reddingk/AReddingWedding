@@ -60,6 +60,33 @@ html, body {
       z-index:10;
       background-color: @color1;
     }
+    .page-alert {
+      position: fixed;
+      bottom: 100px;
+      left: 20px;
+      z-index: 100;
+      .directions-container {
+        background-color: rgba(255,255,255,0.5);
+        -webkit-box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);
+        padding: 20px;
+        .directions-content { font-size: 3rem;}
+        .directional-arrows {
+          text-align: center;
+          padding: 0 90px;
+          .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 3px solid #000;
+            border-bottom: 3px solid #000;
+            -ms-transform: rotate(45deg); /* IE 9 */
+            -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
     .card-drawer {
       position: relative;
       z-index:5;
@@ -162,6 +189,22 @@ html, body {
 
       }
     }
+  }
+
+  /*Scroll Styles*/
+  ::-webkit-scrollbar-track   {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  	background-color: rgba(10,10,10,1);
+  }
+
+  ::-webkit-scrollbar  {
+  	width: 10px;
+    background-color: rgba(10,10,10,1);
+  }
+
+  ::-webkit-scrollbar-thumb  {
+    background-color: rgba(255,255,255,0.7);
+  	border: 2px solid #555555;
   }
 }
 /* Top Navigation */

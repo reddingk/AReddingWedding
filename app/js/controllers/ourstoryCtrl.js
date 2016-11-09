@@ -10,7 +10,7 @@
 
     vm.story = [
     {/*0*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',
@@ -20,7 +20,7 @@
       }
     },
     {/*1*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'kris',
@@ -30,7 +30,7 @@
       }
     },
     {/*2*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',
@@ -40,7 +40,7 @@
       }
     },
     {/*3*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'kris',
@@ -50,7 +50,7 @@
       }
     },
     {/*4*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',
@@ -86,7 +86,7 @@
       }
     },
     {/*7*/
-      left: { type: 'img', img: 'img/storyimgs/1.jpg' },
+      left: { type: 'img', img: 'img/KrisNGrace2.png' },
       right: {
         type:'content',
         perspective:'grace',

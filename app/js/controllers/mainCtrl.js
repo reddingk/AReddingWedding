@@ -7,6 +7,7 @@
     vm.selected = null;
     vm.cardClosed = true;
     vm.statetest = $state.current.name;
+    vm.alertTemplate = "views/templates/_pageDirections.html";
 
     /*Card Themes*/
     vm.cardThemes = [1,2,5,4];
@@ -17,6 +18,14 @@
     vm.selectPage = selectPage;
     vm.togglePage = togglePage;
     vm.toggleCard = toggleCard;
+    vm.showDirections = showDirections;
+
+    function showDirections() {
+      if(!vm.cardClosed) {
+
+      }
+      return false;
+    }
 
     function toggleCard(control){
       if(control == "open")
