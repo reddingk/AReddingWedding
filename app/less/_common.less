@@ -42,9 +42,6 @@ html, body {
   @media @tablet-screen, @mobile-screen { font-size: 12px; }
 }
 
-.basic-cursive { font-family: 'Lobster', cursive; }
-.basic-font { font-family: 'Libre Baskerville', serif; }
-
 .bodycontainer {
   background-color: @color3;
   width: 100%;
@@ -62,24 +59,32 @@ html, body {
     }
     .page-alert {
       position: fixed;
-      bottom: 100px;
-      left: 20px;
+      bottom: 40%;
+      right: 2%;
       z-index: 100;
+      color: rgba(0,0,0,1);
+      @media @mobile-screen { bottom: 25%; }
       .directions-container {
-        background-color: rgba(255,255,255,0.5);
-        -webkit-box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);
-        box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);
-        padding: 20px;
-        .directions-content { font-size: 3rem;}
+        background-color: rgba(255,255,255,0.7);
+        padding: 15px;
+        visibility: visible;
+        transition: all 1.5s ease;
+        -webkit-animation:1.5s fadeInRight ease;
+        animation:1.5s fadeInRight ease;
+        &.noshow {
+          visibility: hidden;
+          -webkit-animation:1.5s fadeOutRight ease;
+          animation:1.5s fadeOutRight ease;
+        }
+        .directions-content { font-family: 'Delius', cursive; font-size: 1.7rem; text-align: center;}
         .directional-arrows {
           text-align: center;
-          padding: 0 90px;
+          padding: 0 20px;
           .scroll-arrow {
             width: 20px;
             height: 20px;
-            border-right: 3px solid #000;
-            border-bottom: 3px solid #000;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
             -ms-transform: rotate(45deg); /* IE 9 */
             -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
             transform: rotate(45deg);

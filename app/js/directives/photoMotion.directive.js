@@ -3,7 +3,7 @@
 
     angular.module('directives').directive('photoMotion', ['$window', function() {
       return {
-        restrict: 'EA',
+        restrict: 'EA',        
         link: function ($scope, element, attrs) {
 
           var itemid = $scope.$eval(attrs.itemid);
@@ -48,21 +48,6 @@
               }
             }
           });
-          // Hover image appears
-          /*element.bind('mouseover', function() {
-            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
-              var elemMove = angular.element(document).find('.stack-container').children()[itemid];
-              elemMove.style.boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
-              elemMove.style.zIndex = "11";
-            }
-          });
-          element.bind('mouseout', function() {
-            if(itemid != $scope.$eval(attrs.selectedid) && isNav == true){
-              var elemMove = angular.element(document).find('.stack-container').children()[id];
-              elemMove.style.boxShadow = "none";
-              elemMove.style.zIndex = "8";
-            }
-          });*/
           // Intitial Object Set
           getItemLocation(itemid, null);
         }

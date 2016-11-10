@@ -1,13 +1,14 @@
 (function(){
  "use strict";
 
-  angular.module('mainCtrl').controller('MainController', ['$state', function($state){
+  angular.module('mainCtrl').controller('MainController', ['$state', '$window', function($state, $window){
     var vm = this;
     /*Variables*/
     vm.selected = null;
     vm.cardClosed = true;
     vm.statetest = $state.current.name;
     vm.alertTemplate = "views/templates/_pageDirections.html";
+    vm.scrollPass = false;
 
     /*Card Themes*/
     vm.cardThemes = [1,2,5,4];
@@ -20,9 +21,9 @@
     vm.toggleCard = toggleCard;
     vm.showDirections = showDirections;
 
-    function showDirections() {
+    function showDirections() {      
       if(!vm.cardClosed) {
-
+        return true;
       }
       return false;
     }

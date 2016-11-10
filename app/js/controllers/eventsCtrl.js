@@ -9,7 +9,7 @@
     vm.myInterval = 0;
     vm.active = 0;
     vm.eventsList = [
-      {title: 'Engagement Party', date:new Date("2017-03-04 14:00:00"),
+      {title: 'Engagement Party', date:new Date("2017-04-01 14:00:00"),
        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut nisi vel nibh dictum aliquam vitae et diam. Donec scelerisque nisl at ex faucibus dignissim. Sed ex sem, eleifend quis massa sit amet, bibendum volutpat lorem.",
        location: {name: "TBD", address:"TBD" },
        photos: [{id:0, image:"img/eventimgs/test1.jpg"}, {id:1, image:"img/eventimgs/test2.jpg"}, {id:2, image:"img/eventimgs/test3.jpg"}]},
