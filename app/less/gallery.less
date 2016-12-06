@@ -115,9 +115,10 @@
             margin: 10px;
             border-radius: 25px;
             padding: 3px;
+            border:2px solid rgba(255,255,255,0.3);
             @media @tablet-screen, @mobile-screen { margin:5px; }
-            &.selected { background-color: @theme-color-gold; }
-            &:hover { border:2px solid @theme-color-gold;}
+            &.selected { background-color: @theme-color-gold; border-color: @theme-color-gold; }
+            &:hover { border-color: @theme-color-gold;}
           }
         }
       }
