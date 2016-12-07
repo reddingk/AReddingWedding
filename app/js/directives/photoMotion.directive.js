@@ -3,7 +3,7 @@
 
     angular.module('directives').directive('photoMotion', ['$window', function() {
       return {
-        restrict: 'EA',        
+        restrict: 'EA',
         link: function ($scope, element, attrs) {
 
           var itemid = $scope.$eval(attrs.itemid);
@@ -26,7 +26,7 @@
             var maxX = Math.floor(pageWidth * .86);
 
             var x = (selectedid == locid ? (defaultX < 0 ? 0 : defaultX) : Math.floor(Math.random() * maxX) - 200);
-            var y = (selectedid == locid ? 150 : Math.floor(Math.random() * 701) - 200);
+            var y = (selectedid == locid ? 50 : Math.floor(Math.random() * 501) - 200);
             var angle = (selectedid == locid ? 0 : Math.floor(Math.random() * 80) - 40) ;
 
             // Check Out of Bounds

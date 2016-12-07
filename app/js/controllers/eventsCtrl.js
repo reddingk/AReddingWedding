@@ -9,10 +9,10 @@
     vm.myInterval = 0;
     vm.active = 0;
     vm.eventsList = [
-      {title: 'Engagement Party', date:new Date("2017-04-01 14:00:00"),
+      {title: 'Engagement Party', date:null,
        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut nisi vel nibh dictum aliquam vitae et diam. Donec scelerisque nisl at ex faucibus dignissim. Sed ex sem, eleifend quis massa sit amet, bibendum volutpat lorem.",
-       location: {name: "TBD", address:"TBD" },
-       photos: [{id:0, image:"img/eventimgs/test1.jpg"}, {id:1, image:"img/eventimgs/test2.jpg"}, {id:2, image:"img/eventimgs/test3.jpg"}]},
+       location: {name: "Barcocina", address:"1629 Thames St, Baltimore, MD 21231" },
+       photos: [{id:0, image:"img/eventimgs/Engagement/b1.JPG"}, {id:1, image:"img/eventimgs/Engagement/b2.JPG"}, {id:2, image:"img/eventimgs/Engagement/b3.JPG"}]},
       {title: 'The Wedding', date:new Date("2018-05-19 15:00:00"),
        text: "We will officially be jumping the broom at Grace's home church, Bethel Gospel Tabernacle.  All are welcome to our ceremony to watch us tie the knot and take as many pictures as possible.",
        location: {name: "Bethel Gospel Tabernacle", address:"11025 Guy R Brewer Blvd., Jamaica, NY 11433" },

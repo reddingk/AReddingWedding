@@ -3,32 +3,55 @@
   .gallery-container {
     .gallery-nav {
       width: 100%;
-      background-color: rgba(0,0,0,0.9);
-      .gallery-item {
-        display: inline-block;
-        margin: 5px;
+      background-color: rgba(0,0,0,0.4);
+      border-top: 5px solid rgba(208,181,126,1);
+      border-left: 5px solid rgba(208,181,126,1);
+      border-right: 5px solid rgba(208,181,126,1);
+      padding: 5px;
+
+      .item-container {
+        overflow-x: auto;
+        white-space:nowrap;
+        .gallery-item {
+          display: inline-block;
+          margin: 5px;
+          padding: 5px;
+          height: 170px;
+          width: 180px;
+          overflow: hidden;
+          background-color: #fff;
+          transition: all 0.5s ease;
+          white-space: initial;
+
+          &:hover, &.selected { background-color: @color3;}
+          .item-img { display: block; width: 100%; height: 100px; img {width: 100%; height: 100%;}}
+          .item-title { display: block; padding-top: 5px; font-size: 1.2rem; color: #000; text-align: center;}
+
+          @media @tablet-screen, @mobile-screen { width: 110px;  height: 110px;  .item-img { height: 60px;}}
+        }
+      }
+      .photo-credits {
+        background-color: rgba(208,181,126,0.5);
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        text-transform: capitalize;
         padding: 5px;
-        height: 150px;
-        width: 150px;
-        overflow: hidden;
-        background-color: #fff;
-        transition: all 0.5s ease;
-
-        &:hover, &.selected { background-color: @color3;}
-        .item-img { display: block; width: 100%; height: 100px; img {width: 100%; height: 100%;}}
-        .item-title { display: block; padding-top: 5px; font-size: 1.2rem; color: #000; text-align: center;}
-
-        @media @tablet-screen, @mobile-screen { width: 110px;  height: 110px;  .item-img { height: 60px;}}
+        position: relative;
+        display: block;
+        color: rgba(255,255,255,1);
+        span { vertical-align: middle; }
+        .allen-logo { height: 50px; overflow: hidden; display:inline-block; vertical-align: middle; img { height: 100%;  filter: invert(100%); }}
       }
     }
     .photostack {
       .stack-container {
         width: 100%;
-        height: 800px;
+        height: 600px;
         overflow: hidden;
         background: @theme-color-light;
         position: relative;
-        border: 5px solid rgba(0,0,0,1);
+        border: 5px solid rgba(208,181,126,1);
         @media @mobile-screen { height: 550px; }
 
         .fade.ng-enter {
@@ -39,21 +62,22 @@
         .fade.ng-enter.ng-enter-active {
           opacity:0;
         }
+
         figure {
           position: absolute;
           width: 200px;
-          height: 240px;
+          min-height: 240px;
           background:#fff;
           padding: 20px;
           z-index: 8;
           border: 1px solid rgba(0,0,0,0.3);
           transition: all 0.5s ease;
           overflow: hidden;
+          &.ng-leave { display: none; }
 
           &.selected {
             z-index: 10;
             border: 2px solid @color3;
-            //width: 400px;
             width: initial;
             height: 440px;
             padding: 40px;
@@ -71,7 +95,6 @@
               height: 240px; padding: 20px;
               .photostack-img {
                 width: initial;
-                //width: 160px;
                 height: 160px;
                 img { height: 160px; }
               }
@@ -114,14 +137,26 @@
             background-color:rgba(255,255,255,1);
             margin: 10px;
             border-radius: 25px;
-            padding: 3px;
             border:2px solid rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
             @media @tablet-screen, @mobile-screen { margin:5px; }
-            &.selected { background-color: @theme-color-gold; border-color: @theme-color-gold; }
-            &:hover { border-color: @theme-color-gold;}
+            .img-preview { width: 200%;  position: absolute;  top: -30%; left: -50%; -webkit-filter: grayscale(80%); filter: grayscale(80%);}
+
+            &.selected { background-color: @theme-color-gold; border-color: @theme-color-gold; .img-preview { -webkit-filter: grayscale(0%); filter: grayscale(0%);} }
+            &:hover { border-color: @theme-color-gold; .img-preview {-webkit-filter: grayscale(20%); filter: grayscale(20%);} }
+
           }
         }
       }
     }
+  }
+}
+
+md-dialog {
+  border-radius: 0 !important;
+  .md-toolbar-tools { background-color: rgba(208,181,126,0.9) !important; }
+  .pop-img {
+    width: 100%;
   }
 }

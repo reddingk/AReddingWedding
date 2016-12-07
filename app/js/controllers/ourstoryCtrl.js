@@ -10,7 +10,7 @@
 
     vm.story = [
     {/*0*/
-      left: { type: 'img', img: 'img/KrisNGrace2.png' },
+      left: { type: 'img', img: 'img/gallery/engagement/UD7.jpg' },
       right: {
         type:'content',
         perspective:'grace',
@@ -20,7 +20,7 @@
       }
     },
     {/*1*/
-      left: { type: 'img', img: 'img/KrisNGrace2.png' },
+      left: { type: 'img', img: 'img/gallery/engagement/CT3.jpg' },
       right: {
         type:'content',
         perspective:'kris',
@@ -30,7 +30,7 @@
       }
     },
     {/*2*/
-      left: { type: 'img', img: 'img/KrisNGrace2.png' },
+      left: { type: 'img', img: 'img/gallery/engagement/CT7.jpg' },
       right: {
         type:'content',
         perspective:'grace',
@@ -40,7 +40,7 @@
       }
     },
     {/*3*/
-      left: { type: 'img', img: 'img/KrisNGrace2.png' },
+      left: { type: 'img', img: 'img/gallery/engagement/CT12.jpg' },
       right: {
         type:'content',
         perspective:'kris',
@@ -50,7 +50,7 @@
       }
     },
     {/*4*/
-      left: { type: 'img', img: 'img/KrisNGrace2.png' },
+      left: { type: 'img', img: 'img/gallery/engagement/UD1.jpg' },
       right: {
         type:'content',
         perspective:'grace',
@@ -86,7 +86,7 @@
       }
     },
     {/*7*/
-      left: { type: 'img', img: 'img/KrisNGrace2.png' },
+      left: { type: 'img', img: 'img/gallery/engagement/CT6.jpg' },
       right: {
         type:'content',
         perspective:'grace',
