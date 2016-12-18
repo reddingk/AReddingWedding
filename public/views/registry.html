@@ -9,6 +9,7 @@
     <a ng-repeat="item in rgc.items" ng-href="{{item.url}}" target="_blank">
       <div class="registry-item"><img ng-src="img/registry/{{item.img}}"></div>
     </a>
+    <div class="no-items" ng-if="rgc.items.length == 0">We are still working on our registry list please check back later.</div>
   </div>
 
 </div>

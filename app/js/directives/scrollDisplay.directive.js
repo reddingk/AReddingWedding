@@ -8,10 +8,12 @@
           var hiddenLoc = 80;
           angular.element($window).bind("scroll", function() {
             var windowp = angular.element($window)[0];
-            if(windowp.pageYOffset >= hiddenLoc && !element.hasClass("noshow")){
+            var popup = angular.element(document).find('.md-dialog-container');
+
+            if((windowp.pageYOffset >= hiddenLoc || popup.length > 0) && !element.hasClass("noshow")){
               element.addClass('noshow');
             }
-            else if(windowp.pageYOffset < hiddenLoc && element.hasClass("noshow")){
+            else if((windowp.pageYOffset < hiddenLoc && popup.length == 0)&& element.hasClass("noshow")){
               element.removeClass('noshow');
             }
           });

@@ -3,7 +3,7 @@
   .gallery-container {
     .gallery-nav {
       width: 100%;
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0,0,0,0.8);
       border-top: 5px solid rgba(208,181,126,1);
       border-left: 5px solid rgba(208,181,126,1);
       border-right: 5px solid rgba(208,181,126,1);
@@ -40,6 +40,13 @@
         position: relative;
         display: block;
         color: rgba(255,255,255,1);
+        -webkit-animation:0.5s fadeInUp ease;
+        animation:0.5s fadeInUp ease;
+
+        &.ng-leave {
+          -webkit-animation:0.5s fadeOutDown ease;
+          animation:0.5s fadeOutDown ease;
+        }
         span { vertical-align: middle; }
         .allen-logo { height: 50px; overflow: hidden; display:inline-block; vertical-align: middle; img { height: 100%;  filter: invert(100%); }}
       }
