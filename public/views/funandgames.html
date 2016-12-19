@@ -1,0 +1,15 @@
+<div class="card-page">
+  <h1>Fun & Games</h1>
+
+  <div class="quiz-container">
+    <div class="quiz-title">Do You Know Kris & Grace?</div>
+
+    <div class="quiz-question" ng-repeat="question in fc.quiz.questions">
+      <p>{{$index + 1}}. {{question.question}}?</p>
+      <p>DISPLAY:<p>
+      <div ng-repeat="displayAns in question.display">{{displayAns}}</div>
+
+      <div>ANSWER: {{question.answer}}</div>
+    </div>
+  </div>
+</div>

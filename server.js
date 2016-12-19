@@ -7,17 +7,19 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var mongoose = require('mongoose');
+var database = require('./app/db/database');
 
 // configuration
 
 // config files
-//var db = require('./config/db');
+mongoose.connect(database.remoteUrl);
 
 // set ports
 var port = process.env.PORT || 305;
 
-// connect to mongoDB database
-// mongoose.connect(db.url);
+// DATABASE
+require('./app/db/routes.js')(app);
 
 // Beautify routes
 app.get('/home', function(req, res) { res.redirect('/#/home'); });
@@ -27,6 +29,7 @@ app.get('/weddingparty', function(req, res) { res.redirect('/#/weddingparty'); }
 app.get('/rsvp', function(req, res) { res.redirect('/#/rsvp'); });
 app.get('/registry', function(req, res) { res.redirect('/#/registry'); });
 app.get('/gallery', function(req, res) { res.redirect('/#/gallery'); });
+app.get('/funandgames', function(req, res) { res.redirect('/#/funandgames'); });
 app.get('/underconstruction', function(req, res) { res.redirect('/#/underconstruction'); });
 
 // get all data of the body (POST) params

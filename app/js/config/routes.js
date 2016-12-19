@@ -79,6 +79,15 @@
           }
         }
       })
+      .state('app.funandgames', {
+        url: "funandgames",
+        views: {
+          'content@': {
+            templateUrl: 'views/funandgames.html',
+            controller: 'FunAndGamesController as fc'
+          }
+        }
+      })
       .state('app.dev', {
         url: "dev",
         views: {
