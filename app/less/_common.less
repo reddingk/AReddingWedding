@@ -70,11 +70,14 @@ html, body {
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         visibility: visible;
+        //display: block;
         transition: all 1.5s ease;
         -webkit-animation:1.5s fadeInRight ease;
         animation:1.5s fadeInRight ease;
         &.noshow {
           visibility: hidden;
+          //display: none;
+          width: 0;
           -webkit-animation:1.5s fadeOutRight ease;
           animation:1.5s fadeOutRight ease;
         }

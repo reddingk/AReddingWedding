@@ -89,6 +89,9 @@
             height: 440px;
             padding: 40px;
             background:rgba(208,181,126,0.9);
+
+            top: 30%;
+            left: 50%;
             .photostack-img {
               //width: 320px;
               height: 320px;
@@ -99,7 +102,9 @@
             figcaption { .photostack-title { color: #000; font-size: 2rem;}}
 
             @media @tablet-screen, @mobile-screen {
-              height: 240px; padding: 20px;
+              height: 240px;
+              padding: 20px;
+              width: 90%;
               .photostack-img {
                 width: initial;
                 height: 160px;
@@ -125,6 +130,7 @@
             .photostack-title { color: @color3; font-size: 1.5rem; text-align: center;}
           }
         }
+        /* Photo - nav*/
         .photo-nav {
           position: absolute;
           z-index: 11;

@@ -108,28 +108,30 @@
                 height: 50px;
                 overflow: hidden;
                 img { height: 100%;}
+                .story-teller {
+                  //float: right;
+                  padding: 0px 0px 7px 7px;
+                  display: inline-block;
+                  span {
+                    font-size: 1.5rem; color: rgba(255,255,255,1);
+                    text-transform: capitalize;
+                    font-family: 'Delius', cursive;
+                    color: rgba(0,0,0,1);
+                    &.ckris {
+                      //text-shadow: -2px -2px 0 rgba(4,18,45,1), 1px -1px 0 rgba(4,18,45,1),  -1px 1px 0 rgba(4,18,45,1),  1px 1px 0 rgba(4,18,45,1);
+                      border-bottom: 3px solid rgba(4,18,45,1);
+                    }
+                    &.cgrace {
+                      //text-shadow: -2px -2px 0 rgba(245,215,205,1), 1px -1px 0 rgba(245,215,205,1),  -1px 1px 0 rgba(245,215,205,1),  1px 1px 0 rgba(245,215,205,1);
+                      border-bottom: 3px solid rgba(245,215,205,1);
+                    }
+                  }
+                }
               }
 
               .story-title { font-size: 1.5rem; padding: 7px 0; font-weight: bold;}
               .story-when { font-size: 1rem; font-weight: bold;}
               .story-content {  font-family: 'Delius', cursive;    }
-              .story-teller {
-                float: right;
-                span {
-                  font-size: 2rem; color: rgba(255,255,255,1);
-                  text-transform: capitalize;
-                  font-family: 'Delius', cursive;
-                  color: rgba(0,0,0,1);
-                  &.ckris {
-                    //text-shadow: -2px -2px 0 rgba(4,18,45,1), 1px -1px 0 rgba(4,18,45,1),  -1px 1px 0 rgba(4,18,45,1),  1px 1px 0 rgba(4,18,45,1);
-                    border-bottom: 3px solid rgba(4,18,45,1);
-                  }
-                  &.cgrace {
-                    //text-shadow: -2px -2px 0 rgba(245,215,205,1), 1px -1px 0 rgba(245,215,205,1),  -1px 1px 0 rgba(245,215,205,1),  1px 1px 0 rgba(245,215,205,1);
-                    border-bottom: 3px solid rgba(245,215,205,1);
-                  }
-                }
-              }
 
               &.left {  .member-title { color: @color4;  } }
               &.right { .member-title { color: @color2;  } }

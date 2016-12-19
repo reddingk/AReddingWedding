@@ -25,9 +25,9 @@
             var defaultX = Math.floor((stackCont[0].offsetWidth - offsetX)/2);
             var maxX = Math.floor(pageWidth * .86);
 
-            var x = (selectedid == locid ? (defaultX < 0 ? 0 : defaultX) : Math.floor(Math.random() * maxX) - 200);
-            var y = (selectedid == locid ? 50 : Math.floor(Math.random() * 501) - 200);
-            var angle = (selectedid == locid ? 0 : Math.floor(Math.random() * 80) - 40) ;
+            var x =  Math.floor(Math.random() * maxX) - 200;
+            var y = Math.floor(Math.random() * 501) - 200;
+            var angle =  Math.floor(Math.random() * 80) - 40;
 
             // Check Out of Bounds
             x = (x < -50 ? -40 : x);
@@ -35,7 +35,7 @@
 
 
 
-            elemMove.style.transform = "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)";
+            elemMove.style.transform = (selectedid == locid ? "translate(-50%, -30%) rotate(0deg)" : "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)");
 
           }
 

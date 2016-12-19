@@ -36,9 +36,11 @@
         </div>
         <div class="navbar-collapse collapse" id="arwNavbar">
           <ul class="nav navbar-nav" id="arw-inside-nav">
-            <li ng-repeat="page in hdc.pages"><a class="link" ng-click="mc.togglePage(page.state)" ng-class="{'active':hdc.checkActivePage('{{page.name}}')}">
-              <div class="nav-text">{{page.title}}</div>
-            </a></li>
+            <li ng-repeat="page in hdc.pages">
+              <a class="link" ng-click="mc.togglePage(page.state)" ng-class="{'active':hdc.checkActivePage('{{page.name}}')}">
+                <div class="nav-text">{{page.title}}</div>
+              </a>
+            </li>
           </ul>
         </div>
       </div>

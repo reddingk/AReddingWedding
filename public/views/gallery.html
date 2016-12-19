@@ -22,7 +22,6 @@
           </figure>
           <div class="photo-nav">
             <div ng-repeat="item in gc.displayItems" class="nav-icon" ng-class="gc.isSelected(item.id, $event, false)" ng-click="gc.changeSelected(item)" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.displayItems.length}}" isnav="true">
-              <!--{{item.id}}-->
               <img class="img-preview" ng-src="img/gallery/{{item.img}}" alt="{{item.img}}">
             </div>
           </div>
