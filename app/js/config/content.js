@@ -2,14 +2,21 @@
   'use strict';
 
   angular.module('dataconfig')
-  .service('jInfo', ['jData', '$filter', 'questionService', function JInfo(jData, $filter, questionService){
+  .service('jInfo', ['jData', '$filter', 'questionService', 'scoreService', function JInfo(jData, $filter, questionService, scoreService){
     /* Variables */
 
     /* Full Service*/
     return {
-      user: {
-        getAll: function() {
-          return null;
+      scores: {
+        getAll: function(callback) {
+          scoreService.getAllScores(function(res){
+              callback(res.data);
+          });
+        },
+        addScore: function(score, callback){
+          scoreService.submitScore(score, function(res){
+              callback(res.data);
+          });
         }
       },
       questions:{

@@ -1,15 +1,63 @@
 <div class="card-page">
-  <h1>Fun & Games</h1>
+  <h1>Couple Quiz</h1>
 
   <div class="quiz-container">
     <div class="quiz-title">Do You Know Kris & Grace?</div>
+    <div class="question-container">
+      <div class="quiz-sheet" ng-if="!fc.displayScore">
+        <div class="quiz-question" ng-repeat="question in fc.quiz.questions">
+          <div class="question-info">
+            <div class="info-num">{{$index + 1}}</div>
+            <div class="info-details">{{question.question}}?</div>
+          </div>
 
-    <div class="quiz-question" ng-repeat="question in fc.quiz.questions">
-      <p>{{$index + 1}}. {{question.question}}?</p>
-      <p>DISPLAY:<p>
-      <div ng-repeat="displayAns in question.display">{{displayAns}}</div>
+          <div class="question-answers">
+            <div class="answer-display" ng-repeat="displayAns in question.display" ng-click="fc.selectQuestionAnswer(question, displayAns)">
+              <div class="display" ng-class="fc.isSelectAnswer(question, displayAns)">
+                <div class="display-inner">{{displayAns}}</div>
+                <div class="selected-answer"><i class="fa fa-check" aria-hidden="true"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div>ANSWER: {{question.answer}}</div>
+        <div class="quiz-btns">
+          <div class="check-btn q-btn" ng-click="fc.checkQuizAnswers()"><div class="display-inner">Check Answers</div></div>
+        </div>
+      </div>
+
+      <div class="answer-sheet" ng-if="fc.displayScore">
+        <div class="answer-score">You Scored A <span class="final-score">{{fc.quiz.score | number:2}} %</span></div>
+
+        <div class="submit-name" ng-if="!fc.submitted">
+          <md-input-container class="">
+              <label>Please Enter in your name and submit your score.</label>
+              <input name="userKey" ng-model="fc.userName">
+          </md-input-container>
+        </div>
+        <div class="quiz-btns" ng-if="!fc.submitted">
+          <div class="submit-btn q-btn" ng-click="fc.submitScore()"><div class="display-inner">Submit Score</div></div>
+        </div>
+
+        <div class="failed-answers" ng-if="fc.quiz.wrongQuestions.length  > 0">
+          <div class="failed-title">Answer Sheet</div>
+          <div class="failed-item" ng-repeat="item in fc.quiz.wrongQuestions">
+            <div class="item-question"><div class="item-bullet"></div>  <span>{{item.question}}?</span></div>
+            <div class="item-answer q-wrong"><span>Your Answer:</span> {{item.theirAnswer}}</div>
+            <div class="item-answer q-right"><span>Correct Answer:</span> {{item.rightAnswer}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="side-msg errorMsg" ng-if="fc.displayError == true" scroll-display><div class="msg-container">{{fc.errorString}}</div></div>
+<div class="side-msg highScores" ng-if="fc.submitted" scroll-display>
+  <div class="scores-container">
+    <div class="top-scores" ng-repeat="score in fc.topScores">
+      <div class="score-name"><div class="score-number">{{$index + 1}}</div> <span>{{score.name}}</span></div>
+      <div class="score-score">{{score.score| number:2}} %</div>
     </div>
   </div>
 </div>

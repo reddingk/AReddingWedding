@@ -12,9 +12,15 @@
 
             if((windowp.pageYOffset >= hiddenLoc || popup.length > 0) && !element.hasClass("noshow")){
               element.addClass('noshow');
+              // Trial
+              element.removeClass('show');
             }
             else if((windowp.pageYOffset < hiddenLoc && popup.length == 0)&& element.hasClass("noshow")){
               element.removeClass('noshow');
+              // Trial
+              if(!element.hasClass("show")){
+                element.addClass('show');
+              }
             }
           });
         }

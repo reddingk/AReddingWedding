@@ -79,8 +79,8 @@
           }
         }
       })
-      .state('app.funandgames', {
-        url: "funandgames",
+      .state('app.quiz', {
+        url: "quiz",
         views: {
           'content@': {
             templateUrl: 'views/funandgames.html',
@@ -107,7 +107,7 @@
       });
 
       $urlRouterProvider.otherwise('/');
-      $locationProvider.html5Mode(true);
+      //$locationProvider.html5Mode(true);
     }]);
 
 

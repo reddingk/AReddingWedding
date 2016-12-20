@@ -30,14 +30,21 @@
   'use strict';
 
   angular.module('dataconfig')
-  .service('jInfo', ['jData', '$filter', 'questionService', function JInfo(jData, $filter, questionService){
+  .service('jInfo', ['jData', '$filter', 'questionService', 'scoreService', function JInfo(jData, $filter, questionService, scoreService){
     /* Variables */
 
     /* Full Service*/
     return {
-      user: {
-        getAll: function() {
-          return null;
+      scores: {
+        getAll: function(callback) {
+          scoreService.getAllScores(function(res){
+              callback(res.data);
+          });
+        },
+        addScore: function(score, callback){
+          scoreService.submitScore(score, function(res){
+              callback(res.data);
+          });
         }
       },
       questions:{
@@ -140,8 +147,8 @@
           }
         }
       })
-      .state('app.funandgames', {
-        url: "funandgames",
+      .state('app.quiz', {
+        url: "quiz",
         views: {
           'content@': {
             templateUrl: 'views/funandgames.html',
@@ -168,268 +175,11 @@
       });
 
       $urlRouterProvider.otherwise('/');
-      $locationProvider.html5Mode(true);
+      //$locationProvider.html5Mode(true);
     }]);
 
 
 })();
-
-(function(){
-   "use strict";
-
-  angular.module('directives').directive('bookBlock', [function() {
-     return {
-     restrict:'AE',
-     link: function(scope, element, attrs) {
-
-         bookBlock =  element, // $(element).find("#bb-bookblock"),
-         navNext = $(document).find('#bb-nav-next'),
-         navPrev = $(document).find( '#bb-nav-prev'),
-
-         bb = element.bookblock( {
-             speed : 800,
-             perspective : 2000,
-             shadowSides : 0.8,
-             shadowFlip  : 0.4,
-             });
-
-                 var slides = bookBlock.children();
-
-                 // add navigation events
-                 navNext.on( 'click touchstart', function() {
-                     element.bookblock( 'next' );
-                     return false;
-                 } );
-
-                 navPrev.on( 'click touchstart', function() {
-                     element.bookblock( 'prev' );
-                     return false;
-                 } );
-
-                 // add swipe events
-                 slides.on( {
-                     'swipeleft' : function( event ) {
-                         bookBlock.bookblock( 'next' );
-                         return false;
-                     },
-                     'swiperight' : function( event ) {
-                         bookBlock.bookblock( 'prev' );
-                         return false;
-                     }
-                 } );
-
-                 // add keyboard events
-                 $( document ).keydown( function(e) {
-                     var keyCode = e.keyCode || e.which,
-                         arrow = {
-                             left : 37,
-                             up : 38,
-                             right : 39,
-                             down : 40
-                         };
-
-                     switch (keyCode) {
-                         case arrow.left:
-                             bookBlock.bookblock( 'prev' );
-                             break;
-                         case arrow.right:
-                             bookBlock.bookblock( 'next' );
-                             break;
-                     }
-                 } );
-     }
-   }
- }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('navHold', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          angular.element($window).bind("scroll", function() {
-
-            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
-            var windowp = angular.element($window)[0];
-
-            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
-            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;
-
-            if(windowp.pageYOffset >= topThreshhold){
-              if(!element.hasClass("screenPass")){
-                element.addClass("screenPass");
-              }
-            }
-            else {
-              if(element.hasClass("screenPass")){
-                element.removeClass("screenPass");
-              }
-            }
-
-          });
-        }
-      }
-
-    }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('photoMotion', ['$window', function() {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          var itemid = $scope.$eval(attrs.itemid);
-          var itemcount = $scope.$eval(attrs.itemcount);
-          var isNav = $scope.$eval(attrs.isnav);
-
-          //-item position function
-          function getItemLocation(locid, elemId){
-            //-selected id
-            var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
-
-            // Get element by id
-            var stackCont = angular.element(document).find('.stack-container');
-            var elemMove = stackCont.children()[locid];
-            var imgElem = elemMove.children[0].children[0];
-
-            var pageWidth = window.innerWidth;
-            var offsetX = ((imgElem.naturalWidth * ( pageWidth < 801 ? 170 : 320)) / imgElem.naturalHeight);
-            var defaultX = Math.floor((stackCont[0].offsetWidth - offsetX)/2);
-            var maxX = Math.floor(pageWidth * .86);
-
-            var x =  Math.floor(Math.random() * maxX) - 200;
-            var y = Math.floor(Math.random() * 501) - 200;
-            var angle =  Math.floor(Math.random() * 80) - 40;
-
-            // Check Out of Bounds
-            x = (x < -50 ? -40 : x);
-            y = (y < 30 ? 30 : y);
-
-
-
-            elemMove.style.transform = (selectedid == locid ? "translate(-50%, -30%) rotate(0deg)" : "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)");
-
-          }
-
-          // On click Set selected id
-          element.bind('click', function() {
-            if(itemid != $scope.$eval(attrs.selectedid)){
-              for(var i=0; i < itemcount; i++)
-              {
-                getItemLocation(i, itemid);
-              }
-            }
-          });
-          // Intitial Object Set
-          getItemLocation(itemid, null);
-        }
-      }
-    }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('scrollDisplay', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-          var hiddenLoc = 80;
-          angular.element($window).bind("scroll", function() {
-            var windowp = angular.element($window)[0];
-            var popup = angular.element(document).find('.md-dialog-container');
-
-            if((windowp.pageYOffset >= hiddenLoc || popup.length > 0) && !element.hasClass("noshow")){
-              element.addClass('noshow');
-            }
-            else if((windowp.pageYOffset < hiddenLoc && popup.length == 0)&& element.hasClass("noshow")){
-              element.removeClass('noshow');
-            }
-          });
-        }
-      }
-
-    }]);
-
-})();
-
-
-angular.module('directives')
-  .directive('scrollTo', ['ScrollTo', function(ScrollTo){
-    return {
-      restrict : "AC",
-      compile : function(){
-
-        return function(scope, element, attr) {
-          element.bind("click", function(event){
-            ScrollTo.idOrName(attr.scrollTo, attr.offset);
-          });
-        };
-      }
-    };
-  }])
-  .service('ScrollTo', ['$window', 'ngScrollToOptions', function($window, ngScrollToOptions) {
-    this.idOrName = function (idOrName, offset, focus) {//find element with the given id or name and scroll to the first element it finds
-        var document = $window.document;
-
-        if(!idOrName) {//move to top if idOrName is not provided
-          $window.scrollTo(0, 0);
-        }
-
-        if(focus === undefined) { //set default action to focus element
-            focus = true;
-        }
-
-        //check if an element can be found with id attribute
-        var el = document.getElementById(idOrName);
-        if(!el) {//check if an element can be found with name attribute if there is no such id
-          el = document.getElementsByName(idOrName);
-
-          if(el && el.length)
-            el = el[0];
-          else
-            el = null;
-        }
-
-        if(el) { //if an element is found, scroll to the element
-          if (focus) {
-              el.focus();
-          }
-
-          ngScrollToOptions.handler(el, offset);
-        }
-        //otherwise, ignore
-      }
-
-  }])
-  .provider("ngScrollToOptions", function() {
-    this.options = {
-      handler : function(el, offset) {
-        if (offset) {
-          var top = $(el).offset().top - offset;
-          window.scrollTo(0, top);
-        }
-        else {
-          el.scrollIntoView();
-        }
-      }
-    };
-    this.$get = function() {
-      return this.options;
-    };
-    this.extend = function(options) {
-      this.options = angular.extend(this.options, options);
-    };
-  });
 
 (function(){
  "use strict";
@@ -480,7 +230,11 @@ angular.module('directives')
   angular.module('funandgamesCtrl').controller('FunAndGamesController', ['$state', 'jInfo', function($state, jInfo){
     var vm = this;
     /*Variables*/
-    vm.selected = null;
+    vm.errorString = "";
+    vm.displayError = false;
+    vm.displayScore = false;
+    vm.userName = "";
+    vm.submitted = false;
 
     jInfo.questions.all(function(results){
       vm.questions = results;
@@ -491,18 +245,76 @@ angular.module('directives')
 
     function setUpReportCard(questions){
       // question = {"question":"", "answer":"", "display":"", "selected":""}
-      var reportCard = {"questions":[], "score":0};
+      var reportCard = {"questions":[], "score":0, "wrongQuestions":[]};
 
       for(var i =0; i < questions.length; i++){
         var x = Math.floor((Math.random() * 4) + 0);
         var displayArr = questions[i].answer.display;
         var displayList = displayArr.splice(x,0,questions[i].answer.final);
-        
+
         var tmpQuestion = {"question":questions[i].question, "answer":questions[i].answer.final, "display":displayArr, "selected":""};
 
         reportCard.questions.push(tmpQuestion);
       }
       return reportCard;
+    }
+
+    vm.selectQuestionAnswer = function(question, answer){
+      question.selected = (question.selected == answer ? "" : answer);
+    }
+    vm.isSelectAnswer = function(question, answer){
+      return (question.selected == answer ? "selected" : "");
+    }
+
+    vm.checkQuizAnswers = function(){
+      vm.displayError = false;
+      // check that all answers are filled
+      var answerSheet = vm.quiz.questions;
+      var emptyQuestions = [];
+      var correctAnswers = 0;
+      var wrongQuestions = [];
+      for(var i=0; i < answerSheet.length; i++){
+        if(answerSheet[i].selected == ""){
+          emptyQuestions.push((i+1));
+        }
+        else if(answerSheet[i].selected == answerSheet[i].answer) {
+          correctAnswers = correctAnswers + 1;
+        }
+        else {
+          wrongQuestions.push({"question":answerSheet[i].question, "theirAnswer":answerSheet[i].selected, "rightAnswer": answerSheet[i].answer})
+        }
+      }
+
+      if(emptyQuestions.length == 0){
+        vm.quiz.score = (correctAnswers / answerSheet.length) * 100;
+        vm.quiz.wrongQuestions = wrongQuestions;
+        vm.displayScore = true;
+      }
+      else {
+        vm.errorString = "Please Answer Question" +(emptyQuestions.length > 1 ? "s" : "") + " [" + emptyQuestions.join()+"] And Resubmit.";
+        vm.displayError = true;
+      }
+    }
+
+    vm.submitScore = function(){
+      vm.displayError = false;
+      if(vm.userName.length > 0){
+        // submit score
+        var submission = {name: vm.userName, score: vm.quiz.score, date: new Date(), wrongAnswers: {"question": vm.quiz.wrongQuestions.question, "theirAnswer":vm.quiz.wrongQuestions.theirAnswer}};
+        jInfo.scores.addScore(submission, function(results){
+          vm.submitted = results.added;
+          jInfo.scores.getAll(function(res){
+            var allResults = res.sort(function(a, b) {
+                return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
+            });
+            vm.topScores = allResults.slice(0,5);
+          });
+        });
+      }
+      else {
+        vm.errorString = "Please Enter in your name first.";
+        vm.displayError = true;
+      }
     }
 
   }]);
@@ -678,7 +490,7 @@ angular.module('directives')
       {"id":3, "name":"rsvp", "title":"RSVP", "state":"app.rsvp", "icon":"fa-envelope-o", "svg":"letter.svg"},
       {"id":4, "name":"registry", "title":"Registry", "state":"app.registry", "icon":"fa-gift", "svg":"gifts.svg" },
       {"id":5, "name":"gallery", "title":"Gallery", "state":"app.gallery", "icon":"fa-camera-retro", "svg":"shapes.svg"},
-      {"id":6, "name":"funandgames", "title":"Fun & Games", "state":"app.funandgames", "icon":"fa-camera-retro", "svg":"shapes.svg"}
+      {"id":6, "name":"quiz", "title":"Quiz", "state":"app.quiz", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
 
     function checkActivePage(current) {
@@ -1078,6 +890,269 @@ angular.module('directives')
 (function(){
    "use strict";
 
+  angular.module('directives').directive('bookBlock', [function() {
+     return {
+     restrict:'AE',
+     link: function(scope, element, attrs) {
+
+         bookBlock =  element, // $(element).find("#bb-bookblock"),
+         navNext = $(document).find('#bb-nav-next'),
+         navPrev = $(document).find( '#bb-nav-prev'),
+
+         bb = element.bookblock( {
+             speed : 800,
+             perspective : 2000,
+             shadowSides : 0.8,
+             shadowFlip  : 0.4,
+             });
+
+                 var slides = bookBlock.children();
+
+                 // add navigation events
+                 navNext.on( 'click touchstart', function() {
+                     element.bookblock( 'next' );
+                     return false;
+                 } );
+
+                 navPrev.on( 'click touchstart', function() {
+                     element.bookblock( 'prev' );
+                     return false;
+                 } );
+
+                 // add swipe events
+                 slides.on( {
+                     'swipeleft' : function( event ) {
+                         bookBlock.bookblock( 'next' );
+                         return false;
+                     },
+                     'swiperight' : function( event ) {
+                         bookBlock.bookblock( 'prev' );
+                         return false;
+                     }
+                 } );
+
+                 // add keyboard events
+                 $( document ).keydown( function(e) {
+                     var keyCode = e.keyCode || e.which,
+                         arrow = {
+                             left : 37,
+                             up : 38,
+                             right : 39,
+                             down : 40
+                         };
+
+                     switch (keyCode) {
+                         case arrow.left:
+                             bookBlock.bookblock( 'prev' );
+                             break;
+                         case arrow.right:
+                             bookBlock.bookblock( 'next' );
+                             break;
+                     }
+                 } );
+     }
+   }
+ }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
+            var windowp = angular.element($window)[0];
+
+            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('photoMotion', ['$window', function() {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          var itemid = $scope.$eval(attrs.itemid);
+          var itemcount = $scope.$eval(attrs.itemcount);
+          var isNav = $scope.$eval(attrs.isnav);
+
+          //-item position function
+          function getItemLocation(locid, elemId){
+            //-selected id
+            var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
+
+            // Get element by id
+            var stackCont = angular.element(document).find('.stack-container');
+            var elemMove = stackCont.children()[locid];
+            var imgElem = elemMove.children[0].children[0];
+
+            var pageWidth = window.innerWidth;
+            var offsetX = ((imgElem.naturalWidth * ( pageWidth < 801 ? 170 : 320)) / imgElem.naturalHeight);
+            var defaultX = Math.floor((stackCont[0].offsetWidth - offsetX)/2);
+            var maxX = Math.floor(pageWidth * .86);
+
+            var x =  Math.floor(Math.random() * maxX) - 200;
+            var y = Math.floor(Math.random() * 501) - 200;
+            var angle =  Math.floor(Math.random() * 80) - 40;
+
+            // Check Out of Bounds
+            x = (x < -50 ? -40 : x);
+            y = (y < 30 ? 30 : y);
+
+
+
+            elemMove.style.transform = (selectedid == locid ? "translate(-50%, -30%) rotate(0deg)" : "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)");
+
+          }
+
+          // On click Set selected id
+          element.bind('click', function() {
+            if(itemid != $scope.$eval(attrs.selectedid)){
+              for(var i=0; i < itemcount; i++)
+              {
+                getItemLocation(i, itemid);
+              }
+            }
+          });
+          // Intitial Object Set
+          getItemLocation(itemid, null);
+        }
+      }
+    }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('scrollDisplay', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+          var hiddenLoc = 80;
+          angular.element($window).bind("scroll", function() {
+            var windowp = angular.element($window)[0];
+            var popup = angular.element(document).find('.md-dialog-container');
+
+            if((windowp.pageYOffset >= hiddenLoc || popup.length > 0) && !element.hasClass("noshow")){
+              element.addClass('noshow');
+              // Trial
+              element.removeClass('show');
+            }
+            else if((windowp.pageYOffset < hiddenLoc && popup.length == 0)&& element.hasClass("noshow")){
+              element.removeClass('noshow');
+              // Trial
+              if(!element.hasClass("show")){
+                element.addClass('show');
+              }
+            }
+          });
+        }
+      }
+
+    }]);
+
+})();
+
+
+angular.module('directives')
+  .directive('scrollTo', ['ScrollTo', function(ScrollTo){
+    return {
+      restrict : "AC",
+      compile : function(){
+
+        return function(scope, element, attr) {
+          element.bind("click", function(event){
+            ScrollTo.idOrName(attr.scrollTo, attr.offset);
+          });
+        };
+      }
+    };
+  }])
+  .service('ScrollTo', ['$window', 'ngScrollToOptions', function($window, ngScrollToOptions) {
+    this.idOrName = function (idOrName, offset, focus) {//find element with the given id or name and scroll to the first element it finds
+        var document = $window.document;
+
+        if(!idOrName) {//move to top if idOrName is not provided
+          $window.scrollTo(0, 0);
+        }
+
+        if(focus === undefined) { //set default action to focus element
+            focus = true;
+        }
+
+        //check if an element can be found with id attribute
+        var el = document.getElementById(idOrName);
+        if(!el) {//check if an element can be found with name attribute if there is no such id
+          el = document.getElementsByName(idOrName);
+
+          if(el && el.length)
+            el = el[0];
+          else
+            el = null;
+        }
+
+        if(el) { //if an element is found, scroll to the element
+          if (focus) {
+              el.focus();
+          }
+
+          ngScrollToOptions.handler(el, offset);
+        }
+        //otherwise, ignore
+      }
+
+  }])
+  .provider("ngScrollToOptions", function() {
+    this.options = {
+      handler : function(el, offset) {
+        if (offset) {
+          var top = $(el).offset().top - offset;
+          window.scrollTo(0, top);
+        }
+        else {
+          el.scrollIntoView();
+        }
+      }
+    };
+    this.$get = function() {
+      return this.options;
+    };
+    this.extend = function(options) {
+      this.options = angular.extend(this.options, options);
+    };
+  });
+
+(function(){
+   "use strict";
+
    angular.module('services')
     .service('questionService', ['$http','api', function QuestionService($http, api) {
       return {
@@ -1097,6 +1172,44 @@ angular.module('directives')
 })();
 
 (function(){
+   "use strict";
+
+   angular.module('services')
+    .service('scoreService', ['$http','api', function ScoreService($http, api) {
+      return {
+        getAllScores: function(callback){
+          $http({
+            method: 'GET',
+            url: api.scores.all()
+          }).then(function successCallback(response) {
+            callback(response);
+          }, function errorCallback(response){
+            callback(response);
+          });
+        },
+        submitScore: function(sc, callback){
+          var scoreData = JSON.stringify(sc);          
+
+          $http({
+            method: 'POST',
+            url: api.scores.addScore(),
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data: scoreData
+          }).then(function successCallback(response) {
+            callback(response);
+          }, function errorCallback(response){
+            callback(response);
+          });
+
+        }
+      }
+    }]);
+
+})();
+
+(function(){
   'use strict';
 
   angular.module('config')
@@ -1104,8 +1217,16 @@ angular.module('directives')
 
       return {
         questions: {
-          all: function(query){
+          all: function(){
             return "/api/questions/all";
+          }
+        },
+        scores:{
+          all: function(){
+            return "/api/scores/all";
+          },
+          addScore: function(){
+            return "/api/scores/submit";
           }
         }
       }

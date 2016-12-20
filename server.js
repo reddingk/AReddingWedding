@@ -29,7 +29,7 @@ app.get('/weddingparty', function(req, res) { res.redirect('/#/weddingparty'); }
 app.get('/rsvp', function(req, res) { res.redirect('/#/rsvp'); });
 app.get('/registry', function(req, res) { res.redirect('/#/registry'); });
 app.get('/gallery', function(req, res) { res.redirect('/#/gallery'); });
-app.get('/funandgames', function(req, res) { res.redirect('/#/funandgames'); });
+app.get('/quiz', function(req, res) { res.redirect('/#/quiz'); });
 app.get('/underconstruction', function(req, res) { res.redirect('/#/underconstruction'); });
 
 // get all data of the body (POST) params
