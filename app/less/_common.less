@@ -99,7 +99,7 @@ html, body {
     }
     .card-drawer {
       position: relative;
-      z-index:5;
+      //z-index:5;
       -webkit-animation:2.5s slideInDown  ease;
       animation:2.5s slideInDown  ease;
       /* when showing the thing */
@@ -113,7 +113,7 @@ html, body {
         border-radius: 0px 0px 25px 25px;
         padding: 5%;
         position: relative;
-        z-index:5;
+        //z-index:5;
         box-shadow: @main-shadow;
 
         @media @tablet-screen, @mobile-screen { padding-bottom: 30%; }
@@ -166,7 +166,7 @@ html, body {
 
     .mainBody {
       position: relative;
-      z-index:5;
+      //z-index:5;
     }
 
     .card-theme {
@@ -197,7 +197,12 @@ html, body {
         transition: all 0.5s ease-in-out;
         border-right: 3px solid @theme-color-orange;
         border-bottom: 3px solid @theme-color-orange;
-        &:hover { margin: 0px 20px 20px 20px; border-right: 3px solid rgba(0,0,0,1);  border-bottom: 3px solid rgba(0,0,0,1);}
+
+        &:hover {
+          margin: 0px 20px 20px 20px;
+          border-right: 3px solid rgba(0,0,0,1);
+          border-bottom: 3px solid rgba(0,0,0,1);
+        }
 
         &.down {
           -ms-transform: rotate(45deg); /* IE 9 */

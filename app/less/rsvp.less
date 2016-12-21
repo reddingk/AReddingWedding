@@ -1,3 +1,9 @@
+.rsvp-instructions {
+  font-family: 'Delius', cursive;
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
 .rsvp-key {
   font-family: 'Delius', cursive;
   .rsvpKeyForm {
@@ -13,7 +19,13 @@
     .key-unlock {
       background-color: @theme-color-red;
       &:hover{ background-color: @theme-color-gold;}
+      @media @tablet-screen, @mobile-screen { float: right;}
       i {color: rgba(0,0,0,1);}
+    }
+
+    &.UNLOCKED {
+      opacity: 0.2;
+      .key-unlock { &:hover{ background-color: @theme-color-red;}  }
     }
   }
 }
@@ -30,5 +42,62 @@
   iframe {
     height: 1200px;
     width: 100%;
+  }
+}
+
+
+.side-msg {
+  position: fixed;
+  bottom: 40%;
+  right: 0;
+  z-index: 100;
+  color: rgba(0,0,0,1);
+  padding: 15px 30px 15px 15px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  transition: all 1.5s ease;
+  -webkit-animation:1.5s fadeInRight ease;
+  animation:1.5s fadeInRight ease;
+  &.ng-hide, &.ng-leave {
+    -webkit-animation:1.5s fadeOutRight ease;
+    animation:1.5s fadeOutRight ease;
+  }
+  &.show {
+    visibility: hidden;
+    //display: none;
+    width: 0;
+    -webkit-animation:1.5s fadeOutRight ease;
+    animation:1.5s fadeOutRight ease;
+  }
+
+  &.lockMsg {
+    background-color: rgba(240,31,73,0.5);
+    border-top: 2px solid rgba(255,255,255,0.9);
+    border-bottom: 2px solid rgba(255,255,255,0.9);
+    border-left: 2px solid rgba(255,255,255,0.9);
+
+    @media @mobile-screen { bottom: 0%; width: 90%; padding: 10px; border-bottom-left-radius: 0px; border-bottom: 0px; background-color: rgba(240,31,73,0.8);}
+    .msg-container {
+      font-family: 'Delius', cursive;
+      font-size: 1.3rem;
+      text-align: center;
+      max-width: 150px;
+      overflow: hidden;
+      text-transform: capitalize;
+      @media @mobile-screen { max-width: 100%; font-size: 1.2rem;}
+      span {
+        vertical-align: middle;
+        @media @mobile-screen { width: 70%; float: left;}
+      }
+      i {
+        font-size: 2rem;
+        height: 50px;
+        overflow: hidden;
+        display:block;
+        vertical-align: middle;
+        @media @mobile-screen { width: 30%; float: left; height: 40px;}
+      }
+    }
   }
 }

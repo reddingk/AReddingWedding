@@ -1,22 +1,22 @@
 <div class="card-page">
   <h1>RSVP</h1>
-
+  <p class="rsvp-instructions">To help us manage our guest list please rsvp here online so we can keep an active record of who will be attending.  If you have any questions or concerns feel free to call either Kris or Grace.</p>
   <div class="rsvp-key">
-    <div class="rsvpKeyForm">
-      <md-input-container class="">
+    <div class="rsvpKeyForm {{rc.status}}">
+      <md-input-container>
           <label>Please Enter In The RSVP Key On Your Invitation To Open Up The RSVP Form.</label>
           <input name="userKey" ng-model="rc.userkey" ng-disabled="rc.status=='UNLOCKED'">
       </md-input-container>
-      <md-button class="md-fab md-mini key-unlock" ng-click="rc.CheckKey()" ng-disabled="rc.status=='UNLOCKED'"><i class="fa fa-unlock"></i></md-button>
+      <md-button class="md-fab md-mini key-unlock" ng-click="rc.CheckKey()" ng-disabled="rc.status=='UNLOCKED'" aria-label="Unlock RSVP"><i class="fa fa-unlock"></i></md-button>
     </div>
-  </div>
-
-  <div class="rsvp-locked" ng-if="rc.status=='LOCKED'">
-    <i class="fa fa-lock"></i>
-    <p>This Form Is Locked Please Enter In The Correct Key</p>
   </div>
 
   <div class="rsvp-form" ng-if="rc.status=='UNLOCKED'">
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdgZvEB4dWX4MRtvGoAxOOZqtJINwpChqx_Wqu9ar8bupNbDg/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
   </div>
+</div>
+
+<!-- Notification slide open-->
+<div class="side-msg lockMsg" ng-if="rc.errorMsg" scroll-display>
+  <div class="msg-container"><i class="fa fa-lock"></i> <span>This Form Is Locked Please Enter In The Correct Key</span> </div>
 </div>
