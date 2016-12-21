@@ -9,7 +9,7 @@
             <div class="item-title">{{gitem.title}}</div>
           </div>
         </div>
-        <div class="photo-credits" ng-if="gc.displayCredit == true"><span>all photos were captured by allen house studios</span> <a class="allen-logo" href="http://www.allenhousestudios.com/" target="_blank"><img src="img/allenhouselogo.png" /></a></div>
+        <!--<div class="photo-credits" ng-if="gc.displayCredit == true"><span>all photos were captured by allen house studios</span> <a class="allen-logo" href="http://www.allenhousestudios.com/" target="_blank"><img src="img/allenhouselogo.png" /></a></div>-->
       </div>
       <section id="photostack-1" class="photostack">
         <div class="stack-container">
@@ -31,4 +31,7 @@
   </div>
 </div>
 
-<!-- Image Modal-->
+<!-- Notification slide open-->
+<div class="side-msg allenMsg" ng-if="gc.displayCredit == true" scroll-display>
+  <div class="msg-container"><span>photos were captured by allen house studios</span> <a class="allen-logo" href="http://www.allenhousestudios.com/" target="_blank"><img src="img/allenhouselogo.png" /></a></div>
+</div>

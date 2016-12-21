@@ -13,6 +13,7 @@ var database = require('./app/db/database');
 // configuration
 
 // config files
+mongoose.Promise = global.Promise;
 mongoose.connect(database.remoteUrl);
 
 // set ports
@@ -22,15 +23,15 @@ var port = process.env.PORT || 305;
 require('./app/db/routes.js')(app);
 
 // Beautify routes
-app.get('/home', function(req, res) { res.redirect('/#/home'); });
-app.get('/ourstory', function(req, res) { res.redirect('/#/ourstory'); });
-app.get('/events', function(req, res) { res.redirect('/#/events'); });
-app.get('/weddingparty', function(req, res) { res.redirect('/#/weddingparty'); });
-app.get('/rsvp', function(req, res) { res.redirect('/#/rsvp'); });
-app.get('/registry', function(req, res) { res.redirect('/#/registry'); });
-app.get('/gallery', function(req, res) { res.redirect('/#/gallery'); });
-app.get('/quiz', function(req, res) { res.redirect('/#/quiz'); });
-app.get('/underconstruction', function(req, res) { res.redirect('/#/underconstruction'); });
+app.get('/home', function(req, res) { res.redirect('/#!/home'); });
+app.get('/ourstory', function(req, res) { res.redirect('/#!/ourstory'); });
+app.get('/events', function(req, res) { res.redirect('/#!/events'); });
+app.get('/weddingparty', function(req, res) { res.redirect('/#!/weddingparty'); });
+app.get('/rsvp', function(req, res) { res.redirect('/#!/rsvp'); });
+app.get('/registry', function(req, res) { res.redirect('/#!/registry'); });
+app.get('/gallery', function(req, res) { res.redirect('/#!/gallery'); });
+app.get('/quiz', function(req, res) { res.redirect('/#!/quiz'); });
+app.get('/underconstruction', function(req, res) { res.redirect('/#!/underconstruction'); });
 
 // get all data of the body (POST) params
 // parse application/json

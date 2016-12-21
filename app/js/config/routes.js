@@ -9,7 +9,6 @@
         views: {
           'content':{
             templateUrl: 'views/home.html'
-            /*,controller: 'HomeController as hc'*/
           },
           'header':{
             templateUrl: 'views/templates/_header.html',
@@ -107,7 +106,7 @@
       });
 
       $urlRouterProvider.otherwise('/');
-      //$locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
     }]);
 
 

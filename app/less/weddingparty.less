@@ -91,7 +91,7 @@
               img { height: 100%;}
             }
             .member-name {  font-size: 1.5rem; padding: 7px 0;}
-            .member-title { font-family: 'Delius', cursive; font-weight: bold;}
+            .member-title { font-family: 'Delius', cursive; font-weight: bold; &.special { color: @theme-color-gold !important; }}
             .member-bio {
               font-family: 'Delius', cursive;
               color: #000;
@@ -103,7 +103,8 @@
 
             @media @tablet-screen, @mobile-screen {
               width: 100%;
-              &.right {border-left: none; border-top: 1px solid #000; }
+              &.left {padding-bottom: 2px;}
+              &.right {border-left: none; border-top: 1px solid #000; padding-top:2px;}
             }
           }
         }

@@ -137,9 +137,18 @@
         border-top: 1px solid rgba(0,0,0,1);
         padding: 10px;
         @media @tablet-screen, @mobile-screen { padding-top:30px; }
+        i{
+          width: 10%;
+          display: inline-block;
+          color: @theme-color-red;
+          font-size: 3rem;
+          text-align: center;
+          float: left;
+        }
         md-input-container {
-          width: 100%;
-
+          width: 90%;
+          display: inline-block;
+          float: left;
           label {
             color: @theme-color-red;
             white-space: initial;
@@ -168,13 +177,19 @@
             color: @theme-color-red;
             font-size: 1.5rem;
             .item-bullet {
-              width: 30px;
-              height: 30px;
-              border-radius: 50%;
-              background-color: @theme-color-red;
-              margin-right: 5px;
               display: inline-block;
               @media @tablet-screen, @mobile-screen { display: block; margin: 0px auto 10px; }
+
+              i{
+                color: #fff;
+                font-size: 1.5rem;
+                text-align: center;
+                background-color: #f01f49;
+                border-radius: 50%;
+                padding: 2px;
+                width: 30px;
+                height: 30px;
+              }
             }
             span {
               vertical-align: top;
@@ -207,7 +222,7 @@
   transition: all 1.5s ease;
   -webkit-animation:1.5s fadeInRight ease;
   animation:1.5s fadeInRight ease;
-  &.ng-hide {
+  &.ng-hide, &.ng-leave {
     -webkit-animation:1.5s fadeOutRight ease;
     animation:1.5s fadeOutRight ease;
   }
@@ -237,6 +252,14 @@
     .scores-container {
       width: 300px;
       overflow: hidden;
+      .top-title {
+        font-weight: bold;
+        border-bottom: 2px solid;
+        font-size: 1.1rem;
+        display: block;
+        text-align: center;
+        padding: 5px;
+      }
       .top-scores {
         display: block;
         width: 100%;
@@ -251,7 +274,7 @@
             display: inline-block;
             border-right: 1px solid;
             border-radius: 50%;
-            padding-right: 3px;
+            padding-right: 5px;
           }
         }
         .score-score {

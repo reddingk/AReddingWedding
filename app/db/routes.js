@@ -15,7 +15,6 @@ function getAllQuestions(res) {
 // Post Score from Website Game
 function postUserScore(req, res) {
 	var newScore = Scores(req);
-
 	newScore.save(function(err){
 		if(err){ res.send(err);	}
 		res.json({"added":true});

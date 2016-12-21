@@ -10,6 +10,8 @@
     vm.userName = "";
     vm.submitted = false;
 
+    var topScoreMax = 10;
+
     jInfo.questions.all(function(results){
       vm.questions = results;
       vm.quiz = setUpReportCard(results);
@@ -34,6 +36,7 @@
     }
 
     vm.selectQuestionAnswer = function(question, answer){
+      vm.displayError = false;
       question.selected = (question.selected == answer ? "" : answer);
     }
     vm.isSelectAnswer = function(question, answer){
@@ -74,14 +77,14 @@
       vm.displayError = false;
       if(vm.userName.length > 0){
         // submit score
-        var submission = {name: vm.userName, score: vm.quiz.score, date: new Date(), wrongAnswers: {"question": vm.quiz.wrongQuestions.question, "theirAnswer":vm.quiz.wrongQuestions.theirAnswer}};
+        var submission = {name: vm.userName, score: vm.quiz.score, date: new Date(), wrongAnswers: vm.quiz.wrongQuestions};
         jInfo.scores.addScore(submission, function(results){
           vm.submitted = results.added;
           jInfo.scores.getAll(function(res){
             var allResults = res.sort(function(a, b) {
                 return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
             });
-            vm.topScores = allResults.slice(0,5);
+            vm.topScores = allResults.slice(0,topScoreMax);
           });
         });
       }
