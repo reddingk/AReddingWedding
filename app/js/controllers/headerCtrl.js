@@ -17,8 +17,8 @@
       {"id":2, "name":"events", "title":"Events", "state":"app.events", "icon":"fa-bell-o", "svg":"party.svg"},
       {"id":3, "name":"rsvp", "title":"RSVP", "state":"app.rsvp", "icon":"fa-envelope-o", "svg":"letter.svg"},
       {"id":4, "name":"registry", "title":"Registry", "state":"app.registry", "icon":"fa-gift", "svg":"gifts.svg" },
-      {"id":5, "name":"gallery", "title":"Gallery", "state":"app.gallery", "icon":"fa-camera-retro", "svg":"shapes.svg"},
-      {"id":6, "name":"quiz", "title":"Quiz", "state":"app.quiz", "icon":"fa-camera-retro", "svg":"shapes.svg"}
+      {"id":5, "name":"quiz", "title":"Quiz", "state":"app.quiz", "icon":"fa-camera-retro", "svg":"shapes.svg"},
+      {"id":6, "name":"gallery", "title":"Gallery", "state":"app.gallery", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
 
     function checkActivePage(current) {
