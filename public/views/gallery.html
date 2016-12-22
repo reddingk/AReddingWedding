@@ -1,6 +1,12 @@
 <div class="card-page">
   <h1>Gallery</h1>
-  <div class="newGalleryDisplay">
+
+  <!-- TEST -->
+  <div>{{gc.preLoad.$$state.status}}</div>
+  <!-- TEST END-->
+  <div class="loading-animation" ng-if="gc.preLoad.$$state.status != 1"><div class="loading-text">Loading</div><i class="fa fa-circle-o-notch fa-spin"></i></div>
+
+  <div class="newGalleryDisplay" ng-if="gc.preLoad.$$state.status == 1">
     <div class="gallery-container">
       <div class="gallery-nav">
         <div class="item-container">
@@ -31,7 +37,8 @@
   </div>
 </div>
 
+
 <!-- Notification slide open-->
-<div class="side-msg allenMsg" ng-if="gc.displayCredit == true" scroll-display>
+<div class="side-msg allenMsg show" ng-if="gc.displayCredit == true && gc.preLoad.$$state.status == 1" scroll-display hiddenloc="top">
   <div class="msg-container"><span>photos were captured by allen house studios</span> <a class="allen-logo" href="http://www.allenhousestudios.com/" target="_blank"><img src="img/allenhouselogo.png" /></a></div>
 </div>

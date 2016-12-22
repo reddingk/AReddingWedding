@@ -1,7 +1,7 @@
 (function(){
  "use strict";
 
-  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', function($state, $mdDialog, jInfo){
+  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', 'preloader',function($state, $mdDialog, jInfo,preloader){
     var vm = this;
     /*Functions*/
     vm.isSelected = isSelected;
@@ -11,7 +11,11 @@
 
     /*Variables*/
     vm.items = jInfo.photos.engagement.type("all");
-    
+
+    // Preload Gallery Images
+    vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1") );
+
+    //vm.loadStatus = (vm.preLoad.$$state.status == 1 ? true : false);
 
     vm.displayItems = vm.items[0].images;
     vm.displayCredit = true;
@@ -19,13 +23,11 @@
     var selectedImg = "";
     var selectedTitle = "";
 
-    function isSelected(id)
-    {
+    function isSelected(id) {
       return (id == vm.selectedid ? "selected" : "");
     }
 
-    function changeSelected(item, ev, double)
-    {
+    function changeSelected(item, ev, double) {
       if(double == true && (vm.selectedid == item.id)){
         // Open Dialog
         selectedImg = item.img;

@@ -605,7 +605,7 @@
 (function(){
  "use strict";
 
-  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', function($state, $mdDialog, jInfo){
+  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', 'preloader',function($state, $mdDialog, jInfo,preloader){
     var vm = this;
     /*Functions*/
     vm.isSelected = isSelected;
@@ -615,7 +615,11 @@
 
     /*Variables*/
     vm.items = jInfo.photos.engagement.type("all");
-    
+
+    // Preload Gallery Images
+    vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1") );
+
+    //vm.loadStatus = (vm.preLoad.$$state.status == 1 ? true : false);
 
     vm.displayItems = vm.items[0].images;
     vm.displayCredit = true;
@@ -623,13 +627,11 @@
     var selectedImg = "";
     var selectedTitle = "";
 
-    function isSelected(id)
-    {
+    function isSelected(id) {
       return (id == vm.selectedid ? "selected" : "");
     }
 
-    function changeSelected(item, ev, double)
-    {
+    function changeSelected(item, ev, double) {
       if(double == true && (vm.selectedid == item.id)){
         // Open Dialog
         selectedImg = item.img;
@@ -677,7 +679,7 @@
 (function(){
  "use strict";
 
-  angular.module('headerCtrl').controller('HeaderController', ['$state', 'preloader','jInfo', function($state, preloader,jInfo){
+  angular.module('headerCtrl').controller('HeaderController', ['$state', 'jInfo', function($state, jInfo){
     var vm = this;
     /*Functions*/
     vm.checkActivePage = checkActivePage;
@@ -696,13 +698,6 @@
       {"id":5, "name":"quiz", "title":"Quiz", "state":"app.quiz", "icon":"fa-camera-retro", "svg":"shapes.svg"},
       {"id":6, "name":"gallery", "title":"Gallery", "state":"app.gallery", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
-
-    // Gallery Images Pre load
-    var gImgs = jInfo.photos.engagement.preload("E1");
-
-    // Preload Gallery Images
-    preloader.preloadImages(gImgs );
-    var tst = "";
 
     function checkActivePage(current) {
          var currentPage = $state;
@@ -1158,19 +1153,22 @@
       return {
         restrict: 'EA',
         link: function ($scope, element, attrs) {
-          var hiddenLoc = 80;
+
+          var loc = attrs.hiddenloc;
+
+          var hiddenLoc = (loc == 'top' ? 250 : 80);
           angular.element($window).bind("scroll", function() {
             var windowp = angular.element($window)[0];
             var popup = angular.element(document).find('.md-dialog-container');
 
             if((windowp.pageYOffset >= hiddenLoc || popup.length > 0) && !element.hasClass("noshow")){
               element.addClass('noshow');
-              // Trial
+              // Page Pop ups
               element.removeClass('show');
             }
             else if((windowp.pageYOffset < hiddenLoc && popup.length == 0)&& element.hasClass("noshow")){
               element.removeClass('noshow');
-              // Trial
+              // Page Pop ups
               if(!element.hasClass("show")){
                 element.addClass('show');
               }

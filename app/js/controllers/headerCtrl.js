@@ -1,7 +1,7 @@
 (function(){
  "use strict";
 
-  angular.module('headerCtrl').controller('HeaderController', ['$state', 'preloader','jInfo', function($state, preloader,jInfo){
+  angular.module('headerCtrl').controller('HeaderController', ['$state', 'jInfo', function($state, jInfo){
     var vm = this;
     /*Functions*/
     vm.checkActivePage = checkActivePage;
@@ -20,13 +20,6 @@
       {"id":5, "name":"quiz", "title":"Quiz", "state":"app.quiz", "icon":"fa-camera-retro", "svg":"shapes.svg"},
       {"id":6, "name":"gallery", "title":"Gallery", "state":"app.gallery", "icon":"fa-camera-retro", "svg":"shapes.svg"}
     ];
-
-    // Gallery Images Pre load
-    var gImgs = jInfo.photos.engagement.preload("E1");
-
-    // Preload Gallery Images
-    preloader.preloadImages(gImgs );
-    var tst = "";
 
     function checkActivePage(current) {
          var currentPage = $state;
