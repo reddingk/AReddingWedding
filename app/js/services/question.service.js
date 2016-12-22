@@ -7,7 +7,8 @@
         getAllQuestions: function(callback){
           $http({
             method: 'GET',
-            url: api.questions.all()
+            url: api.questions.all(),
+            cache: true
           }).then(function successCallback(response) {
             callback(response);
           }, function errorCallback(response){

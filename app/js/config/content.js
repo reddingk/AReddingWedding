@@ -51,6 +51,32 @@
                 break;
             }
             return returnPhotos;
+          },
+          preload: function(set){
+            var preloadList = [];
+            switch(set){
+              case "E1":
+                preloadList = jData.engagement1.images;
+                break;
+              case "E2":
+                preloadList = jData.engagement2.images;
+                break;
+              case "E3":
+                preloadList = jData.engagement3.images;
+                break;
+              case "All":
+                var e1 = jData.engagement1.images;
+                var e2 = jData.engagement2.images;
+                var e3 = jData.engagement3.images;
+
+                preloadList = e1.concat(e2);
+                preloadList = preloadList.concat(e3);
+                break;
+              default:
+                break;
+            }
+
+            return preloadList.map(x => 'img/gallery/'+x.img);
           }
         }
       },
