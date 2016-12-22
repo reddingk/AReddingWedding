@@ -13,9 +13,7 @@
     vm.items = jInfo.photos.engagement.type("all");
 
     // Preload Gallery Images
-    vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1") );
-
-    //vm.loadStatus = (vm.preLoad.$$state.status == 1 ? true : false);
+    vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1_1") );
 
     vm.displayItems = vm.items[0].images;
     vm.displayCredit = true;

@@ -34,12 +34,16 @@
             switch(photo_type){
               case "all":
                 returnPhotos = [];
-                returnPhotos.push(jData.engagement1);
+                returnPhotos.push(jData.engagement1_1);
+                returnPhotos.push(jData.engagement1_2);
                 returnPhotos.push(jData.engagement2);
                 returnPhotos.push(jData.engagement3);
                 break;
               case "CT1":
-                returnPhotos = jData.engagement1;
+                returnPhotos = jData.engagement1_1;
+                break;
+              case "CT1_2":
+                returnPhotos = jData.engagement1_2;
                 break;
               case "CT2":
                 returnPhotos = jData.engagement2;
@@ -55,8 +59,11 @@
           preload: function(set){
             var preloadList = [];
             switch(set){
-              case "E1":
-                preloadList = jData.engagement1.images;
+              case "E1_1":
+                preloadList = jData.engagement1_1.images;
+                break;
+              case "E1_2":
+                preloadList = jData.engagement1_2.images;
                 break;
               case "E2":
                 preloadList = jData.engagement2.images;
@@ -65,12 +72,13 @@
                 preloadList = jData.engagement3.images;
                 break;
               case "All":
-                var e1 = jData.engagement1.images;
+                var e1 = jData.engagement1_1.images;
+                var e1_2 = jData.engagement1_2.images;
                 var e2 = jData.engagement2.images;
                 var e3 = jData.engagement3.images;
 
-                preloadList = e1.concat(e2);
-                preloadList = preloadList.concat(e3);
+                preloadList = e1.concat(e1_2);
+                preloadList = preloadList.concat(e2).concat(e3);
                 break;
               default:
                 break;
@@ -106,8 +114,8 @@
     function JInfoData(){
       var vm = this;
 
-      vm.engagement1 = {
-          title: "Engagement Photos - City Tap House",
+      vm.engagement1_1 = {
+          title: "Engagement Photos - Outside City Tap House",
           credit: true,
           images: [{"id":0, "img":"engagement/CT1.jpg", "title":"Where He Proposed" },
           {"id":1, "img":"engagement/CT2.jpg", "title":"City Tap House" },
@@ -126,21 +134,24 @@
           {"id":14, "img":"engagement/CT15.jpg", "title":"City Tap House" },
           {"id":15, "img":"engagement/CT16.jpg", "title":"City Tap House" },
           {"id":16, "img":"engagement/CT17.jpg", "title":"City Tap House" },
-          {"id":17, "img":"engagement/CT18.jpg", "title":"City Tap House" },
-          {"id":18, "img":"engagement/CT19.jpg", "title":"City Tap House" },
-          {"id":19, "img":"engagement/CT20.jpg", "title":"City Tap House" },
-          {"id":20, "img":"engagement/CT21.jpg", "title":"City Tap House" },
-          {"id":21, "img":"engagement/CT22.jpg", "title":"City Tap House" },
-          {"id":22, "img":"engagement/CT23.jpg", "title":"City Tap House" },
-          {"id":23, "img":"engagement/CT24.jpg", "title":"City Tap House" },
-          {"id":24, "img":"engagement/CT25.jpg", "title":"City Tap House" },
-          {"id":25, "img":"engagement/CT26.jpg", "title":"City Tap House" },
-          {"id":26, "img":"engagement/CT27.jpg", "title":"City Tap House" },
-          {"id":27, "img":"engagement/CT28.jpg", "title":"City Tap House" },
-          {"id":28, "img":"engagement/CT29.jpg", "title":"City Tap House" },
-          {"id":29, "img":"engagement/CT30.jpg", "title":"City Tap House" },
-          {"id":30, "img":"engagement/CT31.jpg", "title":"City Tap House" }]
+          {"id":17, "img":"engagement/CT18.jpg", "title":"City Tap House" }]
         };
+        vm.engagement1_2 = {
+            title: "Engagement Photos - Inside City Tap House",
+            credit: true,
+            images: [{"id":0, "img":"engagement/CT19.jpg", "title":"City Tap House" },
+            {"id":1, "img":"engagement/CT20.jpg", "title":"City Tap House" },
+            {"id":2, "img":"engagement/CT21.jpg", "title":"City Tap House" },
+            {"id":3, "img":"engagement/CT22.jpg", "title":"City Tap House" },
+            {"id":4, "img":"engagement/CT23.jpg", "title":"City Tap House" },
+            {"id":5, "img":"engagement/CT24.jpg", "title":"City Tap House" },
+            {"id":6, "img":"engagement/CT25.jpg", "title":"City Tap House" },
+            {"id":7, "img":"engagement/CT26.jpg", "title":"City Tap House" },
+            {"id":8, "img":"engagement/CT27.jpg", "title":"City Tap House" },
+            {"id":9, "img":"engagement/CT28.jpg", "title":"City Tap House" },
+            {"id":10, "img":"engagement/CT30.jpg", "title":"City Tap House" },
+            {"id":11, "img":"engagement/CT31.jpg", "title":"City Tap House" }]
+          };
 
         vm.engagement2 = {
             title: "Engagement Photos - University of Delaware",
