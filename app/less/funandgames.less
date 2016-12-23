@@ -32,6 +32,7 @@
         display: block;
         width: 100%;
         padding: 10px 0px;
+        font-family: @font-style1;
         .info-num {
           display: inline-block;
           padding: 3px 0px 0px 7px;
@@ -48,7 +49,7 @@
         .info-details {
           padding: 7px 0px 0px 10px;
           font-weight: bold;
-          font-size: 1.1rem;
+          font-size: 1.3rem;
           display: inline-block;
           vertical-align: top;
         }
@@ -238,7 +239,7 @@
   &.errorMsg {
     background-color: rgba(240,31,73,0.5);
     .msg-container {
-      font-family: 'Delius', cursive;
+      font-family: @font-style2;
       font-size: 1.3rem;
       text-align: center;
       max-width: 200px;
@@ -249,6 +250,7 @@
   &.highScores {
     background-color: rgba(3,17,46,0.5);
     color: rgba(255,255,255,1);
+    font-family: @font-style2;
     .scores-container {
       width: 300px;
       overflow: hidden;

@@ -32,11 +32,19 @@
       <div class="page-alert" ng-include="mc.alertTemplate"></div>
       <!--Main Body-->
       <div class="card-drawer" ng-hide="mc.cardClosed" nav-hold>
-        <div class="card-body" id="card-top">
-          <div class="card-content">
-            <div class="mainBody" id="content" ui-view="content" autoscroll="true" aria-relevant="all" aria-live="assertive"></div>
+
+        <div class="drawer-container">
+          <div class="accent-container">
+            <div class="card-accent a1"><img src="img/background/pageSwirl1.png"></div>
+            <div class="card-accent a2"><img src="img/background/pageSwirl2.png"></div>
           </div>
-          <div style="clear:both"></div>
+          
+          <div class="card-body" id="card-top">
+            <div class="card-content">
+              <div class="mainBody" id="content" ui-view="content" autoscroll="true" aria-relevant="all" aria-live="assertive"></div>
+            </div>
+            <div style="clear:both"></div>
+          </div>
         </div>
       </div>
 

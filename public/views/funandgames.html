@@ -53,8 +53,8 @@
   </div>
 </div>
 
-<div class="side-msg errorMsg" ng-if="fc.displayError == true" scroll-display><div class="msg-container">{{fc.errorString}}</div></div>
-<div class="side-msg highScores" ng-if="fc.submitted" scroll-display>
+<div class="side-msg errorMsg" ng-if="fc.displayError == true" scroll-display hiddenloc="top"><div class="msg-container">{{fc.errorString}}</div></div>
+<div class="side-msg highScores" ng-if="fc.submitted" scroll-display hiddenloc="top">
   <div class="scores-container">
     <div class="top-title">Quiz Top Scores</div>
     <div class="top-scores" ng-repeat="score in fc.topScores">

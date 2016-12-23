@@ -10,13 +10,14 @@
       padding: 5px;
 
       .item-container {
+        overflow-y: hidden;
         overflow-x: auto;
         white-space:nowrap;
         .gallery-item {
           display: inline-block;
           margin: 5px;
           padding: 5px;
-          height: 170px;
+          height: 195px;
           width: 180px;
           overflow: hidden;
           background-color: #fff;
@@ -207,7 +208,7 @@ md-dialog {
 
     @media @mobile-screen { bottom: 0%; width: 90%; padding: 10px; border-bottom-left-radius: 0px; border-bottom: 0px; background-color: rgba(171,152,114,0.8);}
     .msg-container {
-      font-family: 'Delius', cursive;
+      font-family: @font-style2;
       font-size: 1.3rem;
       text-align: center;
       max-width: 150px;

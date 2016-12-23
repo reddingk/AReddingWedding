@@ -53,7 +53,9 @@ var config = {
     ],
     libsFonts: [
       'app/libs/font-awesome/fonts/**',
-      'app/libs/bootstrap/fonts/**'
+      'app/libs/bootstrap/fonts/**',
+      'app/libs/customfonts/*.ttf',
+      'app/libs/customfonts/*.otf'
     ]
   },
   dest:{

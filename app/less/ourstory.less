@@ -107,6 +107,15 @@
               .story-img {
                 height: 50px;
                 overflow: hidden;
+                padding-bottom: 5px;
+                text-align: left;
+                &.ckris {
+                  border-bottom: 3px solid rgba(4,18,45,1);
+                }
+                &.cgrace {
+                  border-bottom: 3px solid rgba(245,215,205,1);
+                }
+
                 img { height: 100%;}
                 .story-teller {
                   //float: right;
@@ -115,21 +124,14 @@
                   span {
                     font-size: 1.5rem; color: rgba(255,255,255,1);
                     text-transform: capitalize;
-                    font-family: 'Delius', cursive;
+                    font-family: @font-style1;//'Delius', cursive;
+                    font-weight: bold;
                     color: rgba(0,0,0,1);
-                    &.ckris {
-                      //text-shadow: -2px -2px 0 rgba(4,18,45,1), 1px -1px 0 rgba(4,18,45,1),  -1px 1px 0 rgba(4,18,45,1),  1px 1px 0 rgba(4,18,45,1);
-                      border-bottom: 3px solid rgba(4,18,45,1);
-                    }
-                    &.cgrace {
-                      //text-shadow: -2px -2px 0 rgba(245,215,205,1), 1px -1px 0 rgba(245,215,205,1),  -1px 1px 0 rgba(245,215,205,1),  1px 1px 0 rgba(245,215,205,1);
-                      border-bottom: 3px solid rgba(245,215,205,1);
-                    }
                   }
                 }
               }
 
-              .story-title { font-size: 1.5rem; padding: 7px 0; font-weight: bold;}
+              .story-title { font-size: 1.5rem; padding: 10px 0 7px; font-weight: bold;}
               .story-when { font-size: 1rem; font-weight: bold;}
               .story-content {  font-family: 'Delius', cursive;    }
 
