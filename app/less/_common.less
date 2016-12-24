@@ -137,8 +137,17 @@ html, body {
             z-index:0;
             opacity: 0.1;
             height: 600px;
+            @media @tablet-screen, @mobile-screen {
+              width: 50%;
+              height: initial;
+              //max-height: 150px;
+            }
             img {
               height: 100%;
+              @media @tablet-screen, @mobile-screen {
+                width: 100%;
+                //height: initial;
+              }
             }
             &.a1 {
               top: -2px;
@@ -147,6 +156,10 @@ html, body {
             &.a2 {
               bottom: -100px;
               left: -100px;
+              @media @tablet-screen, @mobile-screen {
+                bottom: -20px;
+                left: -20px;
+              }
             }
           }
         }
@@ -340,13 +353,13 @@ html, body {
 
           &.text-left-3 { top: 25%; left:10%; transform: translateY(-25%); color: @theme-color-light; }
           &.text-center-3 { top: 50%; left:50%; transform: translateY(-50%); color: @theme-color-teal;}
-          &.text-right-3 { top: 75%; right:10%; transform: translateY(-75%); color: @theme-color-red; }
+          &.text-right-3 { top: 80%; right:10%; transform: translateY(-75%); color: @theme-color-red; }
 
           @media @medium-screen, @tablet-screen, @mobile-screen { font-size: 3rem; }
           @media @mobile-screen {
             &.text-left-3 { top: 10%; }
-            &.text-center-3 { top: 25%; }
-            &.text-right-3 { top: 35%; }
+            &.text-center-3 { top: 23%; }
+            &.text-right-3 { top: 39%; }
           }
         }
       }
