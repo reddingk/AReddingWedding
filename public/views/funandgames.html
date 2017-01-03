@@ -48,14 +48,20 @@
             <div class="item-answer q-right"><span>Correct Answer:</span> {{item.rightAnswer}}</div>
           </div>
         </div>
+        <div class="failed-answers" ng-if="fc.quiz.wrongQuestions.length == 0">
+          <div class="correct-title">Well clearly you know us pretty well good job!</div>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
 
 <div class="side-msg errorMsg" ng-if="fc.displayError == true" scroll-display hiddenloc="top"><div class="msg-container">{{fc.errorString}}</div></div>
-<div class="side-msg highScores" ng-if="fc.submitted" scroll-display hiddenloc="top">
+<div class="side-msg showScoreMsg" ng-if="!fc.showScore" ng-click="fc.showHighScores('open')" scroll-display hiddenloc="top"><div class="sidemsg-container">Show High Scores <i class="fa fa-list-ol"></i></div></div>
+<div class="side-msg highScores" ng-if="fc.showScore" scroll-display hiddenloc="top">
   <div class="scores-container">
+    <i class="fa fa-times" ng-click="fc.showHighScores('close')"></i>
     <div class="top-title">Quiz Top Scores</div>
     <div class="top-scores" ng-repeat="score in fc.topScores">
       <div class="score-name"><div class="score-number">{{$index + 1}}</div> <span>{{score.name}}</span></div>

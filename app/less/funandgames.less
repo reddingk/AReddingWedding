@@ -22,6 +22,7 @@
     box-shadow: @main-shadow;
     padding: 90px 30px 20px;
     background-color: rgba(255,255,255,1);
+    @media @mobile-screen { padding: 90px 10px 20px; }
     .quiz-question{
       display: block;
       width: 100%;
@@ -101,7 +102,7 @@
       text-align: center;
       font-family: 'Delius', cursive;
       .q-btn {
-        background-color: @theme-color-red;
+        background-color: rgba(0,0,0,1);
         padding: 10px 5px;
         text-align: center;
         color: rgba(255,255,255,1);
@@ -114,9 +115,9 @@
           padding: 5px;
         }
         &:hover {
-          color: @theme-color-red;
+          color: @theme-color-gold;
           background-color: rgba(255,255,255,1);
-          .display-inner { border-color: @theme-color-red; }
+          .display-inner { border-color: @theme-color-gold; }
         }
       }
     }
@@ -163,10 +164,18 @@
 
       .failed-answers {
         font-family: 'Delius', cursive;
+        .correct-title {
+          font-weight: bold;
+          text-align: center;
+          font-size: 1.8rem;
+          padding: 20px 0px;
+          color: @theme-color-red;
+        }
         .failed-title {
           font-weight: bold;
           text-align: center;
           font-size: 1.8rem;
+          padding: 20px 0px;
         }
         .failed-item {
           display: block;
@@ -246,14 +255,31 @@
       overflow: hidden;
     }
   }
-
+  &.showScoreMsg {
+    background-color: rgba(3,17,46,0.5);
+    color: rgba(255,255,255,1);
+    font-family: @font-style2;
+    padding: 15px;
+    @media @mobile-screen { bottom: 0; padding: 5px;   border-bottom-left-radius: 0px;}
+    .sidemsg-container {
+      font-weight: bold;
+      padding: 10px;
+    }
+  }
   &.highScores {
     background-color: rgba(3,17,46,0.5);
     color: rgba(255,255,255,1);
     font-family: @font-style2;
+    bottom: 30%;
     .scores-container {
       width: 300px;
       overflow: hidden;
+      .fa {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 1.5rem;
+      }
       .top-title {
         font-weight: bold;
         border-bottom: 2px solid;

@@ -12,10 +12,28 @@
 
     var topScoreMax = 10;
 
-    jInfo.questions.all(function(results){
-      vm.questions = results;
-      vm.quiz = setUpReportCard(results);
-    });
+    var userinfo = jInfo.quizInfo.get.info();
+
+    if(userinfo.score < 0) {
+      jInfo.questions.all(function(results){
+        vm.questions = results;
+        vm.quiz = setUpReportCard(results);
+      });
+    }
+    else {
+      vm.quiz = setUpReportCard([]);
+      vm.quiz.score = userinfo.score;
+      vm.quiz.wrongQuestions = userinfo.reportCard;
+      vm.displayScore = true;
+      vm.submitted = (userinfo.name != "");
+
+      jInfo.scores.getAll(function(res){
+        var allResults = res.sort(function(a, b) {
+            return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
+        });
+        vm.topScores = allResults.slice(0,topScoreMax);
+      });
+    }
 
     /*Functions*/
 
@@ -65,6 +83,10 @@
       if(emptyQuestions.length == 0){
         vm.quiz.score = (correctAnswers / answerSheet.length) * 100;
         vm.quiz.wrongQuestions = wrongQuestions;
+        // Set User Info
+        jInfo.quizInfo.set.score(vm.quiz.score);
+        jInfo.quizInfo.set.reportCard(vm.quiz.wrongQuestions);
+
         vm.displayScore = true;
       }
       else {
@@ -73,19 +95,32 @@
       }
     }
 
+    vm.showHighScores = function(direction) {
+
+      // Display High Score
+      if(direction == "toggle"){
+        vm.showScore = !vm.showScore;
+      }
+      else {
+        vm.showScore = (direction == "open" ? true : false);
+      }
+      jInfo.scores.getAll(function(res){
+        var allResults = res.sort(function(a, b) {
+            return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
+        });
+        vm.topScores = allResults.slice(0,topScoreMax);
+      });
+    }
+
     vm.submitScore = function(){
       vm.displayError = false;
       if(vm.userName.length > 0){
+        jInfo.quizInfo.set.name(vm.userName);
         // submit score
         var submission = {name: vm.userName, score: vm.quiz.score, date: new Date(), wrongAnswers: vm.quiz.wrongQuestions};
         jInfo.scores.addScore(submission, function(results){
           vm.submitted = results.added;
-          jInfo.scores.getAll(function(res){
-            var allResults = res.sort(function(a, b) {
-                return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
-            });
-            vm.topScores = allResults.slice(0,topScoreMax);
-          });
+          vm.showHighScores('open');
         });
       }
       else {

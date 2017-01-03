@@ -54,6 +54,26 @@
           });
         }
       },
+      quizInfo:{
+        set: {
+          //setQuizInfo(name, score, reportCard)
+          score:function(value){
+            jData.setQuizInfo(null, value, null);
+          },
+          name: function(value) {
+            jData.setQuizInfo(value, null, null);
+          },
+          reportCard: function(value){
+            jData.setQuizInfo(null, null, value);
+          }
+        },
+        get: {
+          info:function(){
+            return jData.quizInfo;
+          }
+        }
+
+      },
       photos: {
         engagement:{
           type: function(photo_type){
@@ -141,6 +161,21 @@
   .factory("jData", function(){
     function JInfoData(){
       var vm = this;
+
+      vm.quizInfo = {"name": "", "score":-1, "reportCard":[]};
+
+      vm.setQuizInfo = function(name, score, reportCard){
+        if(name != null){
+          vm.quizInfo.name = name;
+        }
+        if(score != null){
+          vm.quizInfo.score = score;
+        }
+        if(reportCard != null){
+          vm.quizInfo.reportCard = reportCard;
+        }
+      }
+
 
       vm.engagement1_1 = {
           title: "Engagement Photos - Outside City Tap House",
@@ -367,7 +402,7 @@
              text: "Our wedding reception will be hosted in the beautiful Fox Hollow, as much as we would love to have everyone there it is invitation only.  This elegant Long Island wedding venue is spread across a picturesque 8-acre estate, accented with lush gardens, lively waterfalls, and fountains.",
              location: {name: "The Fox Hollow", address:"7725 Jericho Turnpike, Woodbury, New York 11797" },
              photos: [{id:0, image:"img/eventimgs/Reception/fh1.jpg"}, {id:1, image:"img/eventimgs/Reception/fh2.jpg"}, {id:2, image:"img/eventimgs/Reception/fh3.jpg"}, {id:3, image:"img/eventimgs/Reception/fh4.jpg"}, {id:4, image:"img/eventimgs/Reception/fh5.jpg"}, {id:5, image:"img/eventimgs/Reception/fh6.jpg"}, {id:6, image:"img/eventimgs/Reception/fh7.jpg"}, {id:7, image:"img/eventimgs/Reception/fh8.jpg"}],
-             additionalinfo:[{"type":"text", "content":"Located on the grounds of Fox Hollow is the Fox Hollow Boutique All-Suites Hotel.  We have blocked rooms for our guests at this hotel to help you fully enjoy this day with us."}, {"type":"text", "content":"To reserve your room:"},{"type":"text", "content":"Please call 516-921-1415 and mention that you are a guest of the Redding/Manning Wedding."}, {"type":"link", "content":"More Information", "url":"http://www.thefoxhollow.com/hotel.aspx"}]
+             additionalinfo:[{"type":"text", "content":"Located on the grounds of Fox Hollow is the Fox Hollow Boutique All-Suites Hotel.  We have blocked rooms for our guests at this hotel to help you fully enjoy this day with us."}, {"type":"text", "content":"To reserve your room:"},{"type":"text", "content":"Please call 516-921-1415 and mention that you are a guest of the Manning/Redding Wedding."}, {"type":"link", "content":"More Information", "url":"http://www.thefoxhollow.com/hotel.aspx"}]
            },
            {title: 'The Honeymoon', date:new Date("2018-05-22 12:00:00"),
             invite:false,
@@ -527,10 +562,28 @@
 
     var topScoreMax = 10;
 
-    jInfo.questions.all(function(results){
-      vm.questions = results;
-      vm.quiz = setUpReportCard(results);
-    });
+    var userinfo = jInfo.quizInfo.get.info();
+
+    if(userinfo.score < 0) {
+      jInfo.questions.all(function(results){
+        vm.questions = results;
+        vm.quiz = setUpReportCard(results);
+      });
+    }
+    else {
+      vm.quiz = setUpReportCard([]);
+      vm.quiz.score = userinfo.score;
+      vm.quiz.wrongQuestions = userinfo.reportCard;
+      vm.displayScore = true;
+      vm.submitted = (userinfo.name != "");
+
+      jInfo.scores.getAll(function(res){
+        var allResults = res.sort(function(a, b) {
+            return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
+        });
+        vm.topScores = allResults.slice(0,topScoreMax);
+      });
+    }
 
     /*Functions*/
 
@@ -580,6 +633,10 @@
       if(emptyQuestions.length == 0){
         vm.quiz.score = (correctAnswers / answerSheet.length) * 100;
         vm.quiz.wrongQuestions = wrongQuestions;
+        // Set User Info
+        jInfo.quizInfo.set.score(vm.quiz.score);
+        jInfo.quizInfo.set.reportCard(vm.quiz.wrongQuestions);
+
         vm.displayScore = true;
       }
       else {
@@ -588,19 +645,32 @@
       }
     }
 
+    vm.showHighScores = function(direction) {
+
+      // Display High Score
+      if(direction == "toggle"){
+        vm.showScore = !vm.showScore;
+      }
+      else {
+        vm.showScore = (direction == "open" ? true : false);
+      }
+      jInfo.scores.getAll(function(res){
+        var allResults = res.sort(function(a, b) {
+            return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
+        });
+        vm.topScores = allResults.slice(0,topScoreMax);
+      });
+    }
+
     vm.submitScore = function(){
       vm.displayError = false;
       if(vm.userName.length > 0){
+        jInfo.quizInfo.set.name(vm.userName);
         // submit score
         var submission = {name: vm.userName, score: vm.quiz.score, date: new Date(), wrongAnswers: vm.quiz.wrongQuestions};
         jInfo.scores.addScore(submission, function(results){
           vm.submitted = results.added;
-          jInfo.scores.getAll(function(res){
-            var allResults = res.sort(function(a, b) {
-                return parseFloat(b.score) - parseFloat(a.score) || new Date(b.date) - new Date(a.date);
-            });
-            vm.topScores = allResults.slice(0,topScoreMax);
-          });
+          vm.showHighScores('open');
         });
       }
       else {
