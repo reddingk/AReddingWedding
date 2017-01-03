@@ -1,7 +1,7 @@
 (function(){
  "use strict";
 
-  angular.module('headerCtrl').controller('HeaderController', ['$state', 'jInfo', function($state, jInfo){
+  angular.module('headerCtrl').controller('HeaderController', ['$state', 'jInfo', 'preloader',function($state, jInfo, preloader){
     var vm = this;
     /*Functions*/
     vm.checkActivePage = checkActivePage;
@@ -9,6 +9,8 @@
 
     /*Variables*/
     vm.selected = null;
+
+    vm.preLoad = preloader.preloadImages( ["img/background/image_left.min.svg","img/background/image_couple.min.svg","img/background/image_right.svg"/*, "img/test.svg"*/] );
 
     vm.mainImg = "img/BrideAGroom.jpg"
     vm.pages = [

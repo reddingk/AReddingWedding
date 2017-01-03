@@ -102,10 +102,19 @@
             }
             figcaption { .photostack-title { color: #000; font-size: 2rem;}}
 
-            @media @tablet-screen, @mobile-screen {
+            @media @mobile-screen {
               height: 240px;
               padding: 20px;
               width: 90%;
+              .photostack-img {
+                width: initial;
+                height: 160px;
+                img { height: 160px; }
+              }
+            }
+            @media @tablet-screen {
+              height: 240px;
+              padding: 20px;
               .photostack-img {
                 width: initial;
                 height: 160px;
@@ -207,6 +216,7 @@ md-dialog {
     border-left: 2px solid rgba(255,255,255,0.9);
 
     @media @mobile-screen { bottom: 0%; width: 90%; padding: 10px; border-bottom-left-radius: 0px; border-bottom: 0px; background-color: rgba(171,152,114,0.8);}
+    @media @tablet-screen { bottom: 0%; }
     .msg-container {
       font-family: @font-style2;
       font-size: 1.3rem;

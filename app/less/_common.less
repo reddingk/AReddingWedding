@@ -197,7 +197,7 @@ html, body {
                     font-weight: bold;
                     color: @theme-color-gold;
                     font-size: 1.6rem;
-                    padding-top: 50px; 
+                    padding-top: 50px;
                     .tag { display: inline-block;}
                   }
 
@@ -438,6 +438,45 @@ html, body {
     }
   }
 
+}
+
+.landing-page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  background-color: @theme-color-gold;
+  color: @theme-color-light;
+
+  text-align: center;
+  z-index: 100;
+  padding: 50px 10%;
+  &.ng-leave {
+    -webkit-animation:4s fadeOut ease;
+    animation:4s fadeOut ease;
+    .loading-animation {
+      .load-content {
+        -webkit-animation:4s hinge ease;
+        animation:4s hinge ease;
+      }
+    }
+  }
+
+  .landing-text {
+    font-weight: bold;
+    padding-bottom: 50px;
+    font-family: @font-style2;
+    font-size: 2.5rem;
+    color: @theme-color-light;
+  }
+  .loading-animation {
+    font-size: 5rem;
+    .load-content {
+      display: inline-block;
+      i { color: @theme-color-red; }
+    }
+  }
 }
 /*Themes*/
 .theme-1 { background-color: @color1;}

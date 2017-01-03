@@ -63,7 +63,7 @@
           display: inline-block;
           max-width: 25%;
           padding: 20px;
-          @media @tablet-screen, @mobile-screen { max-width: 100%; width: 100%; }
+          @media @mobile-screen { max-width: 100%; width: 100%; }
           .display {
             background-color: @theme-color-red;
             padding: 10px 5px;
@@ -138,7 +138,7 @@
       }
       .submit-name {
         padding: 30px 0px;
-        @media @tablet-screen, @mobile-screen { padding-top:30px; }
+        @media @mobile-screen { padding-top:30px; }
         i{
           width: 10%;
           display: inline-block;
@@ -156,7 +156,7 @@
             white-space: initial;
             font-family: 'Delius', cursive;
             font-size: 1.5rem;
-            @media @tablet-screen, @mobile-screen { font-size: 1.2rem;}
+            @media @mobile-screen { font-size: 1.2rem;}
           }
           .md-input { border-color: rgba(0,0,0,1); color: rgba(0,0,0,0.87); font-family: 'Delius', cursive; font-size: 1.3rem;}
         }
@@ -180,7 +180,7 @@
         .failed-item {
           display: block;
           padding: 10px 0px;
-          @media @tablet-screen, @mobile-screen { border-bottom: 1px solid rgba(0,0,0,0.7); }
+          @media @mobile-screen { border-bottom: 1px solid rgba(0,0,0,0.7); }
           .item-question {
             display: block;
             font-weight: bold;
@@ -188,7 +188,7 @@
             font-size: 1.5rem;
             .item-bullet {
               display: inline-block;
-              @media @tablet-screen, @mobile-screen { display: block; margin: 0px auto 10px; }
+              @media @mobile-screen { display: block; margin: 0px auto 10px; }
 
               i{
                 color: #fff;
@@ -209,7 +209,7 @@
             display: block;
             padding-left: 70px;
             font-size: 1.2rem;
-            @media @tablet-screen, @mobile-screen { padding-left: 10px;}
+            @media @mobile-screen { padding-left: 10px;}
             &.q-wrong { text-decoration: line-through; }
             span { font-weight: bold; padding-right: 5px;}
           }
@@ -244,7 +244,7 @@
     animation:1.5s fadeOutRight ease;
   }
 
-  @media @mobile-screen { bottom: 25%; }
+  @media @tablet-screen, @mobile-screen { bottom: 25%; }
   &.errorMsg {
     background-color: rgba(240,31,73,0.5);
     .msg-container {
@@ -260,7 +260,7 @@
     color: rgba(255,255,255,1);
     font-family: @font-style2;
     padding: 15px;
-    @media @mobile-screen { bottom: 0; padding: 5px;   border-bottom-left-radius: 0px;}
+    @media @tablet-screen, @mobile-screen { bottom: 0; padding: 5px;   border-bottom-left-radius: 0px;}
     .sidemsg-container {
       font-weight: bold;
       padding: 10px;
