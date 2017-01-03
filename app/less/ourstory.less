@@ -77,19 +77,56 @@
                 width: 100%;
                 height: 100%;
                 position: relative;
-                img { width: 100%; height: 100%;}
+                .main-img { width: 100%; height: 100%;}
+                .special-img { display: none;}
                 @media @tablet-screen, @mobile-screen {
-                  img {
+                  .main-img {
                     height: initial;
+                    position: relative;
+                    z-index: 2;
+                    margin: 50% 0px;
+                  }
+                  .special-img {
+                    display: block;
+                    position: absolute;
+                    z-index: 1;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    -webkit-filter: blur(20px);
+                    filter: blur(20px);
                   }
                 }
               }
               .story-inside-img {
                 height: 100%;
-                img {
+                .main-img {
                   height: 100%;
                   width: 100%;
-                  @media @tablet-screen, @mobile-screen { width: 100%; height: initial;}
+                  @media @tablet-screen, @mobile-screen {
+                    width: 100%;
+                    height: initial;
+                    position: relative;
+                    z-index: 2;
+                    margin: 50% 0px;
+                  }
+                }
+                .special-img {
+                  display: none;
+                  @media @tablet-screen, @mobile-screen {
+                    display: block;
+                    position: absolute;
+                    z-index: 1;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    -webkit-filter: blur(20px);
+                    filter: blur(20px);
+                  }
                 }
               }
               &.video-story {

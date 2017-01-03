@@ -44,26 +44,25 @@
         .event-imgs {
           overflow: hidden;
           height: @event-img-size;
+          position: relative;
+          text-align: center;
           @media @tablet-screen, @mobile-screen { height: @event-mobile-size; }
-          .carousel {
-            .carousel-inner {
-              .item {
-                img {
-                  height: @event-img-size;
-                  @media @tablet-screen, @mobile-screen { height: @event-mobile-size; }
-                }
-                .special-slider-img {
-                  z-index: -1;
-                  height: 400%;
-                  width: 400%;
-                  position: absolute;
-                  top: -200%;
-                  -webkit-filter: blur(20px);
-                  filter: blur(20px);
-                }
-              }
-            }
+          .event-img-solo {
+            height: @event-img-size;
+            position: relative;
+            z-index: 2;
+            @media @tablet-screen, @mobile-screen { height: @event-mobile-size; }
           }
+          .special-solo-img {
+            z-index: 1;
+            height: 400%;
+            width: 400%;
+            position: absolute;
+            top: -200%;
+            left: 0;
+            -webkit-filter: blur(20px);
+            filter: blur(20px);
+          }        
         }
         .event-invite {
           display: block;
