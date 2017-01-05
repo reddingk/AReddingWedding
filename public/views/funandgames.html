@@ -57,8 +57,8 @@
   </div>
 </div>
 
-<div class="side-msg errorMsg" ng-if="fc.displayError == true" scroll-display hiddenloc="top"><div class="msg-container">{{fc.errorString}}</div></div>
-<div class="side-msg showScoreMsg" ng-if="!fc.showScore" ng-click="fc.showHighScores('open')" scroll-display hiddenloc="top"><div class="sidemsg-container">Show High Scores <i class="fa fa-list-ol"></i></div></div>
+<div class="side-msg errorMsg" ng-if="fc.displayError" scroll-display hiddenloc="top"><div class="msg-container">{{fc.errorString}}</div></div>
+<div class="side-msg showScoreMsg" ng-if="!fc.showScore && !fc.displayError" ng-click="fc.showHighScores('open')" scroll-display hiddenloc="top"><div class="sidemsg-container">Show High Scores <i class="fa fa-list-ol"></i></div></div>
 <div class="side-msg highScores" ng-if="fc.showScore" scroll-display hiddenloc="top">
   <div class="scores-container">
     <i class="fa fa-times" ng-click="fc.showHighScores('close')"></i>
