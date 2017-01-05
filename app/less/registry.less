@@ -5,10 +5,10 @@
 
 .registry-links {
   padding-top: 30px;
+  text-align: center;
   a {
     padding: 5px;
-    width: 33.33%;
-    float: left;
+    width: 33.32%;
     display: inline-block;
     .registry-item {
       width: 100%;
@@ -25,12 +25,14 @@
       img {
         width: 70%;
         margin: 0 auto;
-        padding-top:60px;
         display: block;
-
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         transition: all 1.5s ease;
       }
-      &:hover { background-color: rgba(255,255,255,1); img { transform: scale(1.2);}}
+      &:hover { background-color: rgba(205,205,205,0.5); -webkit-animation:1.5s bounce ease; animation:1.5s bounce ease;}
     }
     &:hover { text-decoration: none;}
   }
