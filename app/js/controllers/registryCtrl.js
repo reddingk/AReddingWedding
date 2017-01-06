@@ -11,7 +11,7 @@
     //vm.items = [];
     vm.items = [
       {"id":0, "name":"BED, BATH & BEYOND", "url":"https://www.bedbathandbeyond.com:443/store/giftregistry/view_registry_guest.jsp?registryId=544091480&eventType=Wedding&pwsurl=", "img":"BedBathBeyond-Logo.png"},
-      {"id":1, "name":"TARGET", "url":"http://www.target.com/gift-registry/registry/939b9593b27d4ed8926a524b0ff0916d?ref=registryCopiedLink", "img":"Target-logo.png" }
+      {"id":1, "name":"TARGET", "url":"http://www.target.com/gift-registry/registry/5e783267ee05492d85e307054cae10dc?ref=registryCopiedLink", "img":"Target-logo.png" }
     ];
 
   }]);
