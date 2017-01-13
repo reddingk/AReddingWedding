@@ -115,6 +115,8 @@ html, body {
         animation:1.5s slideOutUp ease;
       }
 
+      &.ng-animate { .drawer-container { .card-body { .card-content { .mainBody { .side-msg { /*visibility: hidden;*/ display: none !important; }} } } } }
+
       .drawer-container {
         background-color: @theme-color-light;
         margin: 0 20px;
@@ -486,6 +488,7 @@ html, body {
     font-size: 5rem;
     .load-content {
       display: inline-block;
+      .loading-text { margin-bottom: 30px;}
       i { color: @theme-color-red; }
     }
   }

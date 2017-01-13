@@ -767,7 +767,7 @@
     /*Variables*/
     vm.selected = null;
 
-    vm.preLoad = preloader.preloadImages( ["img/background/image_left.min.svg","img/background/image_couple.min.svg","img/background/image_right.svg"/*, "img/test.svg"*/] );
+    vm.preLoad = preloader.preloadImages( ["img/background/image_left.min.svg","img/background/image_couple.min.svg","img/background/image_right.svg"] );
 
     vm.mainImg = "img/BrideAGroom.jpg"
     vm.pages = [
