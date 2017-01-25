@@ -108,22 +108,22 @@
             var preloadList = [];
             switch(set){
               case "E1_1":
-                preloadList = jData.engagement1_1.images;
+                preloadList = jData.engagement1_1.preload;
                 break;
               case "E1_2":
-                preloadList = jData.engagement1_2.images;
+                preloadList = jData.engagement1_2.preload;
                 break;
               case "E2":
-                preloadList = jData.engagement2.images;
+                preloadList = jData.engagement2.preload;
                 break;
               case "E3":
-                preloadList = jData.engagement3.images;
+                preloadList = jData.engagement3.preload;
                 break;
               case "All":
-                var e1 = jData.engagement1_1.images;
-                var e1_2 = jData.engagement1_2.images;
-                var e2 = jData.engagement2.images;
-                var e3 = jData.engagement3.images;
+                var e1 = jData.engagement1_1.preload;
+                var e1_2 = jData.engagement1_2.preload;
+                var e2 = jData.engagement2.preload;
+                var e3 = jData.engagement3.preload;
 
                 preloadList = e1.concat(e1_2);
                 preloadList = preloadList.concat(e2).concat(e3);
@@ -132,7 +132,8 @@
                 break;
             }
 
-            return preloadList.map(x => 'img/gallery/'+x.img);
+            for(var i=0; i < preloadList.length; i++){  preloadList[i] = 'img/gallery/'+preloadList[i];  }
+            return preloadList;
           }
         }
       },
@@ -197,7 +198,8 @@
           {"id":14, "img":"engagement/CT15.jpg", "title":"City Tap House" },
           {"id":15, "img":"engagement/CT16.jpg", "title":"City Tap House" },
           {"id":16, "img":"engagement/CT17.jpg", "title":"City Tap House" },
-          {"id":17, "img":"engagement/CT18.jpg", "title":"City Tap House" }]
+          {"id":17, "img":"engagement/CT18.jpg", "title":"City Tap House" }],
+          preload: ["engagement/CT1.jpg","engagement/CT2.jpg","engagement/CT3.jpg","engagement/CT4.jpg","engagement/CT5.jpg","engagement/CT6.jpg","engagement/CT7.jpg","engagement/CT8.jpg","engagement/CT10.jpg","engagement/CT11.jpg","engagement/CT12.jpg","engagement/CT13.jpg","engagement/CT14.jpg","engagement/CT15.jpg","engagement/CT16.jpg","engagement/CT17.jpg","engagement/CT18.jpg"]
         };
         vm.engagement1_2 = {
             title: "Engagement Photos - Inside City Tap House",
@@ -213,7 +215,8 @@
             {"id":8, "img":"engagement/CT27.jpg", "title":"City Tap House" },
             {"id":9, "img":"engagement/CT28.jpg", "title":"City Tap House" },
             {"id":10, "img":"engagement/CT30.jpg", "title":"City Tap House" },
-            {"id":11, "img":"engagement/CT31.jpg", "title":"City Tap House" }]
+            {"id":11, "img":"engagement/CT31.jpg", "title":"City Tap House" }],
+            preload: ["engagement/CT19.jpg","engagement/CT20.jpg","engagement/CT21.jpg","engagement/CT22.jpg","engagement/CT23.jpg","engagement/CT24.jpg","engagement/CT25.jpg","engagement/CT26.jpg","engagement/CT27.jpg","engagement/CT28.jpg","engagement/CT29.jpg","engagement/CT30.jpg","engagement/CT31.jpg"]
           };
 
         vm.engagement2 = {
@@ -234,7 +237,8 @@
             {"id":12, "img":"engagement/UD13.jpg", "title":"Univ. of Delaware" },
             {"id":13, "img":"engagement/UD14.jpg", "title":"Univ. of Delaware" },
             {"id":14, "img":"engagement/UD15.jpg", "title":"Univ. of Delaware" },
-            {"id":15, "img":"engagement/UD16.jpg", "title":"Univ. of Delaware" }]
+            {"id":15, "img":"engagement/UD16.jpg", "title":"Univ. of Delaware" }],
+            preload: ["engagement/UD1.jpg","engagement/UD2.jpg","engagement/UD3.jpg","engagement/UD4.jpg","engagement/UD5.jpg","engagement/UD6.jpg","engagement/UD7.jpg","engagement/UD8.jpg","engagement/UD10.jpg","engagement/UD11.jpg","engagement/UD12.jpg","engagement/UD13.jpg","engagement/UD14.jpg","engagement/UD15.jpg","engagement/UD16.jpg"]
           };
         vm.engagement3 = {
             title: "Thru The Years",
@@ -257,7 +261,8 @@
             {"id":15, "img":"theyears/t9.jpg", "title":"Cheeeesssee Cake" },
             {"id":16, "img":"theyears/t2.jpg", "title":"Summer days in '11'" },
             {"id":17, "img":"theyears/t17.jpg", "title":"Day Festival out in DE" },
-            {"id":18, "img":"theyears/t20.jpg", "title":"Grace's 18th... yikes" }]
+            {"id":18, "img":"theyears/t20.jpg", "title":"Grace's 18th... yikes" }],
+            preload: ["theyears/t4.jpg", "theyears/t0.jpg","theyears/t14.jpg","theyears/t5.jpg","theyears/t8.jpg","theyears/t7.jpg","theyears/t15.jpg","theyears/t18.jpg","theyears/t19.jpg","theyears/t3.jpg","theyears/t1.jpg","theyears/t12.jpg","theyears/t13.jpg","theyears/t6.jpg","theyears/t9.jpg","theyears/t2.jpg","theyears/t17.jpg","theyears/t20.jpg"]
           };
           /*Our Story*/
           vm.ourStory = [
