@@ -390,7 +390,7 @@
 
           /*Events*/
           vm.events = [
-            {title: 'Engagement Party', date:null,
+            {title: 'Engagement Party', date:new Date("2017-04-01 14:30:00"),
              invite:true,
              text: "To kick off our wedding events we will be having our engagement party at Barcocina Resturant which is located off the water in Baltimore's Fells Point.  As much as we would love to have all of our friends and family there we will be sending out our invitations for this event.",
              location: {name: "Barcocina", address:"1629 Thames St, Baltimore, MD 21231" },
