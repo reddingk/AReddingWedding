@@ -30,9 +30,49 @@
   'use strict';
 
   angular.module('dataconfig')
-  .service('jInfo', ['jData', '$filter', 'questionService', 'scoreService', function JInfo(jData, $filter, questionService, scoreService){
+  .service('jInfo', ['jData', '$filter', '$http', 'questionService', 'scoreService', function JInfo(jData, $filter, $http, questionService, scoreService){
     /* Variables */
+    /* Repeating functions */
+    function stringFormat(str, args) {
+       var content = str;
+       for (var i=0; i < args.length; i++) {
+            var replacement = '{' + i + '}';
+            content = content.replace(replacement, args[i]);
+       }
+       return content;
+    }
 
+    function getImages( photoList, loc, retList, callback){
+      if(loc >= photoList.length){
+        callback(retList);
+      }
+      else {
+        var url = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key={0}&photoset_id={1}&user_id={2}&format=json&nojsoncallback=1";
+
+        var fullUrl = stringFormat(url, [jData.galleryApi.key, photoList[loc].id, jData.galleryApi.userId]);
+        $http({
+          method: 'GET',
+          url: fullUrl,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(function successCallback(response) {
+          if(response != undefined && response.data != undefined){
+            var responseList = response.data.photoset.photo;            
+            var photoUrl = "http://c1.staticflickr.com/{0}/{1}/{2}_{3}_b.jpg";
+            var tmpObj = {"title": photoList[loc].title, "credit": photoList[loc].credit, "images":[] };
+            for(var j=0; j < responseList.length; j++){
+              tmpObj.images.push({"id":j, "title":responseList[j].title, "img":stringFormat(photoUrl, [responseList[j].farm, responseList[j].server, responseList[j].id, responseList[j].secret])});
+            }
+            retList.push(tmpObj);
+            getImages(photoList, (loc+1), retList, callback);
+          }
+          else{  getImages(photoList, (loc+1), retList, callback);  }
+        }, function errorCallback(response){
+          getImages(photoList, (loc+1), retList, callback);
+        });
+      }
+    }
     /* Full Service*/
     return {
       scores: {
@@ -75,6 +115,10 @@
 
       },
       photos: {
+        all: function(callback){
+          var retList = [];
+          getImages(jData.photoLibraries, 0, retList, callback);
+        },
         engagement:{
           type: function(photo_type){
             var returnPhotos = null;
@@ -162,6 +206,8 @@
   .factory("jData", function(){
     function JInfoData(){
       var vm = this;
+
+      vm.galleryApi = {"key":"37ecabdfda65c6e2cf2847f4bc54ce44", "secret":"6ec8a192a3e00e44", "userId":"149188780@N02"};
 
       vm.quizInfo = {"name": "", "score":-1, "reportCard":[]};
 
@@ -264,6 +310,10 @@
             {"id":18, "img":"theyears/t20.jpg", "title":"Grace's 18th... yikes" }],
             preload: ["theyears/t4.jpg", "theyears/t0.jpg","theyears/t14.jpg","theyears/t5.jpg","theyears/t8.jpg","theyears/t7.jpg","theyears/t15.jpg","theyears/t18.jpg","theyears/t19.jpg","theyears/t3.jpg","theyears/t1.jpg","theyears/t12.jpg","theyears/t13.jpg","theyears/t6.jpg","theyears/t9.jpg","theyears/t2.jpg","theyears/t17.jpg","theyears/t20.jpg"]
           };
+
+          vm.photoLibraries = [
+            {"title":"Engagement Party", "id":"72157680705936860", "credit":false}
+          ];
           /*Our Story*/
           vm.ourStory = [
           {/*0*/
@@ -700,14 +750,18 @@
     vm.navSelected = navSelected;
 
     /*Variables*/
-    vm.items = jInfo.photos.engagement.type("all");
+    //vm.items = jInfo.photos.engagement.type("all");
+    jInfo.photos.all(function(res){
+      vm.items = res;
+      vm.displayItems = vm.items[0].images;
+      vm.displayCredit = true;
+      vm.selectedid = vm.displayItems[0].id;
+    });
 
     // Preload Gallery Images
     vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1_1") );
 
-    vm.displayItems = vm.items[0].images;
-    vm.displayCredit = true;
-    vm.selectedid = vm.displayItems[0].id;
+
     var selectedImg = "";
     var selectedTitle = "";
 

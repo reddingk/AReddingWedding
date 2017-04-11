@@ -10,14 +10,18 @@
     vm.navSelected = navSelected;
 
     /*Variables*/
-    vm.items = jInfo.photos.engagement.type("all");
+    //vm.items = jInfo.photos.engagement.type("all");
+    jInfo.photos.all(function(res){
+      vm.items = res;
+      vm.displayItems = vm.items[0].images;
+      vm.displayCredit = true;
+      vm.selectedid = vm.displayItems[0].id;
+    });
 
     // Preload Gallery Images
     vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1_1") );
 
-    vm.displayItems = vm.items[0].images;
-    vm.displayCredit = true;
-    vm.selectedid = vm.displayItems[0].id;
+
     var selectedImg = "";
     var selectedTitle = "";
 
