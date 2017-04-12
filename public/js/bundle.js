@@ -58,7 +58,7 @@
           }
         }).then(function successCallback(response) {
           if(response != undefined && response.data != undefined){
-            var responseList = response.data.photoset.photo;            
+            var responseList = response.data.photoset.photo;
             var photoUrl = "http://c1.staticflickr.com/{0}/{1}/{2}_{3}_b.jpg";
             var tmpObj = {"title": photoList[loc].title, "credit": photoList[loc].credit, "images":[] };
             for(var j=0; j < responseList.length; j++){
@@ -118,67 +118,6 @@
         all: function(callback){
           var retList = [];
           getImages(jData.photoLibraries, 0, retList, callback);
-        },
-        engagement:{
-          type: function(photo_type){
-            var returnPhotos = null;
-
-            switch(photo_type){
-              case "all":
-                returnPhotos = [];
-                returnPhotos.push(jData.engagement1_1);
-                returnPhotos.push(jData.engagement1_2);
-                returnPhotos.push(jData.engagement2);
-                returnPhotos.push(jData.engagement3);
-                break;
-              case "CT1":
-                returnPhotos = jData.engagement1_1;
-                break;
-              case "CT1_2":
-                returnPhotos = jData.engagement1_2;
-                break;
-              case "CT2":
-                returnPhotos = jData.engagement2;
-                break;
-              case "UD":
-                returnPhotos = jData.engagement3;
-                break;
-              default:
-                break;
-            }
-            return returnPhotos;
-          },
-          preload: function(set){
-            var preloadList = [];
-            switch(set){
-              case "E1_1":
-                preloadList = jData.engagement1_1.preload;
-                break;
-              case "E1_2":
-                preloadList = jData.engagement1_2.preload;
-                break;
-              case "E2":
-                preloadList = jData.engagement2.preload;
-                break;
-              case "E3":
-                preloadList = jData.engagement3.preload;
-                break;
-              case "All":
-                var e1 = jData.engagement1_1.preload;
-                var e1_2 = jData.engagement1_2.preload;
-                var e2 = jData.engagement2.preload;
-                var e3 = jData.engagement3.preload;
-
-                preloadList = e1.concat(e1_2);
-                preloadList = preloadList.concat(e2).concat(e3);
-                break;
-              default:
-                break;
-            }
-
-            for(var i=0; i < preloadList.length; i++){  preloadList[i] = 'img/gallery/'+preloadList[i];  }
-            return preloadList;
-          }
         }
       },
       story: function(){
@@ -224,95 +163,11 @@
       }
 
 
-      vm.engagement1_1 = {
-          title: "Engagement Photos - Outside City Tap House",
-          credit: true,
-          images: [{"id":0, "img":"engagement/CT1.jpg", "title":"Where He Proposed" },
-          {"id":1, "img":"engagement/CT2.jpg", "title":"City Tap House" },
-          {"id":2, "img":"engagement/CT3.jpg", "title":"City Tap House" },
-          {"id":3, "img":"engagement/CT4.jpg", "title":"City Tap House" },
-          {"id":4, "img":"engagement/CT5.jpg", "title":"City Tap House" },
-          {"id":5, "img":"engagement/CT6.jpg", "title":"City Tap House" },
-          {"id":6, "img":"engagement/CT7.jpg", "title":"City Tap House" },
-          {"id":7, "img":"engagement/CT8.jpg", "title":"City Tap House" },
-          {"id":8, "img":"engagement/CT9.jpg", "title":"City Tap House" },
-          {"id":9, "img":"engagement/CT10.jpg", "title":"City Tap House" },
-          {"id":10, "img":"engagement/CT11.jpg", "title":"City Tap House" },
-          {"id":11, "img":"engagement/CT12.jpg", "title":"City Tap House" },
-          {"id":12, "img":"engagement/CT13.jpg", "title":"City Tap House" },
-          {"id":13, "img":"engagement/CT14.jpg", "title":"City Tap House" },
-          {"id":14, "img":"engagement/CT15.jpg", "title":"City Tap House" },
-          {"id":15, "img":"engagement/CT16.jpg", "title":"City Tap House" },
-          {"id":16, "img":"engagement/CT17.jpg", "title":"City Tap House" },
-          {"id":17, "img":"engagement/CT18.jpg", "title":"City Tap House" }],
-          preload: ["engagement/CT1.jpg","engagement/CT2.jpg","engagement/CT3.jpg","engagement/CT4.jpg","engagement/CT5.jpg","engagement/CT6.jpg","engagement/CT7.jpg","engagement/CT8.jpg","engagement/CT10.jpg","engagement/CT11.jpg","engagement/CT12.jpg","engagement/CT13.jpg","engagement/CT14.jpg","engagement/CT15.jpg","engagement/CT16.jpg","engagement/CT17.jpg","engagement/CT18.jpg"]
-        };
-        vm.engagement1_2 = {
-            title: "Engagement Photos - Inside City Tap House",
-            credit: true,
-            images: [{"id":0, "img":"engagement/CT19.jpg", "title":"City Tap House" },
-            {"id":1, "img":"engagement/CT20.jpg", "title":"City Tap House" },
-            {"id":2, "img":"engagement/CT21.jpg", "title":"City Tap House" },
-            {"id":3, "img":"engagement/CT22.jpg", "title":"City Tap House" },
-            {"id":4, "img":"engagement/CT23.jpg", "title":"City Tap House" },
-            {"id":5, "img":"engagement/CT24.jpg", "title":"City Tap House" },
-            {"id":6, "img":"engagement/CT25.jpg", "title":"City Tap House" },
-            {"id":7, "img":"engagement/CT26.jpg", "title":"City Tap House" },
-            {"id":8, "img":"engagement/CT27.jpg", "title":"City Tap House" },
-            {"id":9, "img":"engagement/CT28.jpg", "title":"City Tap House" },
-            {"id":10, "img":"engagement/CT30.jpg", "title":"City Tap House" },
-            {"id":11, "img":"engagement/CT31.jpg", "title":"City Tap House" }],
-            preload: ["engagement/CT19.jpg","engagement/CT20.jpg","engagement/CT21.jpg","engagement/CT22.jpg","engagement/CT23.jpg","engagement/CT24.jpg","engagement/CT25.jpg","engagement/CT26.jpg","engagement/CT27.jpg","engagement/CT28.jpg","engagement/CT29.jpg","engagement/CT30.jpg","engagement/CT31.jpg"]
-          };
-
-        vm.engagement2 = {
-            title: "Engagement Photos - University of Delaware",
-            credit: true,
-            images: [{"id":0, "img":"engagement/UD1.jpg", "title":"Where It All Started" },
-            {"id":1, "img":"engagement/UD2.jpg", "title":"Univ. of Delaware" },
-            {"id":2, "img":"engagement/UD3.jpg", "title":"Univ. of Delaware" },
-            {"id":3, "img":"engagement/UD4.jpg", "title":"Univ. of Delaware" },
-            {"id":4, "img":"engagement/UD5.jpg", "title":"Univ. of Delaware" },
-            {"id":5, "img":"engagement/UD6.jpg", "title":"Univ. of Delaware" },
-            {"id":6, "img":"engagement/UD7.jpg", "title":"Univ. of Delaware" },
-            {"id":7, "img":"engagement/UD8.jpg", "title":"Univ. of Delaware" },
-            {"id":8, "img":"engagement/UD9.jpg", "title":"Univ. of Delaware" },
-            {"id":9, "img":"engagement/UD10.jpg", "title":"Univ. of Delaware" },
-            {"id":10, "img":"engagement/UD11.jpg", "title":"Univ. of Delaware" },
-            {"id":11, "img":"engagement/UD12.jpg", "title":"Univ. of Delaware" },
-            {"id":12, "img":"engagement/UD13.jpg", "title":"Univ. of Delaware" },
-            {"id":13, "img":"engagement/UD14.jpg", "title":"Univ. of Delaware" },
-            {"id":14, "img":"engagement/UD15.jpg", "title":"Univ. of Delaware" },
-            {"id":15, "img":"engagement/UD16.jpg", "title":"Univ. of Delaware" }],
-            preload: ["engagement/UD1.jpg","engagement/UD2.jpg","engagement/UD3.jpg","engagement/UD4.jpg","engagement/UD5.jpg","engagement/UD6.jpg","engagement/UD7.jpg","engagement/UD8.jpg","engagement/UD10.jpg","engagement/UD11.jpg","engagement/UD12.jpg","engagement/UD13.jpg","engagement/UD14.jpg","engagement/UD15.jpg","engagement/UD16.jpg"]
-          };
-        vm.engagement3 = {
-            title: "Thru The Years",
-            credit: false,
-            images: [{"id":0, "img":"theyears/t4.jpg", "title":"UD Kab" },
-            {"id":1, "img":"theyears/t0.jpg", "title":"New Years in NY" },
-            {"id":2, "img":"theyears/t10.jpg", "title":"Proposal Night" },
-            {"id":3, "img":"theyears/t14.jpg", "title":"Valentines Day Masquerade" },
-            {"id":4, "img":"theyears/t5.jpg", "title":"Philly Nights" },
-            {"id":5, "img":"theyears/t8.jpg", "title":"Marty Mcfly & His Minion" },
-            {"id":6, "img":"theyears/t7.jpg", "title":"Masquerade fun" },
-            {"id":7, "img":"theyears/t15.jpg", "title":"Grace's 25th" },
-            {"id":8, "img":"theyears/t18.jpg", "title":"Dave and Buster Shenanigans" },
-            {"id":9, "img":"theyears/t19.jpg", "title":"Kris's 25th" },
-            {"id":10, "img":"theyears/t3.jpg", "title":"2010 'Kab'" },
-            {"id":11, "img":"theyears/t1.jpg", "title":"Thanksgiving 2016" },
-            {"id":12, "img":"theyears/t12.jpg", "title":"Parasailing" },
-            {"id":13, "img":"theyears/t13.jpg", "title":"Grace's 21st" },
-            {"id":14, "img":"theyears/t6.jpg", "title":"Photobombers" },
-            {"id":15, "img":"theyears/t9.jpg", "title":"Cheeeesssee Cake" },
-            {"id":16, "img":"theyears/t2.jpg", "title":"Summer days in '11'" },
-            {"id":17, "img":"theyears/t17.jpg", "title":"Day Festival out in DE" },
-            {"id":18, "img":"theyears/t20.jpg", "title":"Grace's 18th... yikes" }],
-            preload: ["theyears/t4.jpg", "theyears/t0.jpg","theyears/t14.jpg","theyears/t5.jpg","theyears/t8.jpg","theyears/t7.jpg","theyears/t15.jpg","theyears/t18.jpg","theyears/t19.jpg","theyears/t3.jpg","theyears/t1.jpg","theyears/t12.jpg","theyears/t13.jpg","theyears/t6.jpg","theyears/t9.jpg","theyears/t2.jpg","theyears/t17.jpg","theyears/t20.jpg"]
-          };
-
           vm.photoLibraries = [
-            {"title":"Engagement Party", "id":"72157680705936860", "credit":false}
+            {"title":"Engagement Party", "id":"72157680705936860", "credit":false},
+            {"title":"Engagement Photos - Inside City Tap House", "id":"72157682513417685", "credit":true},
+            {"title":"Engagement Photos - University of Delaware", "id":"72157682513484395", "credit":true},
+            {"title":"Thru The Years", "id":"72157682513516445", "credit":false}
           ];
           /*Our Story*/
           vm.ourStory = [
@@ -741,25 +596,24 @@
 (function(){
  "use strict";
 
-  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', 'preloader',function($state, $mdDialog, jInfo,preloader){
+  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', 'preloader', '$timeout', function($state, $mdDialog, jInfo, preloader, $timeout){
     var vm = this;
     /*Functions*/
     vm.isSelected = isSelected;
     vm.changeSelected = changeSelected;
+    vm.ctrlSelected = ctrlSelected;
     vm.changeGallery = changeGallery;
     vm.navSelected = navSelected;
 
     /*Variables*/
-    //vm.items = jInfo.photos.engagement.type("all");
+    vm.preLoad = false;
     jInfo.photos.all(function(res){
       vm.items = res;
       vm.displayItems = vm.items[0].images;
       vm.displayCredit = true;
       vm.selectedid = vm.displayItems[0].id;
+      vm.preLoad = true;
     });
-
-    // Preload Gallery Images
-    vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1_1") );
 
 
     var selectedImg = "";
@@ -787,8 +641,21 @@
         vm.selectedid = item.id;
       }
     }
-    function DialogController($scope, $mdDialog)
-    {
+    function ctrlSelected(direction){
+      var selID = 0;
+      if(direction == 'next'){
+        selID = (vm.selectedid < vm.displayItems.length-1 ? vm.selectedid+1 : 0);
+      }
+      else {
+        selID = (vm.selectedid > 0 ? vm.selectedid-1 : vm.displayItems.length-1);
+      }
+      var idName = "photo-"+selID;
+      $timeout(function () {
+        document.getElementById(idName).click();
+      });
+    }
+
+    function DialogController($scope, $mdDialog) {
       $scope.img = selectedImg;
       $scope.title = selectedTitle;
       $scope.hide = function() {
@@ -803,6 +670,7 @@
     function navSelected(item) {
       return (item.images == vm.displayItems ? "selected" : "");
     }
+
     function changeGallery(item){
       if(navSelected(item) == ""){
         vm.selectedid = 0;

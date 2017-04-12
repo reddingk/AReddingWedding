@@ -1,25 +1,24 @@
 (function(){
  "use strict";
 
-  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', 'preloader',function($state, $mdDialog, jInfo,preloader){
+  angular.module('galleryCtrl').controller('GalleryController', ['$state', '$mdDialog', 'jInfo', 'preloader', '$timeout', function($state, $mdDialog, jInfo, preloader, $timeout){
     var vm = this;
     /*Functions*/
     vm.isSelected = isSelected;
     vm.changeSelected = changeSelected;
+    vm.ctrlSelected = ctrlSelected;
     vm.changeGallery = changeGallery;
     vm.navSelected = navSelected;
 
     /*Variables*/
-    //vm.items = jInfo.photos.engagement.type("all");
+    vm.preLoad = false;
     jInfo.photos.all(function(res){
       vm.items = res;
       vm.displayItems = vm.items[0].images;
       vm.displayCredit = true;
       vm.selectedid = vm.displayItems[0].id;
+      vm.preLoad = true;
     });
-
-    // Preload Gallery Images
-    vm.preLoad = preloader.preloadImages( jInfo.photos.engagement.preload("E1_1") );
 
 
     var selectedImg = "";
@@ -47,8 +46,21 @@
         vm.selectedid = item.id;
       }
     }
-    function DialogController($scope, $mdDialog)
-    {
+    function ctrlSelected(direction){
+      var selID = 0;
+      if(direction == 'next'){
+        selID = (vm.selectedid < vm.displayItems.length-1 ? vm.selectedid+1 : 0);
+      }
+      else {
+        selID = (vm.selectedid > 0 ? vm.selectedid-1 : vm.displayItems.length-1);
+      }
+      var idName = "photo-"+selID;
+      $timeout(function () {
+        document.getElementById(idName).click();
+      });
+    }
+
+    function DialogController($scope, $mdDialog) {
       $scope.img = selectedImg;
       $scope.title = selectedTitle;
       $scope.hide = function() {
@@ -63,6 +75,7 @@
     function navSelected(item) {
       return (item.images == vm.displayItems ? "selected" : "");
     }
+
     function changeGallery(item){
       if(navSelected(item) == ""){
         vm.selectedid = 0;
