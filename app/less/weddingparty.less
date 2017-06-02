@@ -45,8 +45,7 @@
           &:hover {
             -webkit-transform:translateY(-2px);
             -ms-transform: translateY(-2px);
-            transform: translateY(-2px);
-
+            transform: translateY(-2px);            
           }
           @media @tablet-screen, @mobile-screen { .party-content { .member { .member-bio { display: block; } } } }
         }
@@ -58,12 +57,13 @@
         //height: 225px;
         -webkit-transition: all ease;
         -webkit-transition-delay: .5s;
-        transition: all ease .5s;
+        transition: all ease .5s;        
 
         &:hover {
           -webkit-transform: rotateX(-45deg) translateY(-50px);
           -ms-transform: rotateX(-45deg) translateY(-50px);
           transform: rotateX(-45deg) translateY(-50px);
+          .party-content { background-color: rgba(245,215,205,0.7); }          
         }
         .accent-card-container {
           width: 100%;
@@ -107,6 +107,8 @@
         .party-content {
           border: 2px solid rgba(0,0,0,1);
           background-color: #fff;
+          -webkit-transition-delay: .5s;
+          transition: all ease .5s;
           .member {
             display: inline-block;
             width: 49%;
