@@ -38,7 +38,9 @@ var config = {
       'app/libs/ng-parallax/angular-parallax.min.js',
       'app/libs/bookBlock/js/modernizr.custom.js',
       'app/libs/bookBlock/js/jquery.bookBlock.js',
-      'app/libs/bookBlock/js/jquerypp.custom.js'
+      'app/libs/bookBlock/js/jquerypp.custom.js',
+      'app/libs/angulartics/dist/angulartics.min.js',
+      'app/libs/angulartics-google-analytics/dist/angulartics-ga.min.js'
     ],
     libsCSS: [
       'app/libs/angular-material/angular-material.min.css',

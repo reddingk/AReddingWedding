@@ -1,8 +1,9 @@
 (function(){
  "use strict";
 
-  angular.module('mainCtrl').controller('MainController', ['$state', '$window', function($state, $window){
+  angular.module('mainCtrl').controller('MainController', ['$state', '$window', '$analytics', function($state, $window, $analytics){
     var vm = this;
+    $analytics.pageTrack('/');
     /*Variables*/
     vm.selected = null;
     vm.cardClosed = true;

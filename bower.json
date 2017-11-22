@@ -13,6 +13,7 @@
     "randomcolor": "^0.4.4",
     "angular-ui-calendar": "^1.0.1",
     "angular-timeline": "^1.7.0",
-    "ng-parallax": "^0.1.8"
+    "ng-parallax": "^0.1.8",
+    "angulartics-google-analytics": "^0.4.0"
   }
 }

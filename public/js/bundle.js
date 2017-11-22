@@ -15,7 +15,7 @@
 		angular.module('galleryCtrl',['ui.bootstrap', 'ngAnimate', 'ngMaterial']);
 		angular.module('funandgamesCtrl',['ui.bootstrap', 'ngAnimate', 'ngMaterial']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'dataconfig', 'directives', 'services', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl', 'galleryCtrl', 'funandgamesCtrl']);
+    angular.module('ARWApp', ['angulartics', 'angulartics.google.analytics','ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'dataconfig', 'directives', 'services', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl', 'galleryCtrl', 'funandgamesCtrl']);
 
 })();
 
@@ -729,8 +729,9 @@
 (function(){
  "use strict";
 
-  angular.module('mainCtrl').controller('MainController', ['$state', '$window', function($state, $window){
+  angular.module('mainCtrl').controller('MainController', ['$state', '$window', '$analytics', function($state, $window, $analytics){
     var vm = this;
+    $analytics.pageTrack('/');
     /*Variables*/
     vm.selected = null;
     vm.cardClosed = true;

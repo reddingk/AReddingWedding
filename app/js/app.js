@@ -15,6 +15,6 @@
 		angular.module('galleryCtrl',['ui.bootstrap', 'ngAnimate', 'ngMaterial']);
 		angular.module('funandgamesCtrl',['ui.bootstrap', 'ngAnimate', 'ngMaterial']);
 		/**/
-    angular.module('ARWApp', ['ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'dataconfig', 'directives', 'services', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl', 'galleryCtrl', 'funandgamesCtrl']);
+    angular.module('ARWApp', ['angulartics', 'angulartics.google.analytics','ngMaterial', 'ngAnimate', 'ui.router', 'angular-timeline', 'duParallax', 'config', 'dataconfig', 'directives', 'services', 'mainCtrl', 'headerCtrl', 'ourStoryCtrl', 'eventsCtrl', 'weddingPartyCtrl','rsvpCtrl', 'registryCtrl', 'galleryCtrl', 'funandgamesCtrl']);
 
 })();
