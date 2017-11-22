@@ -20,7 +20,7 @@
         <div class="photo-ctrl ctrl-right" ng-click="gc.ctrlSelected('next')"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
 
         <div class="stack-container">
-          <!-- Repeat -->
+          <!-- Repeat Images -->
           <figure ng-repeat="item in gc.displayItems" ng-click="gc.changeSelected(item, $event, true)" ng-class="gc.isSelected(item.id)" ng-attr-id="{{'photo-'+ item.id}}" photo-motion selectedid="{{gc.selectedid}}" itemid="{{item.id}}" itemcount="{{gc.displayItems.length}}">
             <div class="photostack-img"><img ng-src="{{item.img}}" alt="{{item.img}}"></div>
             <figcaption>
