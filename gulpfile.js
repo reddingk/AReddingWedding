@@ -5,6 +5,7 @@ var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
 var runSequence = require('run-sequence');
 var del = require('del');
+const SitemapGenerator = require('sitemap-generator');
 
 var config = {
   src: {
@@ -111,6 +112,19 @@ gulp.task('lib-fonts', function(){
       .pipe(gulp.dest(config.dest.appFonts));
 });
 
+gulp.task('site-map', function(done){
+  const generator = SitemapGenerator('http://localhost:305', {
+    stripQuerystring: false
+  });
+  
+  // register event listeners
+  generator.on('done', () => {
+    console.log("SiteMap Created");
+  });
+  
+  // start the crawler
+  generator.start();
+});
 
 gulp.task('build', function(done){
   runSequence('clean', ['app-js', 'app-less', 'lib-js', 'lib-css', 'lib-fonts'], done);
