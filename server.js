@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var database = require('./app/db/database');
-var preRender = require('prerender-node').set('prerenderToken', 'CqZSOyDHA8wJwGmxh4tc');
+var preRender = require('prerender-node');
 // configuration
 
 // config files
