@@ -5,6 +5,11 @@
     .factory('api', function(){
 
       return {
+        main: {
+          events: function() {
+            return "/api/events/all";
+          }
+        },
         questions: {
           all: function(){
             return "/api/questions/all";

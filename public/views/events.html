@@ -4,8 +4,9 @@
   <div class="event-key">
     <div class="event-invite">* <i class="fa fa-envelope-open-o" aria-hidden="true"></i> <span>Please wait for invitation</span></div>
   </div>
-  <div class="events-list">
-    <div class="event-wrapper" ng-repeat="event in ec.eventsList">
+  <!-- Active event list -->
+  <div class="events-list active">
+    <div class="event-wrapper" ng-repeat="event in ec.eventsList.active">
       <div class="event-title">
         <div class="event-invite" ng-if="event.invite == true"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></div>
         <span>{{event.title}}</span>
@@ -23,16 +24,64 @@
               <span class="event-date"><b>Date:</b> {{ event.date | date: 'EEE MMM dd, yyyy' }} <span class="date-tbd" ng-if="event.date == null">TBD</span></span>
               <span class="event-time"><b>Time:</b> {{ event.date | date: 'hh:mm a' }} <span class="date-tbd" ng-if="event.date == null">TBD</span></span>
               <span class="event-address"><b>Address:</b> {{ event.location.address }}</span>
+              <span class="event-directions" ng-if="event.directions != null">
+                <b>Directions:</b>
+                <a ng-repeat="dir in event.directions" ng-href="{{dir.url}}" target="_blank" ><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{dir.title}}</span></a>
+              </span>
             </div>
             <div class="event-text">
-              <div>{{ event.text }}</div>
-              <div class="add-info" ng-if="event.additionalinfo.length > 0">
-                <h3>Additional Information</h3>
-                <p ng-repeat="addition in event.additionalinfo">
-                  <span ng-if="addition.type == 'text'">{{addition.content}}</span>
-                  <a ng-if="addition.type == 'link'" ng-href="{{addition.url}}" target="_blank">{{addition.content}}</a>
-                <p>
-              </div>
+              <div>{{ event.text }}</div>              
+            </div>
+
+            <div class="add-info" ng-if="event.additionalinfo.length > 0">
+              <div ng-repeat="addition in event.additionalinfo">
+                  <h3 class="{{addition.class}}" ng-if="addition.type == 'title'">{{addition.content}}</h3>
+                  <p class="{{addition.class}}" ng-if="addition.type == 'text'"><span>{{addition.content}}</span></p>
+                  <p class="{{addition.class}}" ng-if="addition.type == 'link'"><a ng-if="addition.type == 'link'" ng-href="{{addition.url}}" target="_blank">{{addition.content}}</a></p>
+              </div>                
+            </div>
+
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Past Events</h2>
+  <!-- Past event list -->
+  <div class="events-list past">
+    <div class="event-wrapper" ng-repeat="event in ec.eventsList.past">
+      <div class="event-title">
+        <div class="event-invite" ng-if="event.invite == true"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></div>
+        <span>{{event.title}}</span>
+      </div>
+      <div class="event-section">
+        <div class="event-content">
+          <div class="event-imgs">                   
+            <img class="event-img-solo" ng-src="{{event.photos[0].image}}">
+            <img class="special-solo-img" ng-src="{{event.photos[0].image}}">
+          </div>
+
+          <div class="event-details">
+            <div class="event-info">
+              <h3 class="event-location">{{ event.location.name }}</h3>
+              <span class="event-date"><b>Date:</b> {{ event.date | date: 'EEE MMM dd, yyyy' }} <span class="date-tbd" ng-if="event.date == null">TBD</span></span>
+              <span class="event-time"><b>Time:</b> {{ event.date | date: 'hh:mm a' }} <span class="date-tbd" ng-if="event.date == null">TBD</span></span>
+              <span class="event-address"><b>Address:</b> {{ event.location.address }}</span>
+              <span class="event-directions" ng-if="event.directions != null">
+                <b>Directions:</b>
+                <a ng-repeat="dir in event.directions" ng-href="{{dir.url}}" target="_blank" ><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{dir.title}}</span></a>
+              </span>
+            </div>
+            <div class="event-text">
+              <div>{{ event.text }}</div>              
+            </div>
+            <div class="add-info" ng-if="event.additionalinfo.length > 0">
+              <div ng-repeat="addition in event.additionalinfo">
+                  <h3 class="{{addition.class}}" ng-if="addition.type == 'title'">{{addition.content}}</h3>
+                  <p class="{{addition.class}}" ng-if="addition.type == 'text'"><span>{{addition.content}}</span></p>
+                  <p class="{{addition.class}}" ng-if="addition.type == 'link'"><a ng-if="addition.type == 'link'" ng-href="{{addition.url}}" target="_blank">{{addition.content}}</a></p>
+              </div>                
             </div>
           </div>
         </div>
