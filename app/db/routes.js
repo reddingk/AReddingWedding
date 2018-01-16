@@ -38,7 +38,7 @@ var eventsData = [
 	 location: {name: "Barcocina", address:"1629 Thames St, Baltimore, MD 21231" },
 	 photos: [{id:0, image:"img/eventimgs/Engagement/b1.JPG"}, {id:1, image:"img/eventimgs/Engagement/b2.JPG"}, {id:2, image:"img/eventimgs/Engagement/b3.JPG"}]},
 	{
-	 title: 'The Wedding', date:"2018-05-19 15:00:00",
+	 title: 'The Wedding', date:"2018-05-19 16:00:00",
 	 invite:false,
 	 text: "We will officially be jumping the broom at Grace's home church, Bethel Gospel Tabernacle.  All are welcome to our ceremony to watch us tie the knot and take as many pictures as possible.",
 	 directions:[{title:"Hotel To Church", url:"https://www.google.com/maps/dir/The+Inn+at+Fox+Hollow,+7755+Jericho+Turnpike,+Woodbury,+NY+11797/110-25+Guy+R+Brewer+Blvd,+Jamaica,+NY+11433/@40.7395534,-73.7101714,12z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x89c282170e244853:0xe68f6d40fb17fcb!2m2!1d-73.4844564!2d40.8135966!1m5!1m1!1s0x89c2612ea797ad27:0x7d089062d6b7d6c9!2m2!1d-73.788107!2d40.692739"}],
