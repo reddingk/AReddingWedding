@@ -56,7 +56,7 @@ var eventsData = [
 	 additionalinfo:[{"type":"title", "content":"Hotel Information"}, {"type":"text", "content":"Located on the grounds of Fox Hollow is the Fox Hollow Boutique All-Suites Hotel.  We have blocked rooms for our guests at this hotel to help you fully enjoy this day with us."}, {"type":"text", "class":"bold", "content":"To reserve your room:"},{"type":"text", "content":"Please call 516-921-1415 and mention that you are a guest of the Manning/Redding Wedding."}, {"type":"text", "class":"bold", "content":"Special Room Rate: $239.00 per night"}, {"type":"link", "content":"More Information", "url":"http://www.thefoxhollow.com/hotel.aspx"}]
    },
    {
-	title: 'The Honeymoon', date:"2018-05-22 12:00:00",
+	title: 'The Honeymoon', date:"2018-05-20 16:00:00",
 	invite:false,
 	text: "You can't go wrong with a honeymoon in Hawaii",
 	directions: null,
