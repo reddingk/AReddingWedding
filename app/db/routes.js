@@ -31,14 +31,14 @@ function getAllScores(res) {
 };
 var eventsData = [
 	{
-	 title: 'Engagement Party', date:new Date("2017-04-01 14:30:00"),
+	 title: 'Engagement Party', date:"2017-04-01 14:30:00",
 	 invite:true,
 	 text: "To kick off our wedding events we will be having our engagement party at Barcocina Resturant which is located off the water in Baltimore's Fells Point.  As much as we would love to have all of our friends and family there we will be sending out our invitations for this event.",
 	 directions: null,
 	 location: {name: "Barcocina", address:"1629 Thames St, Baltimore, MD 21231" },
 	 photos: [{id:0, image:"img/eventimgs/Engagement/b1.JPG"}, {id:1, image:"img/eventimgs/Engagement/b2.JPG"}, {id:2, image:"img/eventimgs/Engagement/b3.JPG"}]},
 	{
-	 title: 'The Wedding', date:new Date("2018-05-19 15:00:00"),
+	 title: 'The Wedding', date:"2018-05-19 15:00:00",
 	 invite:false,
 	 text: "We will officially be jumping the broom at Grace's home church, Bethel Gospel Tabernacle.  All are welcome to our ceremony to watch us tie the knot and take as many pictures as possible.",
 	 directions:[{title:"Hotel To Church", url:"https://www.google.com/maps/dir/The+Inn+at+Fox+Hollow,+7755+Jericho+Turnpike,+Woodbury,+NY+11797/110-25+Guy+R+Brewer+Blvd,+Jamaica,+NY+11433/@40.7395534,-73.7101714,12z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x89c282170e244853:0xe68f6d40fb17fcb!2m2!1d-73.4844564!2d40.8135966!1m5!1m1!1s0x89c2612ea797ad27:0x7d089062d6b7d6c9!2m2!1d-73.788107!2d40.692739"}],
@@ -47,7 +47,7 @@ var eventsData = [
 	 additionalinfo: []
    },
 	{
-	 title: 'The Reception', date:new Date("2018-05-19 18:30:00"),
+	 title: 'The Reception', date:"2018-05-19 18:30:00",
 	 invite:true,
 	 text: "Our wedding reception will be hosted in the beautiful Fox Hollow, as much as we would love to have everyone there it is invitation only.  This elegant Long Island wedding venue is spread across a picturesque 8-acre estate, accented with lush gardens, lively waterfalls, and fountains.",
 	 directions:[{title:"Church To Reception Hall", url:"https://www.google.com/maps/dir/110-25+Guy+R+Brewer+Blvd,+Jamaica,+NY+11433/7725+Jericho+Turnpike,+Woodbury,+NY+11797/@40.752853,-73.7782221,11z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x89c2612ea797ad27:0x7d089062d6b7d6c9!2m2!1d-73.788107!2d40.692739!1m5!1m1!1s0x89c28217086b6a39:0xafe1432fb323c298!2m2!1d-73.4851884!2d40.8137821"}],
@@ -56,7 +56,7 @@ var eventsData = [
 	 additionalinfo:[{"type":"title", "content":"Hotel Information"}, {"type":"text", "content":"Located on the grounds of Fox Hollow is the Fox Hollow Boutique All-Suites Hotel.  We have blocked rooms for our guests at this hotel to help you fully enjoy this day with us."}, {"type":"text", "class":"bold", "content":"To reserve your room:"},{"type":"text", "content":"Please call 516-921-1415 and mention that you are a guest of the Manning/Redding Wedding."}, {"type":"text", "class":"bold", "content":"Special Room Rate: $239.00 per night"}, {"type":"link", "content":"More Information", "url":"http://www.thefoxhollow.com/hotel.aspx"}]
    },
    {
-	title: 'The Honeymoon', date:new Date("2018-05-22 12:00:00"),
+	title: 'The Honeymoon', date:"2018-05-22 12:00:00",
 	invite:false,
 	text: "You can't go wrong with a honeymoon in Hawaii",
 	directions: null,

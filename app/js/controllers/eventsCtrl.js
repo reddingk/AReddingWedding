@@ -22,7 +22,8 @@
       
 
       for(var i =0; i < eventList.length; i++){
-        if(new Date(eventList[i].date) < d){
+        eventList[i].date = new Date(eventList[i].date);
+        if(eventList[i].date < d){
           events.past.push(eventList[i]);
         }
         else {
