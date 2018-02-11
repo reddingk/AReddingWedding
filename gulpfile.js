@@ -5,6 +5,7 @@ var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
 var runSequence = require('run-sequence');
 var del = require('del');
+const SitemapGenerator = require('sitemap-generator');
 
 var config = {
   src: {
@@ -37,7 +38,9 @@ var config = {
       'app/libs/ng-parallax/angular-parallax.min.js',
       'app/libs/bookBlock/js/modernizr.custom.js',
       'app/libs/bookBlock/js/jquery.bookBlock.js',
-      'app/libs/bookBlock/js/jquerypp.custom.js'
+      'app/libs/bookBlock/js/jquerypp.custom.js',
+      'app/libs/angulartics/dist/angulartics.min.js',
+      'app/libs/angulartics-google-analytics/dist/angulartics-ga.min.js'
     ],
     libsCSS: [
       'app/libs/angular-material/angular-material.min.css',
@@ -111,6 +114,19 @@ gulp.task('lib-fonts', function(){
       .pipe(gulp.dest(config.dest.appFonts));
 });
 
+gulp.task('site-map', function(done){
+  const generator = SitemapGenerator('http://localhost:305', {
+    stripQuerystring: false
+  });
+  
+  // register event listeners
+  generator.on('done', () => {
+    console.log("SiteMap Created");
+  });
+  
+  // start the crawler
+  generator.start();
+});
 
 gulp.task('build', function(done){
   runSequence('clean', ['app-js', 'app-less', 'lib-js', 'lib-css', 'lib-fonts'], done);

@@ -8,6 +8,7 @@
 @font-style1: 'JandaSwirlygirl','Dancing Script', cursive;
 @font-style2: 'Delius', cursive;
 
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script|Delius|Patrick+Hand+SC');
 /*Main Colors*/
 @color1: rgba(3,17,46,1); //Midnight Blue
@@ -180,6 +181,7 @@ html, body {
               .card-page {
                 color: rgba(0,0,0,1);
                 h1 { text-align: center; margin-bottom: 30px; font-size: 3rem; }
+                h2 { text-align: center; margin-bottom: 20px; font-size: 2.5rem; }
                 .loading-animation {
                   padding:30px 0px;
                   text-align: center;
@@ -445,6 +447,7 @@ html, body {
       position: fixed;
       top: 0px;
       width: 90%;
+      opacity: 0.9;
       z-index: 100;
       box-shadow: @main-shadow;
       @media @tablet-screen, @mobile-screen { width: 100%; }

@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var database = require('./app/db/database');
-
+var preRender = require('prerender-node');
 // configuration
 
 // config files
@@ -48,6 +48,9 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
+
+// Prerender Site for best SEO
+app.use(preRender);
 
 // routes
 // Route for database set up

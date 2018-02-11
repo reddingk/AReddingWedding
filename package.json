@@ -20,6 +20,8 @@
     "less": "^2.6.1",
     "method-override": "~2.0.2",
     "mongoose": "^4.4.12",
-    "run-sequence": "^1.2.1"
+    "prerender-node": "^2.7.4",
+    "run-sequence": "^1.2.1",
+    "sitemap-generator": "^7.5.2"
   }
 }

@@ -92,6 +92,7 @@
           display: flex;
           -webkit-align-items: stretch;
           align-items: stretch;
+          flex-wrap: wrap;
 
           @media @mobile-screen {
             display: block;
@@ -119,6 +120,18 @@
             .event-date, .event-time {
               .date-tbd { display: inline-block; }
             }
+            .event-directions {
+              margin-top: 10px;
+              display: flex;
+              a { 
+                display: inline-flex; 
+                color: @color3; 
+                margin-left: 5px; 
+                &:hover, &:focus { text-decoration: none;}
+                i { font-size: 21px; }
+                span { text-decoration: underline; margin-left: 5px; }                
+              }
+            }
           }
           .event-text {
             display: inline-block;
@@ -132,20 +145,24 @@
               border-left: none;
               border-top: 1px solid #000;
               padding: 2px;
-            }
-            .add-info {
+            }            
+          }
+          .add-info {            
+            padding-top: 10px;
+            width: 100%;
+            h3 {
+              color: rgba(255,255,255,1);
+              font-weight: bold;
+              background-color: @theme-color-red;
+              border: 2px solid rgba(255,255,255,1);
+              padding: 10px 3px;
+              margin-top: 0px !important;
+              font-family: @font-style1;
               text-align: center;
-              padding-top: 10px;
-              h3 {
-                color: @theme-color-red;
-                font-weight: bold;
-                border: 2px solid @theme-color-red;
-                padding: 10px 3px;
-                margin-top: 0px !important;
-                font-family: @font-style1;
-              }
-              a { color: @color3; text-decoration: underline; }
+              font-size: 1.3rem;
             }
+            a { color: @color3; text-decoration: underline; }
+            .bold { font-weight: bold;}
           }
         }
         @media @mobile-screen { padding: 90px 10px 20px; }
@@ -154,6 +171,10 @@
     &+.event-wrapper {
       margin-top: 30px;
     }
+  }
+  &.past { 
+    .event-title { background-color: rgba(150,150,150,1) !important; }
+    .event-location { color: rgba(150,150,150,1) !important; border-color: rgba(150,150,150,1) !important;}
   }
   @media @mobile-screen { padding: 0px; }
 }
