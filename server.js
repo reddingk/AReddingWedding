@@ -17,7 +17,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(database.remoteUrl);
 
 // set ports
-var port = process.env.PORT || 305;
+var port = process.env.PORT || 80;
 
 // DATABASE
 require('./app/db/routes.js')(app);
