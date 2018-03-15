@@ -20,272 +20,6 @@
 })();
 
 (function(){
-   "use strict";
-
-  angular.module('directives').directive('bookBlock', [function() {
-     return {
-     restrict:'AE',
-     link: function(scope, element, attrs) {
-
-         bookBlock =  element, // $(element).find("#bb-bookblock"),
-         navNext = $(document).find('#bb-nav-next'),
-         navPrev = $(document).find( '#bb-nav-prev'),
-
-         bb = element.bookblock( {
-             speed : 800,
-             perspective : 2000,
-             shadowSides : 0.8,
-             shadowFlip  : 0.4,
-             });
-
-                 var slides = bookBlock.children();
-
-                 // add navigation events
-                 navNext.on( 'click touchstart', function() {
-                     element.bookblock( 'next' );
-                     return false;
-                 } );
-
-                 navPrev.on( 'click touchstart', function() {
-                     element.bookblock( 'prev' );
-                     return false;
-                 } );
-
-                 // add swipe events
-                 slides.on( {
-                     'swipeleft' : function( event ) {
-                         bookBlock.bookblock( 'next' );
-                         return false;
-                     },
-                     'swiperight' : function( event ) {
-                         bookBlock.bookblock( 'prev' );
-                         return false;
-                     }
-                 } );
-
-                 // add keyboard events
-                 $( document ).keydown( function(e) {
-                     var keyCode = e.keyCode || e.which,
-                         arrow = {
-                             left : 37,
-                             up : 38,
-                             right : 39,
-                             down : 40
-                         };
-
-                     switch (keyCode) {
-                         case arrow.left:
-                             bookBlock.bookblock( 'prev' );
-                             break;
-                         case arrow.right:
-                             bookBlock.bookblock( 'next' );
-                             break;
-                     }
-                 } );
-     }
-   }
- }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('navHold', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          angular.element($window).bind("scroll", function() {
-
-            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
-            var windowp = angular.element($window)[0];
-
-            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
-            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;
-
-            if(windowp.pageYOffset >= topThreshhold){
-              if(!element.hasClass("screenPass")){
-                element.addClass("screenPass");
-              }
-            }
-            else {
-              if(element.hasClass("screenPass")){
-                element.removeClass("screenPass");
-              }
-            }
-
-          });
-        }
-      }
-
-    }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('photoMotion', ['$window', function() {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          var itemid = $scope.$eval(attrs.itemid);
-          var itemcount = $scope.$eval(attrs.itemcount);
-          var isNav = $scope.$eval(attrs.isnav);
-
-          //-item position function
-          function getItemLocation(locid, elemId){
-            //-selected id
-            var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
-
-            // Get element by id
-            var stackCont = angular.element(document).find('.stack-container');
-            var elemMove = stackCont.children()[locid];
-            var imgElem = elemMove.children[0].children[0];
-
-            var pageWidth = window.innerWidth;
-            var offsetX = ((imgElem.naturalWidth * ( pageWidth < 801 ? 170 : 320)) / imgElem.naturalHeight);
-            var defaultX = Math.floor((stackCont[0].offsetWidth - offsetX)/2);
-            var maxX = Math.floor(pageWidth * .86);
-
-            var x =  Math.floor(Math.random() * maxX) - 200;
-            var y = Math.floor(Math.random() * 501) - 200;
-            var angle =  Math.floor(Math.random() * 80) - 40;
-
-            // Check Out of Bounds
-            x = (x < -50 ? -40 : x);
-            y = (y < 30 ? 30 : y);
-
-
-
-            elemMove.style.transform = (selectedid == locid ? "translate(-50%, -30%) rotate(0deg)" : "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)");
-
-          }
-
-          // On click Set selected id
-          element.bind('click', function() {
-            if(itemid != $scope.$eval(attrs.selectedid)){
-              for(var i=0; i < itemcount; i++)
-              {
-                getItemLocation(i, itemid);
-              }
-            }
-          });
-          // Intitial Object Set
-          getItemLocation(itemid, null);
-        }
-      }
-    }]);
-
-})();
-
-(function(){
-   "use strict";
-
-    angular.module('directives').directive('scrollDisplay', ['$window', function($window) {
-      return {
-        restrict: 'EA',
-        link: function ($scope, element, attrs) {
-
-          var loc = attrs.hiddenloc;
-
-          var hiddenLoc = (loc == 'top' ? 250 : 80);
-          angular.element($window).bind("scroll", function() {
-            var windowp = angular.element($window)[0];
-            var popup = angular.element(document).find('.md-dialog-container');
-
-            if((windowp.pageYOffset >= hiddenLoc || popup.length > 0) && !element.hasClass("noshow")){
-              element.addClass('noshow');
-              // Page Pop ups
-              element.removeClass('show');
-            }
-            else if((windowp.pageYOffset < hiddenLoc && popup.length == 0)&& element.hasClass("noshow")){
-              element.removeClass('noshow');
-              // Page Pop ups
-              if(!element.hasClass("show")){
-                element.addClass('show');
-              }
-            }
-          });
-        }
-      }
-
-    }]);
-
-})();
-
-
-angular.module('directives')
-  .directive('scrollTo', ['ScrollTo', function(ScrollTo){
-    return {
-      restrict : "AC",
-      compile : function(){
-
-        return function(scope, element, attr) {
-          element.bind("click", function(event){
-            ScrollTo.idOrName(attr.scrollTo, attr.offset);
-          });
-        };
-      }
-    };
-  }])
-  .service('ScrollTo', ['$window', 'ngScrollToOptions', function($window, ngScrollToOptions) {
-    this.idOrName = function (idOrName, offset, focus) {//find element with the given id or name and scroll to the first element it finds
-        var document = $window.document;
-
-        if(!idOrName) {//move to top if idOrName is not provided
-          $window.scrollTo(0, 0);
-        }
-
-        if(focus === undefined) { //set default action to focus element
-            focus = true;
-        }
-
-        //check if an element can be found with id attribute
-        var el = document.getElementById(idOrName);
-        if(!el) {//check if an element can be found with name attribute if there is no such id
-          el = document.getElementsByName(idOrName);
-
-          if(el && el.length)
-            el = el[0];
-          else
-            el = null;
-        }
-
-        if(el) { //if an element is found, scroll to the element
-          if (focus) {
-              el.focus();
-          }
-
-          ngScrollToOptions.handler(el, offset);
-        }
-        //otherwise, ignore
-      }
-
-  }])
-  .provider("ngScrollToOptions", function() {
-    this.options = {
-      handler : function(el, offset) {
-        if (offset) {
-          var top = $(el).offset().top - offset;
-          window.scrollTo(0, top);
-        }
-        else {
-          el.scrollIntoView();
-        }
-      }
-    };
-    this.$get = function() {
-      return this.options;
-    };
-    this.extend = function(options) {
-      this.options = angular.extend(this.options, options);
-    };
-  });
-
-(function(){
   'use strict';
 
   angular.module('config', [ 'ngMaterial' ]);
@@ -1531,3 +1265,269 @@ angular.module('directives')
     });
 
 })();
+
+(function(){
+   "use strict";
+
+  angular.module('directives').directive('bookBlock', [function() {
+     return {
+     restrict:'AE',
+     link: function(scope, element, attrs) {
+
+         bookBlock =  element, // $(element).find("#bb-bookblock"),
+         navNext = $(document).find('#bb-nav-next'),
+         navPrev = $(document).find( '#bb-nav-prev'),
+
+         bb = element.bookblock( {
+             speed : 800,
+             perspective : 2000,
+             shadowSides : 0.8,
+             shadowFlip  : 0.4,
+             });
+
+                 var slides = bookBlock.children();
+
+                 // add navigation events
+                 navNext.on( 'click touchstart', function() {
+                     element.bookblock( 'next' );
+                     return false;
+                 } );
+
+                 navPrev.on( 'click touchstart', function() {
+                     element.bookblock( 'prev' );
+                     return false;
+                 } );
+
+                 // add swipe events
+                 slides.on( {
+                     'swipeleft' : function( event ) {
+                         bookBlock.bookblock( 'next' );
+                         return false;
+                     },
+                     'swiperight' : function( event ) {
+                         bookBlock.bookblock( 'prev' );
+                         return false;
+                     }
+                 } );
+
+                 // add keyboard events
+                 $( document ).keydown( function(e) {
+                     var keyCode = e.keyCode || e.which,
+                         arrow = {
+                             left : 37,
+                             up : 38,
+                             right : 39,
+                             down : 40
+                         };
+
+                     switch (keyCode) {
+                         case arrow.left:
+                             bookBlock.bookblock( 'prev' );
+                             break;
+                         case arrow.right:
+                             bookBlock.bookblock( 'next' );
+                             break;
+                     }
+                 } );
+     }
+   }
+ }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var topSection = angular.element(document.getElementsByClassName("nav-top"))[0];
+            var windowp = angular.element($window)[0];
+
+            var topThreshhold = (topSection.offsetTop + topSection.offsetHeight);
+            //var topThreshhold = element[0].offsetTop - element[0].clientHeight;
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('photoMotion', ['$window', function() {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          var itemid = $scope.$eval(attrs.itemid);
+          var itemcount = $scope.$eval(attrs.itemcount);
+          var isNav = $scope.$eval(attrs.isnav);
+
+          //-item position function
+          function getItemLocation(locid, elemId){
+            //-selected id
+            var selectedid = (elemId == null ? $scope.$eval(attrs.selectedid) : elemId);
+
+            // Get element by id
+            var stackCont = angular.element(document).find('.stack-container');
+            var elemMove = stackCont.children()[locid];
+            var imgElem = elemMove.children[0].children[0];
+
+            var pageWidth = window.innerWidth;
+            var offsetX = ((imgElem.naturalWidth * ( pageWidth < 801 ? 170 : 320)) / imgElem.naturalHeight);
+            var defaultX = Math.floor((stackCont[0].offsetWidth - offsetX)/2);
+            var maxX = Math.floor(pageWidth * .86);
+
+            var x =  Math.floor(Math.random() * maxX) - 200;
+            var y = Math.floor(Math.random() * 501) - 200;
+            var angle =  Math.floor(Math.random() * 80) - 40;
+
+            // Check Out of Bounds
+            x = (x < -50 ? -40 : x);
+            y = (y < 30 ? 30 : y);
+
+
+
+            elemMove.style.transform = (selectedid == locid ? "translate(-50%, -30%) rotate(0deg)" : "translate("+x+"px, "+ y+"px)"+ "rotate("+angle + "deg)");
+
+          }
+
+          // On click Set selected id
+          element.bind('click', function() {
+            if(itemid != $scope.$eval(attrs.selectedid)){
+              for(var i=0; i < itemcount; i++)
+              {
+                getItemLocation(i, itemid);
+              }
+            }
+          });
+          // Intitial Object Set
+          getItemLocation(itemid, null);
+        }
+      }
+    }]);
+
+})();
+
+(function(){
+   "use strict";
+
+    angular.module('directives').directive('scrollDisplay', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          var loc = attrs.hiddenloc;
+
+          var hiddenLoc = (loc == 'top' ? 250 : 80);
+          angular.element($window).bind("scroll", function() {
+            var windowp = angular.element($window)[0];
+            var popup = angular.element(document).find('.md-dialog-container');
+
+            if((windowp.pageYOffset >= hiddenLoc || popup.length > 0) && !element.hasClass("noshow")){
+              element.addClass('noshow');
+              // Page Pop ups
+              element.removeClass('show');
+            }
+            else if((windowp.pageYOffset < hiddenLoc && popup.length == 0)&& element.hasClass("noshow")){
+              element.removeClass('noshow');
+              // Page Pop ups
+              if(!element.hasClass("show")){
+                element.addClass('show');
+              }
+            }
+          });
+        }
+      }
+
+    }]);
+
+})();
+
+
+angular.module('directives')
+  .directive('scrollTo', ['ScrollTo', function(ScrollTo){
+    return {
+      restrict : "AC",
+      compile : function(){
+
+        return function(scope, element, attr) {
+          element.bind("click", function(event){
+            ScrollTo.idOrName(attr.scrollTo, attr.offset);
+          });
+        };
+      }
+    };
+  }])
+  .service('ScrollTo', ['$window', 'ngScrollToOptions', function($window, ngScrollToOptions) {
+    this.idOrName = function (idOrName, offset, focus) {//find element with the given id or name and scroll to the first element it finds
+        var document = $window.document;
+
+        if(!idOrName) {//move to top if idOrName is not provided
+          $window.scrollTo(0, 0);
+        }
+
+        if(focus === undefined) { //set default action to focus element
+            focus = true;
+        }
+
+        //check if an element can be found with id attribute
+        var el = document.getElementById(idOrName);
+        if(!el) {//check if an element can be found with name attribute if there is no such id
+          el = document.getElementsByName(idOrName);
+
+          if(el && el.length)
+            el = el[0];
+          else
+            el = null;
+        }
+
+        if(el) { //if an element is found, scroll to the element
+          if (focus) {
+              el.focus();
+          }
+
+          ngScrollToOptions.handler(el, offset);
+        }
+        //otherwise, ignore
+      }
+
+  }])
+  .provider("ngScrollToOptions", function() {
+    this.options = {
+      handler : function(el, offset) {
+        if (offset) {
+          var top = $(el).offset().top - offset;
+          window.scrollTo(0, top);
+        }
+        else {
+          el.scrollIntoView();
+        }
+      }
+    };
+    this.$get = function() {
+      return this.options;
+    };
+    this.extend = function(options) {
+      this.options = angular.extend(this.options, options);
+    };
+  });

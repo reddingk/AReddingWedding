@@ -38,6 +38,7 @@
                   <h3 class="{{addition.class}}" ng-if="addition.type == 'title'">{{addition.content}}</h3>
                   <p class="{{addition.class}}" ng-if="addition.type == 'text'"><span>{{addition.content}}</span></p>
                   <p class="{{addition.class}}" ng-if="addition.type == 'link'"><a ng-if="addition.type == 'link'" ng-href="{{addition.url}}" target="_blank">{{addition.content}}</a></p>
+                  <hr ng-if="addition.type == 'divider'">
               </div>                
             </div>
 
