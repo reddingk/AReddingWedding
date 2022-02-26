@@ -8,13 +8,13 @@ var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
-var database = require('./app/db/database');
+//var database = require('./app/db/database');
 var preRender = require('prerender-node');
 // configuration
 
 // config files
-mongoose.Promise = global.Promise;
-mongoose.connect(database.remoteUrl);
+//mongoose.Promise = global.Promise;
+//mongoose.connect(database.remoteUrl);
 
 // set ports
 var port = process.env.PORT || 80;

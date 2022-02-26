@@ -1,33 +1,37 @@
-var Questions = require('./models/questions');
-var Scores = require('./models/scores');
+//var Questions = require('./models/questions');
+//var Scores = require('./models/scores');
 
 var bodyParser = require('body-parser');
 
 // Get All Questions for Game
 function getAllQuestions(res) {
-	Questions.find(function(err, questions){
+	/*Questions.find(function(err, questions){
 		if(err){ res.send(err); }
 
 		res.json(questions);
-	})
+	});*/
+	res.json({ "error": "Database Closed!" });
 };
 
 // Post Score from Website Game
 function postUserScore(req, res) {
-	var newScore = Scores(req);
+	/*var newScore = Scores(req);
 	newScore.save(function(err){
 		if(err){ res.send(err);	}
 		res.json({"added":true});
-	})
+	});*/
+	res.json({ "error": "Database Closed!" });
 };
 
 // Get All Scores
 function getAllScores(res) {
-	Scores.find(function(err, scores){
+	/*Scores.find(function(err, scores){
 		if(err){ res.send(err); }
 
 		res.json(scores);
-	})
+	});*/
+
+	res.json({ "error": "Database Closed!" });
 };
 var eventsData = [
 	{
