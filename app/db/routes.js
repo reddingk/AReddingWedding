@@ -67,7 +67,7 @@ var eventsData = [
 		 {"type":"link", "content":"More Information", "url":"http://www.thefoxhollow.com/hotel.aspx"},
 		 {"type":"divider"},
 		 {"type":"text", "class":"bold", "content":"Holiday Inn Plainview"}, 
-		 {"type":"text", "content":"Discover the fun of staying on scenic Long island in our modern hotel located in Plainview"},
+		 {"type":"text", "content":"Discover the fun of staying on scenic Long island in our modern hotel located in Plainview, 5 minutes away from the reception venue."},
 		 {"type":"text", "class":"bold", "content":"To reserve your room:"},
 		 {"type":"text", "content":"Please call 516-349-7400 and mention that you are a guest of the Manning/Redding Wedding or use the code MNR"}, 
 		 {"type":"text", "class":"bold", "content":"Special Room Rate: $149.00 per night"}, 
