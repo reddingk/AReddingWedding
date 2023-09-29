@@ -17,7 +17,7 @@ var preRender = require('prerender-node');
 //mongoose.connect(database.remoteUrl);
 
 // set ports
-var port = process.env.PORT || 80;
+let port = process.env.PORT || 80;
 
 // DATABASE
 require('./app/db/routes.js')(app);
